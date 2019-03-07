@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="testNg_SessionTimeoutVerification" verbose="1" thread-count="5" parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	
+	    <!-- @author prafull.barve -->
+	    
+	<test name="SessionTimeout">
+		<parameter name="environment" value="${environment}" />
+		<parameter name="browser" value="CHROME_HEADLESS" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+    <classes>
+      <class name="tests.SessionTimeout.Verification_SessionTimeout">
+				<methods>
+			 	<include name="Testing_sessionTimeoutIotron"></include> 
+				<include name="Testing_sessionTimeoutIotron_TMO"></include> 
+				<include name="Testing_sessionTimeoutIotron_DealTracker"></include>  
+				<include name="Testing_sessionTimeoutFCHHomePage"></include> 
+				<include name="Testing_sessionTimeout_FCHSLAReport"></include>  
+				</methods>
+			</class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CE Automation" verbose="1" thread-count="5"
+	parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="CE Automation">
+		<parameter name="environment" value="PREPROD" /><!-- PREPROD ${environment} -->
+		<parameter name="browser" value="chrome" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+		<classes>
+			<class name="tests.CEAutomation">
+				<methods>
+					<include name="T01_BeforeCEChangesHaveBenDeployedToPpEnvironment"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

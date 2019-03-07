@@ -1,0 +1,70 @@
+{
+	"TEST2": {
+		"name": "prafull"
+	 },
+
+	"book2": {
+		"price": 5,
+		"Name": "Story of young boy"
+	 },
+
+	"TEST3": [
+		"prafull",
+		"shailendra",
+		"ganjeshwar",
+		"sai"
+	 ],
+
+	"book1": {
+		"price": 650,
+		"countries": {
+			"UK": {
+				"price": 650
+			 },
+
+			"india": {
+				"price": 450
+			 }
+		 },
+
+		"Name": "Story of young girl"
+	 },
+
+	"city": [
+		"mumbai",
+		"indore"
+	 ],
+
+	"Grade1": true,
+	"Grade2": null,
+	"Rank": 1,
+	"Grade": 1.2,
+	"employees": [
+		{
+			"name": "Ram",
+			"email": "ram@gmail.com",
+			"age": 23
+		 },
+
+		{
+			"name": "Shyam",
+			"email": "shyam23@gmail.com",
+			"age": 28
+		 },
+
+		{
+			"name": "John",
+			"email": "john@gmail.com",
+			"age": 33
+		 },
+
+		{
+			"name": "Bob",
+			"email": "bob32@gmail.com",
+			"age": 41
+		 }
+	 ],
+
+	"Name": "Prafull",
+	"TEST1": "value"
+ }

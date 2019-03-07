@@ -1,0 +1,765 @@
+{
+	"OR_T03_09Testingbuttons_SMOKE": 
+	{
+		"part1": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0117",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": "Customer/Outbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"reportsList": 
+			[
+				"1. Primary Report",
+				"2. Service/event breakdown"
+			],
+
+			"filter-ServType": "Service Type",
+			"filter-EvType": "Event Type",
+			"filter-ServEvType": "Service Type : Voice, Event Type : MO",
+			"reportAfterReset": "1. Primary Report"
+		},
+
+		"part2": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0117",
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"selectedReport": "1. Primary Report",
+			"downloaded-csv": "overview_report.csv",
+			"downloaded-html": "overview_report.htm"
+		}
+	},
+
+	"OR_T04DetailPerMonthCheckbox": 
+	{
+		"createAgreement": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"NZLTM"
+			],
+
+			"startDate": "01-Jan-2017",
+			"endDate": "31-Dec-2017",
+			"bool_checkIncludeSatelite": false,
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.05",
+					"ChargingIncrementUsedInCalculationVal": null					
+				},
+
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "SMS",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.04",
+					"ChargingIncrementUsedInCalculationVal": null
+				},
+
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "Data",
+					"EventType": "MB",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.03",
+					"ChargingIncrementUsedInCalculationVal": null
+				}
+			]
+		},
+
+		"ORSearch": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": "0117,0317",
+			"ServiceType": "Voice",
+			"EventType": null,
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": 0
+		},
+
+		"FinFcstSearch": 
+		{
+			"homeOperator": "AUSOP",
+			"trafDirection": "Customer/Outbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"curr": "AUD",
+			"pmn": 
+			[
+				"NZLTM"
+			],
+
+			"countryCommaSeparated": null,
+			"group": null,
+			"taxNetOrGross": null
+		}
+	},
+
+	"OR_T05ReportColumnsMOCallDestinationBreakdownNOTselected": 
+	{
+		"ORSearch": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0317",
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": 0
+		}
+	},
+
+	"OR_T06TestingMOCallDestinationBreakdownCheckbox": 
+	{
+		"ORSearch": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0317",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1
+		},
+
+		"ORSearch-SMSMO": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "SMS",
+			"EventType": "MO",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		},
+
+		"ORSearch-VoiceMT": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "Voice",
+			"EventType": "MT",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		},
+
+		"ORSearch-SMSMT": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "SMS",
+			"EventType": "MT",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		},
+
+		"ORSearch-DataMB": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "Data",
+			"EventType": "MB",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		}
+	},
+
+	"OR_T07CheckingAndCalculatingDataForCallDestinationBreakdown": 
+	{
+		"ORSearch": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0217",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": null,
+			"Currency": "AUD",
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1,
+			"partner": "GABCT"
+		},
+
+		"ORSearch-Single-TrafPerRange": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": "0217,0217",
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		},
+
+		"viewIOTTrafficData-Search": 
+		{
+			"cutomerVisitorRoamer": null,
+			"clientPMNs": "AUSTA",
+			"partner": "GABCT",
+			"trafPeriodRange": "0117,0217"
+		},
+
+		"viewIOTTrafficData-Search-SingleTrafPer": 
+		{
+			"cutomerVisitorRoamer": null,
+			"clientPMNs": null,
+			"partner": null,
+			"trafPeriodRange": "0217,0217",
+			"SDRFxRate_AUD_Feb17": "1.79589"
+		}
+	},
+
+	"OR_T10_11CountryColumn_AdditionalColumnsForVersion2": 
+	{
+		"partnerPMN": "ARGCM",
+		"clientOperator": "MLTGO",
+		"operator": "GO p.l.c.",
+		"trafPeriodRange": "1017,1217"
+	},
+
+	"OR_T17_18MarketAndProportionalShareColumn": 
+	{
+		"country": "Albania",
+		"forMOCallDestBrkdwn": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0317",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1
+		},
+		"forMarkShare&PropShare": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1
+		},
+		"forPropShare": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		}
+
+		
+	},
+
+	"OR_T19MarketShareAndProportionalShareWithPseudoCountry": 
+	{
+		"partnerPMN": "DEUD1,DEUE2,DEUO2,DEUD2,DEUE1",
+		"operator": "Telstra",
+		"prevCountry_Page": "Germany",
+		"forMarkShare&PropShare": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "1017,1217",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1
+		},
+
+		"forPropShare": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1
+		},
+
+		"forMOCallDestBrkdwn": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "1017,1217",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": null,
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1
+		}
+	},
+
+	"OR_T12TrafficVolumeColumsWithoutDiscountAgreement": 
+	{
+		"QueryIOTSummary-OB": 
+		{
+			"cutomerVisitorRoamer": null,
+			"client": "AUSTA",
+			"partner": "ALBAM",
+			"traffPeriodRange": "0117,0217"
+		},
+
+		"QueryIOTSummary-IB": 
+		{
+			"cutomerVisitorRoamer": "Visitor",
+			"client": null,
+			"partner": null,
+			"traffPeriodRange": "0117,0217"
+		},
+
+		"FinForecast-OB": 
+		{
+			"homeOperator": "AUSTA",
+			"startEndTrafPeriod": "01-JAN-2017,28-FEB-2017",
+			"trafDirection": "Customer/Outbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"curr": "SDR",
+			"pmn": 
+			[
+				"ALBAM"
+			],
+
+			"countryCommaSeparated": null,
+			"group": null,
+			"taxNetOrGross": null
+		},
+
+		"FinForecast-IB": 
+		{
+			"homeOperator": null,
+			"startEndTrafPeriod": null,
+			"trafDirection": "Visitor/Inbound",
+			"servType": null,
+			"evType": null,
+			"curr": null,
+			"pmn": null,
+			"countryCommaSeparated": null,
+			"group": null,
+			"taxNetOrGross": null
+		},
+
+		"OverviewRep-OB": 
+		{
+			"clientPMNs": "AUSTA",
+			"trafPeriodRange": "0117,0217",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": "Customer/Outbound",
+			"Currency": "SDR",
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": true,
+			"int_reportIndex": -1,
+			"partnerPMN": "ALBAM"
+		},
+
+		"OverviewRep-IB": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": null,
+			"EventType": null,
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"partnerPMN": "ALBAM"
+		}
+	},
+
+	"OR_T13_15TrafficVolumeColumnsWithDiscountAgreement_Billed_Actual": 
+	{
+		"createAgreement-Billed": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"AFGAW"
+			],
+
+			"startDate": "01-Jan-2017",
+			"endDate": "31-Dec-2017",
+			"bool_checkIncludeSatelite": false,
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": "Bi-Directional",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.02",
+					"ChargingIncrementUsedInCalculationVal": "Billed"
+				},
+
+				{
+					"TrafficDirection": "Bi-Directional",
+					"ServiceType": "SMS",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.03",
+					"ChargingIncrementUsedInCalculationVal": "Billed"
+				},
+
+				{
+					"TrafficDirection": "Bi-Directional",
+					"ServiceType": "Data",
+					"EventType": "MB",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.04",
+					"ChargingIncrementUsedInCalculationVal": "Billed"
+				}
+			]
+		},
+
+		"viewIOTTrafficData-Search-OB": 
+		{
+			"cutomerVisitorRoamer": null,
+			"client": "AUSOP",
+			"partner": "AFGAW",
+			"traffPeriodRange": "1117,1117"
+		},
+
+		"viewIOTTrafficData-Search-IB": 
+		{
+			"cutomerVisitorRoamer": "Visitor",
+			"client": null,
+			"partner": null,
+			"traffPeriodRange": "1117,1117"
+		},
+
+		"ORSearch-OB-Billed": 
+		{
+			"clientPMNs": "AUSOP",
+			"trafPeriodRange": "1117,1117",
+			"ServiceType": "Voice",
+			"EventType": null,
+			"TrafficDirection": "Customer/Outbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Billed"
+		},
+
+		"ORSearch-IB-Billed": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "Voice",
+			"EventType": null,
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Billed"
+		},
+		"updateAgreement-Actual": 
+		{
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": null,
+					"ServiceType": null,
+					"EventType": null,
+					"CalculationType": null,
+					"discBasis": null,
+					"discBasisVal": null,
+					"ChargingIncrementUsedInCalculationVal": "Actual"
+				},
+
+				{
+					"TrafficDirection": null,
+					"ServiceType": null,
+					"EventType": null,
+					"CalculationType": null,
+					"discBasis": null,
+					"discBasisVal": null,
+					"ChargingIncrementUsedInCalculationVal": "Actual"
+				},
+
+				{
+					"TrafficDirection": null,
+					"ServiceType": null,
+					"EventType": null,
+					"CalculationType": null,
+					"discBasis": null,
+					"discBasisVal": null,
+					"ChargingIncrementUsedInCalculationVal": "Actual"
+				}
+			]
+		},
+
+		"ORSearch-OB-Actual": 
+		{
+			"clientPMNs": "AUSOP",
+			"trafPeriodRange": "1117,1117",
+			"ServiceType": "Voice",
+			"EventType": null,
+			"TrafficDirection": "Customer/Outbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Actual"
+		},
+
+		"ORSearch-IB-Actual": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "Voice",
+			"EventType": null,
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": null,
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Actual"
+		}
+		
+	},
+		"OR_T14_16TrafficVolumeColumsWithDiscountAgreement_BilledActual_WithoutSatellite": 
+	{
+		"createAgreement-Billed": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"AREDU"
+			],
+
+			"startDate": "01-Jan-2017",
+			"endDate": "31-Dec-2017",
+			"bool_checkIncludeSatelite": false,
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": "Bi-Directional",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.02",
+					"ChargingIncrementUsedInCalculationVal": "Billed"
+				},
+
+				{
+					"TrafficDirection": "Bi-Directional",
+					"ServiceType": "SMS",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.03",
+					"ChargingIncrementUsedInCalculationVal": "Billed"
+				},
+
+				{
+					"TrafficDirection": "Bi-Directional",
+					"ServiceType": "Data",
+					"EventType": "MB",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.04",
+					"ChargingIncrementUsedInCalculationVal": "Billed"
+				}
+			]
+		},
+
+		"viewIOTTrafficData-Search-OB": 
+		{
+			"cutomerVisitorRoamer": null,
+			"client": "AUSOP",
+			"partner": "AREDU",
+			"traffPeriodRange": "0817,0817"
+		},
+
+		"viewIOTTrafficData-Search-IB": 
+		{
+			"cutomerVisitorRoamer": "Visitor",
+			"client": null,
+			"partner": null,
+			"traffPeriodRange": "0817,0817"
+		},
+
+		"ORSearch-OB-Billed": 
+		{
+			"clientPMNs": "AUSOP",
+			"trafPeriodRange": "0817,0817",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": "Customer/Outbound",
+			"Currency": "SDR",
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Billed"
+		},
+
+		"ORSearch-IB-Billed": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": "SDR",
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Billed"
+		},
+		"updateAgreement-Actual": 
+		{
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": null,
+					"ServiceType": null,
+					"EventType": null,
+					"CalculationType": null,
+					"discBasis": null,
+					"discBasisVal": null,
+					"ChargingIncrementUsedInCalculationVal": "Actual"
+				},
+
+				{
+					"TrafficDirection": null,
+					"ServiceType": null,
+					"EventType": null,
+					"CalculationType": null,
+					"discBasis": null,
+					"discBasisVal": null,
+					"ChargingIncrementUsedInCalculationVal": "Actual"
+				},
+
+				{
+					"TrafficDirection": null,
+					"ServiceType": null,
+					"EventType": null,
+					"CalculationType": null,
+					"discBasis": null,
+					"discBasisVal": null,
+					"ChargingIncrementUsedInCalculationVal": "Actual"
+				}
+			]
+		},
+
+		"ORSearch-OB-Actual": 
+		{
+			"clientPMNs": "AUSOP",
+			"trafPeriodRange": "0817,0817",
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": "Customer/Outbound",
+			"Currency": "SDR",
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Actual"
+		},
+
+		"ORSearch-IB-Actual": 
+		{
+			"clientPMNs": null,
+			"trafPeriodRange": null,
+			"ServiceType": "Voice",
+			"EventType": "MO",
+			"TrafficDirection": "Visitor/Inbound",
+			"Currency": "SDR",
+			"latestOriginal": null,
+			"bool_detailPerMonth": false,
+			"bool_moCallDestBreakdwn": false,
+			"int_reportIndex": -1,
+			"volSetUsedInCalculation":"Actual"
+		}
+		
+	}
+}

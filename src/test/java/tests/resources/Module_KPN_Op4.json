@@ -1,0 +1,309 @@
+{
+	"KPN_Op4_T02_CountryAndPart_ReportRegion_Verification": {
+		"WithperPMNDet": {
+			"HomeOp": "NLDPT",
+			"commaSeparatedPartCntry": "Afghanistan",
+			"repStartDate": "01-Nov-17",
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Customer/Outbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"WithOutperPMNDet": {
+			"HomeOp": null,
+			"commaSeparatedPartCntry": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"check_perPartPMNDet": true,
+			"traffDir": null,
+			"servType": null,
+			"evType": null,
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		}
+	},
+
+	"KPN_Op4_T03_CountryAndPart_VerifyTrafficVolumeColumnValue": {
+		"OBVoiceMO": {
+			"HomeOp": "NLDPT",
+			"commaSeparatedPartCntry": "Afghanistan",
+			"repStartDate": "01-Nov-17",
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Customer/Outbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"OBSmsMO": {
+			"HomeOp": null,
+			"commaSeparatedPartCntry": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Customer/Outbound",
+			"servType": "SMS",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"OBDataMB": {
+			"HomeOp": null,
+			"commaSeparatedPartCntry": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Customer/Outbound",
+			"servType": "Data",
+			"evType": "MB",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"IBVoiceMO": {
+			"HomeOp": null,
+			"commaSeparatedPartCntry": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Visitor/Inbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"IBSmsMO": {
+			"HomeOp": null,
+			"commaSeparatedPartCntry": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Visitor/Inbound",
+			"servType": "SMS",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"IBDataMB": {
+			"HomeOp": null,
+			"commaSeparatedPartCntry": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"check_perPartPMNDet": false,
+			"traffDir": "Visitor/Inbound",
+			"servType": "Data",
+			"evType": "MB",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		}
+	},
+
+	"KPN_Op4_T04_Partner_UIVerification": {
+		"HomeOp": "NLDPT",
+		"RoamPart": "AFGAW",
+		"repStartDate": "01-Nov-17",
+		"repEndDate": "01-JUN-18",
+		"traffDir": "Customer/Outbound",
+		"servType": "Voice",
+		"evType": "MO",
+		"radio_actualBilled": false,
+		"check_includeSpSer": false,
+		"check_includeNatRoam": false
+	},
+
+	"KPN_Op4_T05_Partner_ReportRegion_Verification": {
+		"HomeOp": "NLDPT",
+		"RoamPart": "AFGAW",
+		"repStartDate": "01-Nov-17",
+		"repEndDate": "01-JUN-18",
+		"traffDir": "Customer/Outbound",
+		"servType": "Voice",
+		"evType": "MO",
+		"radio_actualBilled": false,
+		"check_includeSpSer": false,
+		"check_includeNatRoam": false
+	},
+
+	"KPN_Op4_T06_Partner_VerifyTrafficVolumeColumnValue": {
+		"OBVoiceMO": {
+			"HomeOp": "NLDPT",
+			"RoamPart": "AFGAW",
+			"repStartDate": "01-Nov-17",
+			"repEndDate": "30-JUN-18",
+			"traffDir": "Customer/Outbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"OBSmsMO": {
+			"HomeOp": null,
+			"RoamPart": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"traffDir": "Customer/Outbound",
+			"servType": "SMS",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"OBDataMb": {
+			"HomeOp": null,
+			"RoamPart": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"traffDir": "Customer/Outbound",
+			"servType": "Data",
+			"evType": "MB",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"IBVoiceMo": {
+			"HomeOp": null,
+			"RoamPart": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"traffDir": "Visitor/Inbound",
+			"servType": "Voice",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"IBSmsMo": {
+			"HomeOp": null,
+			"RoamPart": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"traffDir": "Visitor/Inbound",
+			"servType": "SMS",
+			"evType": "MO",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		},
+
+		"IBDataMb": {
+			"HomeOp": null,
+			"RoamPart": null,
+			"repStartDate": null,
+			"repEndDate": null,
+			"traffDir": "Visitor/Inbound",
+			"servType": "Data",
+			"evType": "MB",
+			"radio_actualBilled": false,
+			"check_includeSpSer": false,
+			"check_includeNatRoam": false
+		}
+	},
+
+	"KPN_Op4_T08_TrafficAnalysis_ReportRegion_Verification": {
+		"HomeOp": "NLDPT"
+	},
+
+	"KPN_Op4_T09_TrafficAnalysis_ReportContent_VerificationWith_FinForecast_QueryIOTSummary_Pages": {
+		"DailyTrafAnalysisPage": {
+			"HomeOp": "NLDPT",
+			"settlementDateToFrom": "01-Nov-2017,null",
+			"processingDateToFrom": "01-Nov-2017,null",
+			"callDateToFrom": "01-Nov-2017,31-Dec-2017",
+			"trafDirection": "Customer/Outbound",
+			"partnerPmn": "COLCO"
+		},
+
+		"FinForecastPage": {
+			"SmsMoNet": {
+				"homeOperator": "NLDPT",
+				"startEndTrafPeriod": "01-Nov-2017,31-Dec-2017",
+				"trafDirection": "Customer/Outbound",
+				"servType": "SMS",
+				"evType": "MO",
+				"curr": "SDR",
+				"pmn": [
+					"COLCO"
+				],
+
+				"countryCommaSeparated": null,
+				"group": null,
+				"taxNetOrGross": "Net"
+			},
+
+			"VoiceMoNet": {
+				"homeOperator": null,
+				"startEndTrafPeriod": null,
+				"trafDirection": null,
+				"servType": "Voice",
+				"evType": "MO",
+				"curr": null,
+				"pmn": null,
+				"countryCommaSeparated": null,
+				"group": null,
+				"taxNetOrGross": "Net"
+			},
+
+			"VoiceMoGross": {
+				"homeOperator": null,
+				"startEndTrafPeriod": null,
+				"trafDirection": null,
+				"servType": null,
+				"evType": null,
+				"curr": null,
+				"pmn": null,
+				"countryCommaSeparated": null,
+				"group": null,
+				"taxNetOrGross": "Gross"
+			},
+
+			"DataNet": {
+				"homeOperator": null,
+				"startEndTrafPeriod": null,
+				"trafDirection": null,
+				"servType": "Data",
+				"evType": null,
+				"curr": null,
+				"pmn": null,
+				"countryCommaSeparated": null,
+				"group": null,
+				"taxNetOrGross": "Net"
+			}
+		},
+
+		"ViewIOTTrafficData": {
+			"cutomerVisitorRoamer": null,
+			"client": "NLDPT",
+			"partner": "COLCO",
+			"traffPeriodRange": "1117,1217"
+		}
+	},
+
+	"KPN_Op4_T10_TrafficAnalysis_ChartContent_Verification": {
+		"HomeOp": "NLDPT",
+		"settlementDateToFrom": "01-Nov-2017,null",
+		"processingDateToFrom": "01-Nov-2017,null",
+		"callDateToFrom": "01-Nov-2017,30-Nov-2017"
+	}
+}

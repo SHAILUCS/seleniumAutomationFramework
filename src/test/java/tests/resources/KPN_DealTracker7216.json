@@ -1,0 +1,809 @@
+{
+	"7219": {
+		"BothDirection": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound",
+				"Customer/Outbound"
+			 ],
+
+			"ServiceType": [
+				"Voice",
+				"SMS",
+				"Data"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO",
+				"MT",
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7230": {
+		"InboundAllServices": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice",
+				"SMS",
+				"Data"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO",
+				"MT",
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7217": {
+		"BothDirection": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound",
+				"Customer/Outbound"
+			 ],
+
+			"ServiceType": [
+				"Voice",
+				"SMS",
+				"Data"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO",
+				"MT",
+				"MB"
+			 ]
+		 },
+
+		"OutboundwithAllServices": {
+			"year": null,
+			"dealList": null,
+			"TADIG": null,
+			"TrafficDirection": [
+				"Customer/Outbound"
+			 ],
+
+			"ServiceType": [
+				"Voice",
+				"SMS",
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO",
+				"MT",
+				"MB"
+			 ],
+
+			"BulkUpdateValue": "80"
+		 },
+
+		"OutboundwithVoiceMT": {
+			"year": null,
+			"dealList": null,
+			"TADIG": null,
+			"TrafficDirection": [
+				"Customer/Outbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MT"
+			 ],
+
+			"BulkUpdateValue": "70"
+		 },
+
+		"OutboundwithMo&MB": {
+			"year": null,
+			"dealList": null,
+			"TADIG": null,
+			"TrafficDirection": [
+				"Customer/Outbound"
+			 ],
+
+			"ServiceType": [
+				"Voice",
+				"SMS",
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO",
+				"MB"
+			 ],
+
+			"BulkUpdateValue": "80"
+		 },
+
+		"InboundwithAllServices": {
+			"year": null,
+			"dealList": null,
+			"TADIG": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": null,
+			"Country": null,
+			"EventType": null
+		 }
+	 },
+
+	"7235": {
+		"VoiceMT": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"VoiceMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7218": {
+		"bulkUpdateVal": "50",
+		"OutboundGrowthValue_CountryLvl": "70",
+		"VoiceMO": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Customer/Outbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"VoiceMT": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7236": {
+		"VoiceMO": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"VoiceMT": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7237": {
+		"VoiceMo": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"VoiceMT": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7238": {
+		"VoiceMo": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"VoiceMT": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7220": {
+		"VoiceMO": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"VoiceMT": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7231": {
+		"InboundDirection": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice",
+				"SMS",
+				"Data"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MO",
+				"MT",
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7232": {
+		"VoiceMT": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"VoiceMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7233": {
+		"VoiceMT": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MT"
+			 ],
+
+			"Forecast Growth (%)": "29"
+		 },
+
+		"VoiceMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 },
+
+	"7234": {
+		"BulkUpdateValue": "50",
+		"Edit Op Lvl Monthly Growth (%)": "65",
+		"VoiceMT": {
+			"year": "2018",
+			"TADIG": "NLDPT",
+			"dealList": null,
+			"TrafficDirection": [
+				"Visitor/Inbound"
+			 ],
+
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": [
+				"Croatia"
+			 ],
+
+			"EventType": [
+				"MT"
+			 ]
+		 },
+
+		"VoiceMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Voice"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"SmsMO": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"SMS"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MO"
+			 ]
+		 },
+
+		"DataMB": {
+			"year": null,
+			"TADIG": null,
+			"dealList": null,
+			"TrafficDirection": null,
+			"ServiceType": [
+				"Data"
+			 ],
+
+			"Country": null,
+			"EventType": [
+				"MB"
+			 ]
+		 }
+	 }
+ }

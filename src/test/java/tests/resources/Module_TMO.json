@@ -1,0 +1,98 @@
+{
+	"TMO_T01_VerifyAllcolumnsOn_TAPAccrualActualAndTrueUpPage": 
+	{
+		"searchParam": 
+		{
+			"traffPeriod": "0916",
+			"procDate": "09/20 Pre-Month End",
+			"discType": null
+		}
+	},
+
+	"TMO_T02_3_4_5_8_VerifySmsMt_Total_CalculationsOn_TAPAccrualActualAndTrueUpPage": 
+	{
+		"smsMtOrMO": "SMS MT",
+		"iBPartner": "USAJS",
+		"oBPartner": "BMU01",
+		"searchParam_pre": 
+		{
+			"traffPeriod": "1215",
+			"procDate": "12/22, Snap: 12/20 Pre-Month End",
+			"discType": "All"
+		},
+
+		"searchParam_post": 
+		{
+			"procDate": "01/05, Snap: 12/31 Post-Month End"
+		}
+	},
+
+	"TMO_T09_VerifySmsMoAccrualAndTotalColumnCalculationsOn_TapAccrualActualAndTrueUpPage": 
+	{
+		"smsMtOrMO": "SMS MO",
+		"iBPartner": "USAJS",
+		"oBPartner": "BMU01",
+		"searchParam_pre": 
+		{
+			"traffPeriod": "1215",
+			"procDate": "12/22, Snap: 12/20 Pre-Month End",
+			"discType": "All"
+		},
+
+		"searchParam_post": 
+		{
+			"procDate": "01/05, Snap: 12/31 Post-Month End"
+		}
+	},
+
+	"TMO_T06_VerifyDataOf_TapAccrualActualTrueUpPage_With_FinancialForecastReport": 
+	{
+		"finForecastReport": 
+		{
+			"searchIb": 
+			{
+				"homeOperator": "USAW6",
+				"startEndTrafPeriod": "01-sep-2017,30-sep-2017",
+				"trafDirection": "Visitor/Inbound",
+				"servType": "SMS",
+				"evType": "MT",
+				"curr": "USD",
+				"pmn": 
+				[
+					"USAJS",
+					"BMU01"
+				],
+
+				"countryCommaSeparated": null,
+				"group": null,
+				"taxNetOrGross": null
+			},
+
+			"searchOb": 
+			{
+				"homeOperator": null,
+				"startEndTrafPeriod": null,
+				"trafDirection": "Customer/Outbound",
+				"servType": null,
+				"evType": null,
+				"curr": null,
+				"pmn": null,
+				"countryCommaSeparated": null,
+				"group": null,
+				"taxNetOrGross": null
+			}
+		},
+
+		"tapAccrualActualAndTrueUp": 
+		{
+			"ibPartner":"USAJS",
+			"obPartner":"BMU01",
+			"searchParam_post": 
+			{
+				"traffPeriod": "0917",
+				"procDate": "10/10, Snap: 09/30 Post-Month End",
+				"discType": "All"
+			}
+		}
+	}
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Accrual Report" verbose="1" thread-count="5"
+	parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="Accrual Report">
+		<parameter name="environment" value="${environment}" />
+		<parameter name="browser" value="chrome" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+		<classes>
+			<class name="tests.MainRegression.HKT_Alerts_7465">
+				<methods>
+					<include name="T01_AlertSubscriptionP26_VerifyContent"/>
+					<include name="T02_FxFluctuationPageP27_CRUD"/>
+					<include name="T03_FxFluctuationPageP27_VerifyValidations"/>
+					<include name="T04_FxFluctuationPageP27_VerifyContent"/>
+					<include name="T05_verify_Currencies_On_FxFluctuationPageP27_For_ActiveAgreement">
+						<parameter name="user" value="HKGTC-S" />
+					</include>  
+					<include name="T06_FxFluctuationReportP28_VerifyContent"/>
+					<include name="T07_FxFluctuationReportP28GraphResults"/> 
+					<include name="T08_TrafficTrendP31_VerifyContent"/>
+					<include name="T09_TrafficTrendPageP31_CRUD"/>
+					<include name="T10_TrafficTrendPageP31_VerifyValidations"/>
+					<include name="T11_TrafficTrendReportP37_VerifyContent"/>
+					<include name="T12_TrafficTrendReportP37_VerifyContent_HKGTC_User">
+						<parameter name="user" value="HKGTC-S" />
+					</include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

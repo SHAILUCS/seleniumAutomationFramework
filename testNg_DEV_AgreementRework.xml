@@ -1,0 +1,66 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Agreement Rework Suite" verbose="1" thread-count="8"
+	parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="Agreement Rework Tests">
+		<parameter name="environment" value="${environment}" />
+		<parameter name="browser" value="CHROME" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+
+		<classes>
+			<class name="tests.MainRegression.AgreementRework">
+				<methods>
+					<include name="AgrRwrk_P20_NewIOTDiscAgrmntListPage_Content_ReportType_SelectCol_ViewLinkWithBackNav" />
+					<include name="AgrRwrk_P15_DetailsTab_VerifyContent" />
+					<include name="AgrRwrk_P15_DiscountParametersTab_VerifyContent" />
+					<include name="AgrRwrk_P15_SettlementTab_VerifyContent" />
+					<include name="AgrRwrk_P15_AdmTab_DocLibSec_VerifyContent">
+						<parameter name="browser" value="CHROME" />
+					</include>
+					<include name="AgrRwrk_P15_AdmTab_SignTrackSec_VerifyContent" />
+					<include name="AgrRwrk_P15_AdmTab_AgrChecklistSec_VerifyContent" />
+					<include name="AgrRwrk_P15_AdmTab_AgrNotesSec_VerifyContent">
+						<parameter name="browser" value="CHROME" />
+					</include>
+					<include name="AgrRwrk_P15_AdmTab_ManualForecast_VerifyContent"/>
+					<include name="AgrRwrk_P15_AdmTab_TapLevelTrafSplit_VerifyContent" />
+					<include name="AgrRwrk_P15_HistoryTab_VerifyContent" />
+
+					<include name="AgrRwrk_P15_DocLibSec_CRUD">
+						<parameter name="browser" value="CHROME" />
+					</include> 
+					<include name="AgrRwrk_P15_SignTrackSec_CRUD" /> 
+					<include name="AgrRwrk_P15_AgrChecklistSec_CRUD"/>
+					<include name="AgrRwrk_P15_AgrNotes_CRUD"/>
+					<include name="AgrRwrk_P15_TAPLevelTrafficSplit_CRUD"/>
+					<include name="AgrRwrk_P15_RoundingCorrectionFactors_CRUD"/> 
+					<include name="AgrRwrk_P15_HistoryTab_CRUD"/>
+					<include name="AgrRwrk_P15_VirtualAgreements_VerifyContent"/>
+					
+					<include name="AgrRwrk_P16_AddAgreementDetailsStep_1_VerifyContent_AUSTA">
+						<parameter name="user" value="AUSTA-S" />
+					</include>
+					<include name="AgrRwrk_P16_AddAgreementDetailsStep_1_VerifyContent_SWEHU">
+						<parameter name="user" value="SWEHU-S" />
+					</include>
+					<include name="AgrRwrk_P16_AddAgreementDetailsStep_1_VerifyContent_USAVZ">
+						<parameter name="user" value="USAVZ-S" />
+					</include>
+					<include name="AgrRwrk_P16_AddAgreementDetailsStep_1_VerifyContent_USAW6">
+						<parameter name="user" value="USAW6-S" />
+					</include>
+					<include name="AgrRwrk_P16_AddAgreementDetailsStep_1_VerifyContent_GBROR">
+						<parameter name="user" value="EE-S" />
+					</include>
+					<include name="AgrRwrk_P16_AddAgreementDetailsStep_1_VerifyContent_POL03">
+						<parameter name="user" value="POL03-S" />
+					</include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

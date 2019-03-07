@@ -1,0 +1,221 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="UISuite" verbose="1" thread-count="5" parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="UITests">
+		<parameter name="environment" value="${environment}" /><!-- PREPROD  ${environment}-->
+		<parameter name="browser" value="FIREFOX" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+		<classes>
+			  <class name="tests.UI.UI_Verification">
+				<methods>
+				 	<include name="UI_NGCHomePage" />
+					<include name="UI_IOTRONWelcome" />
+					<exclude name="UI_MaintainIOTRONPersonalFavourites" />
+					<include name="verifyNavigationLinksFunctionality_IOTRONSystemAdministration">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>
+					<include name="verifyNavigationLinksFunctionality_AgreementCapture">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>
+					<include name="verifyNavigationLinksFunctionality_Reporting">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>
+					<include name="verifyNavigationLinksFunctionality_Forecasting">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>
+					<include name="verifyNavigationLinksFunctionality_BusinessIntelligence">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>
+					<include name="verifyNavigationLinksFunctionality_Settlement">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>  
+					<include name="verifyNavigationLinksFunctionality_Operations">
+						<parameter name="browser" value="CHROME_HEADLESS" />
+					</include>
+ 
+				</methods>
+			</class>
+
+
+			<!-- <class name="tests.UI.TMOModule">
+				<methods>
+			  		<include name="UI_TMO_TAPAccrualActualAndTrueUp_2" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_IBTotal_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_IBVoice_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_IBSms_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_IBData_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_OBTotal_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_OBVoice_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_OBSms_10" />
+					<include name="UI_TMO_MonthlyDiscountAccrual_OBData_10" />
+					<include name="UI_TMO_MonthlyDiscountActuals_IBTotal_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_IBVoice_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_IBSms_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_IBData_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_OBTotal_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_OBVoice_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_OBSms_16" />
+					<include name="UI_TMO_MonthlyDiscountActuals_OBData_16" />
+					<include name="UI_TMO_DiscountReport_5" />
+					<include name="UI_TMO_Commitments_Revenue_4" />
+					<include name="UI_TMO_Commitments_Expense_8" /> 
+					<include name="UI_TMO_DataLoading_18" />
+					<include name="UI_TMO_TrafficAnalysisReport_19" />  
+					<include name="UI_TMO_MonthlyDiscountAccrual_VarianceAnalysis_11" /> 
+					<include name="UI_TMO_MonthlyDiscountActual_VarianceAnalysis_14" /> 
+					<include name="UI_TMO_SnapshotManagement_17" />
+				</methods>
+			</class>-->
+ 
+		 <!-- <class name="tests.UI.DealTrackerModule">
+				<methods>
+					<include name="UI_DT_DTSummary_HEADER_4" />
+					<include name="UI_DT_DTSummary_NetEffectiveRates_4" />
+					<include name="UI_DT_DTSummary_AllAgreementsInSelectedCountries_4" />
+					<include name="UI_DT_DTSummary_MarketGrowth_4" />
+					<include name="UI_DT_DTSummary_MarketShareProportionalShare_4" />
+					<include name="UI_DT_DTSummary_MarketVolume_4" />
+					<include name="UI_DT_DTSummary_Charges_4" /> 
+					<include name="UI_DT_EditMarketVolume_5" />
+					<include name="UI_DT_EditTrafficGrowth_6" />
+					<include name="UI_DT_EditMarketShare_7" />
+					<include name="UI_DT_EditOperatorGrowth_8" /> 
+					<include name="UI_DT_EditProportionalShare_10" /> 
+					<include name="UI_DT_EditTapRate_15" />
+					<include name="UI_DT_CurrentMonthSteering_2" />
+					<include name="UI_DT_DealTrackerSnapshotManagement_9" />
+					<include name="UI_DT_FlashReport_14">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<exclude name="UI_DT_YTDTrueup_16" />
+					<include name="UI_DT_FlashReportArchive_23">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_PerformanceTracker_19">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_BudgetAdministration_18">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_BudgetForecastCreation_22">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_BudgetTrueup_20">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_FutureFXrate_17">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_PricingCatalogue_11">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_DailyTrafficAnalysisReport_12">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_DataLoading_13">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_ChangeAuditReport_3">
+						<parameter name="user" value="EE-S"></parameter>
+					</include>
+					<include name="UI_DT_HeaderDataAndMenuLinksVerification" /> 
+														
+				</methods>
+			</class>  -->
+
+			<!--  <class name="tests.UI.ReportModule">
+				<methods>
+					<include name="UI_Rep_OverviewReport_NextgenUser" />
+					<exclude name="UI_Rep_OverviewReport_SearchResultSectionWithNgcUser" />
+					<include name="UI_Rep_AgreementPerformanceReportCreditNote_279" />
+					<include name="UI_Rep_AgreementPerformanceReportCreditNote_SingleMonth_454" /> 
+					<include name="UI_Rep_IntraGroupReporting_491" />
+					<include name="UI_Rep_CommitmentReport_492" />
+					<include name="UI_Rep_ThresholdTrackerMatrixReport_520" />
+					<include name="UI_Rep_IntraGroupEqualizationReport_513" />
+					<include name="UI_Rep_CustomerOutboundRoamingMVNOSplitReport_552" />
+					<include name="UI_Rep_RateAuditReport_597" />
+					<include name="UI_Rep_MonthlyCNReport_609" />
+					<include name="UI_Rep_PerDayPerIMSIReport_613" />
+					<include name="UI_Rep_CRDSyncReport_620" />
+					<include name="UI_Rep_HutchQlikviewReport_632" />
+					<include name="UI_Rep_HutchQlikviewAccrualsReport_648" />
+					<include name="UI_Rep_TotalAndPremiumNumberVolumeAndTAPCharges_634" />
+					<include name="UI_Rep_AgreementCatalogueReport_651" />
+					<include name="UI_Rep_OutstandingRebatesPayable_673" />
+					<include name="UI_Rep_OutstandingRebatesReceivable_673" />
+					<include name="UI_Rep_SavingsPerAgreement_674" />
+					<include name="UI_Rep_SavingsPerCountry_677" />
+  					<include name="UI_Rep_ConfigureIOTDiscountAgreementsforCalculationofCumulativeAnnualisedNetworkOutpaymentSavings_679" />  
+  					<include name="UI_Rep_RODATReportFileExport_278" />
+  					<include name="UI_Rep_ChartCumulativeAnnualisedNetworkOutpaymentSavingsfromIOTs_678" />
+ 				</methods>
+			</class> -->
+ 
+			 <!-- <class name="tests.UI.AgreementCaptureModule">
+				<methods>
+ 
+					<include name="UI_MaintainIOTDiscountAgreements_p301" />
+					<include name="UI_MaintainIOTDiscountPartyDetails_p298" />
+					<include name="UI_CreateIOTDiscountPartyDetails_p299" />
+					<include name="UI_EditIOTDiscountPartyDetails_p299" />
+					<include name="UI_CreateIOTDiscountContact_p290" />
+					<include name="UI_EditIOTDiscountContact_p290" />
+					<include name="UI_CreateEditIOTDiscountAddress_p296" />
+					<include name="UI_CreateEditIOTDiscountBankAccount_p255" />
+					<include name="UI_MaintainIOTOperatorGroups_p311" />
+					<include name="UI_CreateIOTOperatorGroup_p412" />
+					<include name="UI_EditIOTOperatorGroup_p412" />
+					<include name="UI_AgreementChecklistReview_p453" />
+					<include name="UI_UpdateIOTAgreementChecklistItem_p455" />
+					<include name="UI_ZoneDefinition_p502" />
+					<include name="UI_CreateZone_p505" />
+					<include name="UI_EditZone_p505" /> 
+					<include name="UI_SOXReport_p663" /> 
+
+					 
+					<include name="UI_EditIOTDiscountAgreement_Tab_p303" /> 
+					<include name="UI_CopyDiscountAgreement_Tab_p303" />
+					<include name="UI_AgreementParties_Tab_p303" />
+					<include name="UI_AgreementChecklist_Tab_p303" />
+					<include name="UI_SignatureTracking_Tab_p303" /> 
+					<include name="UI_AgreementNotes_Tab_p303" /> 
+					<include name="UI_DocumentLibrary_Tab_p303" /> 
+					<include name="UI_DiscountParameters_Tab_p303" /> 
+					<include name="UI_SettlementStatement_Tab_p303" />
+					
+				</methods>
+			</class>  -->
+
+	 		<class name="tests.UI.SettlementStatementModule">
+				<methods>
+					<include name="UI_Setmt_GenerateSettlementStatement_p680" />
+					<include name="UI_Setmt_CreditDebitNoteReport_p305" />
+					<include name="UI_Setmt_SettlementStatementHistory_p544" />
+				</methods>
+			</class>
+		
+		 	<class name="tests.UI.ForecastingModule">
+				<methods>
+					<include name="UI_Forecasting_ForecastReportperAgreement_p317" />
+					<include name="UI_Forecasting_FinancialReport_ForecastedTAPDiscountedCharges_p497" />
+					<include name="UI_Forecasting_ForecastedTrafficVolumesSummaryReport_p493" />
+				</methods>
+			</class> 
+
+			<class name="tests.UI.IOTRONSystemAdministration">
+				<methods>
+					<include name="UI_IOTRONSystemAdministration_MaintainClientJobTitle_p695" />
+					<include name="UI_IOTRONSystemAdministration_CreateClientJobTitle_p696" /> 
+					<include name="UI_IOTRONSystemAdministration_EditClientJobTitle_p696" />
+				</methods>
+			</class>   
+
+		</classes>
+	</test>
+
+</suite>

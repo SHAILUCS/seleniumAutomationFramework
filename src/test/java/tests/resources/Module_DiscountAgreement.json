@@ -1,0 +1,275 @@
+{
+	"discAgr_T02_Bilateral_UnilateralPayer_AgreementTypeCheck": 
+	{
+		"createDiscAgreement": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"ARGCM"
+			],
+
+			"startDate": "01-Jan-2016",
+			"endDate": "31-Jan-2017",
+			"bool_checkIncludeSatelite": false,
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.2",
+					"ChargingIncrementUsedInCalculationVal": null
+				},
+
+				{
+					"TrafficDirection": "Visitor/Inbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.3",
+					"ChargingIncrementUsedInCalculationVal": null
+				}
+			]
+		}
+	},
+
+	"discAgr_T03_GenerateSettlementStatement_CalculateAgreement_DocumentLibrary": 
+	{
+		"createDiscAgreement": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"AUTCA"
+			],
+
+			"startDate": "01-Jan-2017",
+			"endDate": "31-Jan-2018",
+			"bool_checkIncludeSatelite": false,
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.2",
+					"ChargingIncrementUsedInCalculationVal": null
+				},
+
+				{
+					"TrafficDirection": "Visitor/Inbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.3",
+					"ChargingIncrementUsedInCalculationVal": null
+				}
+			]
+		}
+	},
+
+	"discAgr_T04_Search_Delete_NewlyCreatedAgreement": 
+	{
+		"createDiscAgreement": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"ARGCM"
+			],
+
+			"startDate": "01-Jan-2017",
+			"endDate": "31-Jan-2018",
+			"bool_checkIncludeSatelite": false
+		}
+	},
+
+	"discAgr_T05_CopyDiscountAgreement": 
+	{
+		"createDiscAgreement": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"ARGCM"
+			],
+
+			"startDate": "01-Jan-2016",
+			"endDate": "31-Jan-2017",
+			"bool_checkIncludeSatelite": false
+		}
+	},
+
+	"discAgr_T07_SOXReportSearchFunctionalityVerification": 
+	{
+		"TADIG": "AUSTA",
+		"DateFrom": "01-Jan-2018",
+		"DateTo": "31-Jan-2018"
+	},
+
+	"discAgr_T08_ZoneDefinitionCRUDOperation": 
+	{
+		"zoneName": "AutomationTesting_discAgrZD",
+		"zoneDescription": "AutomationTesting_discAgrZD Desc",
+		"Countries": 
+		[
+			"AIA",
+			"BRA",
+			"CAF",
+			"ESP",
+			"GHA"
+		]
+	},
+
+	"discAgr_T09_ForecastingMethod_HomeCurrency_DataCheck": 
+	{
+		"createDiscAgreement": 
+		{
+			"clientName": "AUSOP",
+			"partner": 
+			[
+				"AUTCA"
+			],
+
+			"startDate": "01-Jan-2016",
+			"endDate": "31-Jan-2017",
+			"bool_checkIncludeSatelite": false,
+			"DiscParam": 
+			[
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.2",
+					"ChargingIncrementUsedInCalculationVal": null
+				},
+
+				{
+					"TrafficDirection": "Visitor/Inbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.3",
+					"ChargingIncrementUsedInCalculationVal": null
+				}
+			]
+		}
+	},
+
+	"discAgr_T10_GenerationOfTermSheet_AUSTA": 
+	{
+		"clientName": "AUSTA",
+		"partner": 
+		[
+			"ARGCM"
+		],
+
+		"startDate": "01-Jan-2016",
+		"endDate": "31-Jan-2017",
+		"bool_checkIncludeSatelite": false,
+		"DiscParam": 
+		[
+			{
+				"TrafficDirection": "Customer/Outbound",
+				"ServiceType": "Voice",
+				"EventType": "MO",
+				"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+				"discBasis": "Value",
+				"discBasisVal": "0.2",
+				"ChargingIncrementUsedInCalculationVal": null
+			},
+
+			{
+				"TrafficDirection": "Visitor/Inbound",
+				"ServiceType": "Voice",
+				"EventType": "MO",
+				"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+				"discBasis": "Value",
+				"discBasisVal": "0.3",
+				"ChargingIncrementUsedInCalculationVal": null
+			}
+		]
+	},
+
+	"discAgr_T11_GenerationOfTermSheet_AUSOP": 
+	{
+		"clientName": "AUSOP",
+		"partner": 
+		[
+			"USAW6"
+		],
+
+		"startDate": "01-Jan-2016",
+		"endDate": "31-Jan-2017",
+		"bool_checkIncludeSatelite": false,
+		"DiscParam": 
+		[
+			{
+				"TrafficDirection": "Customer/Outbound",
+				"ServiceType": "Voice",
+				"EventType": "MO",
+				"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+				"discBasis": "Value",
+				"discBasisVal": "0.2",
+				"ChargingIncrementUsedInCalculationVal": null
+			},
+
+			{
+				"TrafficDirection": "Visitor/Inbound",
+				"ServiceType": "Voice",
+				"EventType": "MO",
+				"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+				"discBasis": "Value",
+				"discBasisVal": "0.3",
+				"ChargingIncrementUsedInCalculationVal": null
+			}
+		]
+		
+	},
+
+	"discAgr_T12_GenerationOfTermSheet_USAW6": 
+	{
+		"clientName": "USAW6",
+		"partner": 
+		[
+			"BELKO"
+		],
+
+		"startDate": "01-Jan-2016",
+		"endDate": "31-Jan-2017",
+		"bool_checkIncludeSatelite": false,
+		"DiscParam": 
+		[
+			{
+				"TrafficDirection": "Customer/Outbound",
+				"ServiceType": "Voice",
+				"EventType": "MO",
+				"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+				"discBasis": "Value",
+				"discBasisVal": "0.2",
+				"ChargingIncrementUsedInCalculationVal": null
+			},
+
+			{
+				"TrafficDirection": "Visitor/Inbound",
+				"ServiceType": "Voice",
+				"EventType": "MO",
+				"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+				"discBasis": "Value",
+				"discBasisVal": "0.3",
+				"ChargingIncrementUsedInCalculationVal": null
+			}
+		]
+		
+	}
+}

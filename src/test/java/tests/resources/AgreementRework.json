@@ -1,0 +1,74 @@
+{
+	"AgrRwrk_P15_SignTrackSec_CRUD": 
+	{
+		"First Signatory": "AUTO1",
+		"First Signatory Date": "21-AUG-18",
+		"Second Signatory": "AUTO2",
+		"Second Signatory Date": "22-AUG-18",
+		"Signature Status": "Signing Complete",
+		"Signature Remarks": "AUTO3"
+	},
+
+	"AgrRwrk_P15_AgrChecklistSec_CRUD": 
+	{
+		"Completed": "N/A",
+		"Date Completed": "22-AUG-18"
+	},
+
+	"AgrRwrk_P15_AgrNotes_CRUD": 
+	{
+		"Add": 
+		{
+			"Note Text": "AutomationTestingNote_Add",
+			"Note Type": "General Note"
+		},
+
+		"Edit": 
+		{
+			"Note Text": "AutomationTestingNote_Edit",
+			"Note Type": "Final Note"
+		}
+	},
+
+	"AgrRwrk_P15_TAPLevelTrafficSplit_CRUD": 
+	{
+		
+	},
+
+	"AgrRwrk_P15_RoundingCorrectionFactors_CRUD": 
+	{
+		"Add": 
+		{
+			"Service Type": "Voice",
+			"Traffic Direction": "Customer/Outbound",
+			"Event Type": "MO",
+			"Charging Increment Type": "Seconds",
+			"First Increment": "1",
+			"Subsequent Increment": "2",
+			"Correction Factor (%)": "111"
+		},
+
+		"Edit": 
+		{
+			"Service Type": "Data",
+			"Traffic Direction": "Visitor/Inbound",
+			"Event Type": "MB",
+			"Charging Increment Type": "Kilobytes",
+			"First Increment": "11",
+			"Subsequent Increment": "22",
+			"Correction Factor (%)": "222"
+		}
+	},
+
+	"AgrRwrk_P15_HistoryTab_CRUD": 
+	{
+		"Edit Signatory1": 
+		{
+			"First Signatory": "HIS TAB 1"
+		},
+		"Edit Signatory2": 
+		{
+			"First Signatory": "HIS TAB 2"
+		}
+	}
+}

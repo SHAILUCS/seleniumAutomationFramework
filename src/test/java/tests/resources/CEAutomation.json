@@ -1,0 +1,7 @@
+{
+	"T01_BeforeCeChangesHaveBenDeployedToPpEnvironment":{
+		"setName":"Automation Set Mar",
+		"setDesc":"Automation Set",
+		"onlylive_Yes":false		
+	}
+}

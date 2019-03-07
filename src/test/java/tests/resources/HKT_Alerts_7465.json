@@ -1,0 +1,350 @@
+{
+	"T05_verify_Currencies_On_FxFluctuationPageP27_For_ActiveAgreement": {
+		"createDiscAgreement": {
+			"clientName": "HKGTC",
+			"partnerPartiesExcluded": [
+				"AUSTA"
+			],
+			"legalContractId": null,
+			"startDate": "01-Jan-2018",
+			"endDate": "31-Dec-2018",
+			"discCurrency": "AUD",
+			"isRolling_true": false,
+			"includeSat_true": false,
+			"premiumNoAtDiscRate_true": false,
+			"agreementStatus": "Agreement Proposed",
+			"agreementType": null,
+			"homeAgrNego": null,
+			"partnerAgrNego": null,
+			"forecastMeth": null,
+			"applicableCountry": null,
+			"terminationDays": null,
+			"disputeDays": null,
+			"renegotiationDays": null,
+			"agrSignedDate": null,
+			"nextAction": null,
+			"contOfFixedTerm_true": false,
+			"DiscParam": [
+				{
+					"TrafficDirection": "Customer/Outbound",
+					"ServiceType": "Voice",
+					"EventType": "MO",
+					"CalculationType": "Single Rate Effective (Voice, SMS, Data)",
+					"discBasis": "Value",
+					"discBasisVal": "0.2",
+					"ChargingIncrementUsedInCalculationVal": null
+				}
+			]
+		},
+		"editForEUR": {
+			"clientName": null,
+			"partnerPartiesExcluded": [
+				"BELKO"
+			],
+			"legalContractId": null,
+			"startDate": null,
+			"endDate": null,
+			"discCurrency": "EUR",
+			"isRolling_true": false,
+			"includeSat_true": false,
+			"premiumNoAtDiscRate_true": false,
+			"agreementStatus": null,
+			"agreementType": null,
+			"homeAgrNego": null,
+			"partnerAgrNego": null,
+			"forecastMeth": null,
+			"applicableCountry": null,
+			"terminationDays": null,
+			"disputeDays": null,
+			"renegotiationDays": null,
+			"agrSignedDate": null,
+			"nextAction": null,
+			"contOfFixedTerm_true": false
+		},
+		"editForGBP": {
+			"clientName": null,
+			"partnerPartiesExcluded": [
+				"GBROR"
+			],
+			"legalContractId": null,
+			"startDate": null,
+			"endDate": null,
+			"discCurrency": "GBP",
+			"isRolling_true": false,
+			"includeSat_true": false,
+			"premiumNoAtDiscRate_true": false,
+			"agreementStatus": null,
+			"agreementType": null,
+			"homeAgrNego": null,
+			"partnerAgrNego": null,
+			"forecastMeth": null,
+			"applicableCountry": null,
+			"terminationDays": null,
+			"disputeDays": null,
+			"renegotiationDays": null,
+			"agrSignedDate": null,
+			"nextAction": null,
+			"contOfFixedTerm_true": false
+		}
+	},
+	"T04_FxFluctuationPageP27_VerifyContent": {
+		"clientName": "HKGTC"
+	},
+	"T03_FxFluctuationPageP27_VerifyValidations": {
+		"clientName": "HKGTC"
+	},
+	"T02_FxFluctuationPageP27_CRUD": {
+		"clientName": "HKGTC",
+		"create": {
+			"alertEnabled": true,
+			"alertScheduledDate": "10",
+			"alertName": "Automation Alert Name",
+			"alertText": "Automation Alert Text",
+			"email": "shailendra.rajawat@nextgenclearing.com",
+			"threshold": "1",
+			"comparisionMonths": "5"
+		},
+		"edit": {
+			"alertEnabled": false,
+			"alertScheduledDate": "1",
+			"alertName": "Automation Alert Name_EDIT",
+			"alertText": "Automation Alert Text_EDIT",
+			"email": "shailendra.rajawat@nextgenclearing.com;ivana.jandrecic@nextgenclearing.com",
+			"threshold": "2",
+			"comparisionMonths": "7"
+		},
+		"delete": {
+			"alertEnabled": false,
+			"alertScheduledDate": "",
+			"alertName": "",
+			"alertText": "",
+			"email": "",
+			"threshold": "",
+			"comparisionMonths": ""
+		}
+	},
+	"T06_FxFluctuationReportP28_VerifyContent": {
+		"clientName": "HKGTC",
+		"currency": "AUD",
+		"comparingFxMonth": null,
+		"fxMonthFrom": null,
+		"fxMonthTo": null
+	},
+	"T07_FxFluctuationReportP28GraphResults": {
+		"sdrConvRates": {
+			"trafPeriods": [
+				"0618",
+				"0718",
+				"0818",
+				"0918",
+				"1018",
+				"1118"
+			]
+		},
+		"editFxFluctuation": {
+			"clientName": "HKGTC",
+			"alertEnabled": true,
+			"alertScheduledDate": "30",
+			"alertName": "Automation Alert Name",
+			"alertText": "Automation Alert Text",
+			"email": "shailendra.rajawat@nextgenclearing.com;ivana.jandrecic@nextgenclearing.com",
+			"threshold": "2",
+			"comparisionMonths": "5"
+		},
+		"fxFluctReport": {
+			"comparingFxMonth": "01-NOV-18",
+			"fxMonthFrom": "01-NOV-17",
+			"fxMonthTo": "01-NOV-18"
+		}
+	},
+	"T08_TrafficTrendP31_VerifyContent": {
+		"clientName": "HKGTC"
+	},
+	"T09_TrafficTrendPageP31_CRUD": {
+		"clientName": "HKGTC",
+		"create": {
+			"alertEnabled": true,
+			"alertScheduledDate": "10",
+			"alertName": "Automation Alert Name",
+			"alertText": "Automation Alert Text",
+			"email": "shailendra.rajawat@nextgenclearing.com",
+			"mom": true,
+			"yoy": true,
+			"growthThreshold": "1",
+			"dropThreshold": "-5"
+		},
+		"edit": {
+			"alertEnabled": false,
+			"alertScheduledDate": "1",
+			"alertName": "Automation Alert Name_EDIT",
+			"alertText": "Automation Alert Text_EDIT",
+			"email": "shailendra.rajawat@nextgenclearing.com;ivana.jandrecic@nextgenclearing.com",
+			"mom": true,
+			"yoy": true,
+			"growthThreshold": "2",
+			"dropThreshold": "-7"
+		},
+		"delete": {
+			"alertEnabled": false,
+			"alertScheduledDate": "",
+			"alertName": "",
+			"alertText": "",
+			"email": "",
+			"mom": false,
+			"yoy": false,
+			"growthThreshold": "",
+			"dropThreshold": ""
+		}
+	},
+	"T10_TrafficTrendPageP31_VerifyValidations": {
+		"clientName": "HKGTC",
+		"AlertScheduledDate": [
+			{
+				"value": "",
+				"validation": "Alert Scheduled Date must have some value."
+			},
+			{
+				"value": "-1",
+				"validation": "Alert Scheduled Date is not between the valid range of 1 and 31."
+			},
+			{
+				"value": "a",
+				"validation": "Alert Scheduled Date must be Numeric."
+			}
+		],
+		"AlertName": [
+			{
+				"value": "",
+				"validation": "Alert Name must have some value."
+			},
+			{
+				"value": "   ",
+				"validation": "Alert Name must have some value."
+			}
+		],
+		"AlertText": [
+			{
+				"value": "",
+				"validation": "Alert Text must have some value."
+			},
+			{
+				"value": "   ",
+				"validation": "Alert Text must have some value."
+			}
+		],
+		"Email": [
+			{
+				"value": "",
+				"validation": "Email must have some value."
+			},
+			{
+				"value": "   ",
+				"validation": "Email must have some value."
+			},
+			{
+				"value": "Ivana.Jandrecic@nextgenclearing.com:shailendra.rajawat@nextgenclearing.com",
+				"validation": "Invalid Email Id."
+			},
+			{
+				"value": "shailendra.rajawatnextgenclearing.com",
+				"validation": "Invalid Email Id."
+			},
+			{
+				"value": "shailendra.rajawat@.com",
+				"validation": "Invalid Email Id."
+			}
+		],
+		"growthThreshold": [
+			{
+				"value": "",
+				"validation": "Default Growth Threshold % must have some value."
+			},
+			{
+				"value": "0",
+				"validation": "Default Growth Threshold % is less than specified minimum .0000000001."
+			},
+			{
+				"value": "0,2",
+				"validation": "Default Growth Threshold % must be Numeric."
+			}
+		],
+		"dropThreshold": [
+			{
+				"value": "",
+				"validation": "Default Drop Threshold % must have some value."
+			},
+			{
+				"value": "0",
+				"validation": "Default Drop Threshold % is greater than specified maximum -.0000000001."
+			},
+			{
+				"value": "0,2",
+				"validation": "Default Drop Threshold % must be Numeric."
+			}
+		],
+		"operators": [
+			{
+				"pmn": "",
+				"growthThreshold": "10",
+				"dropThreshold": "-10",
+				"validation": "Operator must have some value."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "",
+				"dropThreshold": "-10",
+				"validation": "Growth Treshold % must have some value."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "0",
+				"dropThreshold": "-10",
+				"validation": "Growth Treshold % is less than specified minimum .0000000001."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "-10",
+				"dropThreshold": "-10",
+				"validation": "Growth Treshold % is less than specified minimum .0000000001."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "a",
+				"dropThreshold": "-10",
+				"validation": "Growth Treshold % must be Numeric."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "10",
+				"dropThreshold": "a",
+				"validation": "Drop Treshold must be Numeric."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "10",
+				"dropThreshold": "",
+				"validation": "Drop Treshold must have some value."
+			},
+			{
+				"pmn": "BELKO",
+				"growthThreshold": "10",
+				"dropThreshold": "1",
+				"validation": "Drop Treshold is greater than specified maximum 0."
+			}
+		]
+	},
+	"T11_TrafficTrendReportP37_VerifyContent":{
+		"clientName": "HKGTC",
+		"partner":"BELKO",
+		"yoyOrMom":true,
+		"trafficPerFrom":"01-AUG-18",
+		"trafficPerTo":"01-AUG-18"
+	},
+	"T12_TrafficTrendReportP37_VerifyContent_HKGTC_User":{
+		"clientName": "HKGTC",
+		"partner":"BELKO",
+		"yoyOrMom":true,
+		"trafficPerFrom":"01-AUG-18",
+		"trafficPerTo":"01-AUG-18"
+	}
+}

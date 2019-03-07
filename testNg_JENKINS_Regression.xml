@@ -1,0 +1,207 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression" verbose="1" thread-count="5" parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="Regression">
+		<parameter name="environment" value="${environment}" /><!-- ${environment} PREPROD-->
+		<parameter name="browser" value="CHROME_HEADLESS"/>
+		<parameter name="platform" value=""/>
+		<parameter name="user" value="NGC-S"/>
+		<classes>
+		
+			<!-- <class name="tests.MainRegression.KPN_DealTracker7216">
+				<methods>
+					<include name="T01_ForecastCountryLevelGrowthDisableBulkUpdateForIB_7217"><parameter name="browser" value="CHROME" /></include>
+					<include name="T02_ForecastCountryLevelGrowthManualManipulationForObTrafficFE_7218"><parameter name="browser" value="CHROME" /></include> 
+					<include name="T03_ForecastCountryLevelGrowthAddVoiceMoGrowthInReportBE_7220"/>
+					<include name="T04_ForecastOperatorLevelGrowthAddgrowthforallservicesandeventtypesinreport_FE_7231"/>
+					<include name="T05_ForecastOperatorLevelGrowthAddVoiceMtSmsMoSmsMtAndDataMbgrowthInReportBE_7232"/>
+					<include name="T06_ForecastOperatorLevelGrowthEnableBulkUpdateForAllServicesAndEventTypesFE_7233"><parameter name="browser" value="CHROME" /></include>
+					<include name="T07_ForecastOperatorLevelGrowthEnableManualEditForAllServicesAndEventTypesFE_7234"><parameter name="browser" value="CHROME" /></include>
+					<include name="T08_MarketVolumeAdjustForecastForVoiceMtSmsMoSmsMtAndDataMBservicesBE_7235"/>
+					<include name="T09_ProportionalMarketShareRemoveCorrelationBetweenVoiceMOAndOtherServicesBE_7236"/>
+					<include name="T10_ProportionalMarketShareRemoveCorrelationBetweenVoiceMoAndOtherServicesForBulkUpdateFE_7237"><parameter name="browser" value="CHROME" /></include>
+					<include name="T11_ProportionalMarketShareRemoveCorrelationBetweenVoiceMoAndOtherServicesForManualUpdateFE_7238"><parameter name="browser" value="CHROME" /></include>
+					<include name="T12_ForecastCountryLevelGrowthAddVoiceMOgrowthInreportFE_7219"><parameter name="browser" value="CHROME" /></include>
+					<include name="T13_ForecastCountryLevelGrowthEnableViewOptionForIBTrafficFE_7230"><parameter name="browser" value="CHROME" /></include> 
+				</methods>
+			</class> -->
+		
+		<!-- 	<class name="tests.MainRegression.Module_OverviewReport">
+				<methods>
+					<include name="OR_T01ReportingParametersNextgenUser"><parameter name="user" value="OR_T01_NGC" /></include>
+					<include name="OR_T02ReportingParametersAUSOPUser"><parameter name="user" value="OR_T02_AUSOP" /></include>
+					<include name="OR_T03_09Testingbuttons_SMOKE"><parameter name="browser" value="CHROME" /><parameter name="user" value="OR_T03_NGC" /></include>
+					<include name="OR_T04DetailPerMonthCheckbox"><parameter name="browser" value="CHROME" /><parameter name="user" value="OR_T04_AUSOP" /></include> 
+					<include name="OR_T05ReportColumnsMOCallDestinationBreakdownNOTselected" ><parameter name="user" value="OR_T05_NGC" /></include>
+					<include name="OR_T06TestingMOCallDestinationBreakdownCheckbox" ><parameter name="user" value="OR_T06_NGC" /></include>
+					<include name="OR_T07CheckingAndCalculatingDataForCallDestinationBreakdown" ><parameter name="user" value="OR_T07_NGC" /></include>
+					<include name="OR_T10_11CountryColumn_AdditionalColumnsForVersion2" ><parameter name="user" value="OR_T10_NGC" /></include>
+					<include name="OR_T12TrafficVolumeColumsWithoutDiscountAgreement" ><parameter name="user" value="OR_T12_NGC" /></include>
+					<include name="OR_T13_15TrafficVolumeColumnsWithDiscountAgreement_Billed_Actual"><parameter name="user" value="OR_T13_AUSOP" /></include>
+					<include name="OR_T14_16TrafficVolumeColumsWithDiscountAgreement_BilledActual_WithoutSatellite" ><parameter name="user" value="OR_T14_AUSOP" /></include>  
+					<include name="OR_T17_18MarketAndProportionalShareColumn" ><parameter name="user" value="OR_T17_NGC" /></include> 
+					<include name="OR_T19MarketShareAndProportionalShareWithPseudoCountry" ><parameter name="user" value="OR_T19_NGC" /></include> 
+				</methods>
+			</class>  -->
+ 					
+			<!--  <class name="tests.MainRegression.Module_DiscountAgreement">
+			 	<methods>
+			 		
+					<include name="discAgr_T01_AgreementChecklistReviewEditFeature" />
+					<include name="discAgr_T02_Bilateral_UnilateralPayer_AgreementTypeCheck"><parameter name="user" value="AUSOP-S" /></include>
+					<include name="discAgr_T03_GenerateSettlementStatement_CalculateAgreement_DocumentLibrary"><parameter name="user" value="AUSOP-S" /><parameter name="browser" value="CHROME" /></include>
+					<include name="discAgr_T04_Search_Delete_NewlyCreatedAgreement"><parameter name="user" value="AUSOP-S" /></include>
+					<include name="discAgr_T05_CopyDiscountAgreement"><parameter name="user" value="AUSOP-S" /></include>
+					<include name="discAgr_T06_MaintainIOTDiscountAgreementFiltering" />
+					<include name="discAgr_T07_SOXReportSearchFunctionalityVerification" />
+					<include name="discAgr_T08_ZoneDefinitionCRUDOperation"><parameter name="user" value="NGC-SMOKE1" /></include>
+					<include name="discAgr_T09_ForecastingMethod_HomeCurrency_DataCheck" ><parameter name="browser" value="CHROME"/></include>
+					<include name="discAgr_T10_GenerationOfTermSheet_AUSTA"><parameter name="user" value="AUSTA-S" /><parameter name="browser" value="CHROME" /></include>
+					<include name="discAgr_T11_GenerationOfTermSheet_AUSOP"><parameter name="user" value="AUSOP-S" /><parameter name="browser" value="CHROME" /></include>
+					<include name="discAgr_T12_GenerationOfTermSheet_USAW6"><parameter name="user" value="USAW6-S" /><parameter name="browser" value="CHROME" /></include>
+			 	</methods>
+			</class> -->
+			
+			<!-- <class name="tests.MainRegression.Module_TMO">
+			 	<methods>
+					<include name="TMO_T01_VerifyAllcolumnsOn_TAPAccrualActualAndTrueUpPage" >
+						<parameter name="user" value="TMO_T01_NGC" />
+					</include>
+					<include name="TMO_T02_3_4_5_8_VerifySmsMt_Total_CalculationsOn_TAPAccrualActualAndTrueUpPage" >
+						<parameter name="user" value="TMO_T02_3_4_5_8_NGC" />
+					</include>
+					<include name="TMO_T06_VerifyDataOf_TapAccrualActualTrueUpPage_With_FinancialForecastReport" >
+						<parameter name="user" value="TMO_T06_NGC" />
+					</include>
+					<include name="TMO_T09_VerifySmsMoAccrualAndTotalColumnCalculationsOn_TapAccrualActualAndTrueUpPage" >
+						<parameter name="user" value="TMO_T09_NGC" />
+					</include>
+			 	</methods> 
+			</class> -->
+			
+			<class name="tests.MainRegression.Module_KPN_Op4">
+			 	<methods>
+					<include name="KPN_Op4_T01_CountryAndPart_UIVerification" >
+						<parameter name="user" value="KPN_Op4_T01_NGC" />
+					</include>
+					<include name="KPN_Op4_T02_CountryAndPart_ReportRegion_Verification" >
+						<parameter name="user" value="KPN_Op4_T02_NGC" />
+					</include>
+					<include name="KPN_Op4_T03_CountryAndPart_VerifyTrafficVolumeColumnValue" >
+						<parameter name="user" value="KPN_Op4_T03_NGC" />
+					</include>
+					<include name="KPN_Op4_T04_Partner_UIVerification" >
+						<parameter name="user" value="KPN_Op4_T04_NGC" />
+					</include> 
+					<include name="KPN_Op4_T05_Partner_ReportRegion_Verification" >
+						<parameter name="user" value="KPN_Op4_T05_NGC" />
+					</include> 
+					<include name="KPN_Op4_T06_Partner_VerifyTrafficVolumeColumnValue" >
+						<parameter name="user" value="KPN_Op4_T06_NGC" />
+					</include>
+					<include name="KPN_Op4_T07_TrafficAnalysis_UIVerification" >
+						<parameter name="user" value="KPN_Op4_T07_NGC" />
+					</include>
+					<include name="KPN_Op4_T08_TrafficAnalysis_ReportRegion_Verification" >
+						<parameter name="user" value="KPN_Op4_T08_NGC" />
+					</include> 
+					<include name="KPN_Op4_T09_TrafficAnalysis_ReportContent_VerificationWith_FinForecast_QueryIOTSummary_Pages" >
+						<parameter name="user" value="KPN_Op4_T09_NGC" />
+					</include>
+					<include name="KPN_Op4_T10_TrafficAnalysis_ChartContent_Verification" >
+						<parameter name="user" value="KPN_Op4_T10_NGC" />
+					</include>
+			 	</methods> 
+			</class> 
+			
+			<!-- <class name="tests.MainRegression.HKT_AccrualReport_7490">
+				<methods>
+					<include name="T01_7490_AccrRep_P25_VerifyContent">
+						<parameter name="user" value="T01_7490_NGC" />
+					</include>
+					<include name="T02_7490_AccrRep_P25_Verify_AgreementCurrencyRepData_With_OvRep">
+						<parameter name="user" value="T02_7490_NGC" />
+					</include>
+					<include name="T03_7490_AccrRep_P25_Verify_DownloadButtonsCheck">
+						<parameter name="user" value="T03_7490_NGC" />
+						<parameter name="browser" value="CHROME"/>
+					</include>
+					<include name="T04_7490_AccrRep_P25_Verify_HomeCurrencyRep_With_OvRep">
+						<parameter name="user" value="T04_7490_NGC" />
+					</include>
+					<include name="T05_7490_AccrRep_P25_Verify_CurrentMonthDataRep_With_OvRep">
+						<parameter name="user" value="T05_7490_NGC" />
+					</include>
+				</methods>
+			</class> -->
+			
+			<!-- <class name="tests.MainRegression.HKT_Alerts_7465">
+				<methods>
+					<include name="T01_AlertSubscriptionP26_VerifyContent">
+						<parameter name="user" value="T01_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T02_FxFluctuationPageP27_CRUD">
+						<parameter name="user" value="T02_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T03_FxFluctuationPageP27_VerifyValidations">
+						<parameter name="user" value="T03_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T04_FxFluctuationPageP27_VerifyContent">
+						<parameter name="user" value="T04_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T05_verify_Currencies_On_FxFluctuationPageP27_For_ActiveAgreement">
+						<parameter name="user" value="T05_HKT_Alerts_7465_HKGTC" />
+					</include>  
+					<include name="T06_FxFluctuationReportP28_VerifyContent">
+						<parameter name="user" value="T06_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T07_FxFluctuationReportP28GraphResults">
+						<parameter name="user" value="T07_HKT_Alerts_7465_NGC" />
+					</include> 
+					<include name="T08_TrafficTrendP31_VerifyContent">
+						<parameter name="user" value="T08_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T09_TrafficTrendPageP31_CRUD">
+						<parameter name="user" value="T09_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T10_TrafficTrendPageP31_VerifyValidations">
+						<parameter name="user" value="T10_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T11_TrafficTrendReportP37_VerifyContent">
+						<parameter name="user" value="T11_HKT_Alerts_7465_NGC" />
+					</include>
+					<include name="T12_TrafficTrendReportP37_VerifyContent_HKGTC_User">
+						<parameter name="user" value="T12_HKT_Alerts_7465_HKGTC" />
+					</include>
+				</methods>
+			</class> -->
+			
+			<!-- <class name="tests.MainRegression.HKT_CommitmentReport_7393">
+				<methods>
+					<include name="T01_HKTCommitRep_7395_AddingUpAnAdditionalReportParameter_HomeOperator">
+						<parameter name="user" value="T01_HKTCommitRep_7395_NGC" />
+					</include>
+					<include name="T02_HKTCommitRep_7395_AddingUpAnAdditionalReportParameter_HomeOperator_HKGTC">
+						<parameter name="user" value="T02_HKTCommitRep_7395_NGC" />
+					</include> 
+					<include name="T03_HKTCommitRep_7396_AgreementWithNonContributingHomeOpShouldNotDisplay">
+						<parameter name="user" value="T03_HKTCommitRep_7396_HKGTC" />
+					</include>
+					<include name="T04_HKTCommitRep_7399_UpdatesInRiskBoundShouldPersistForAllOpOfSameGroup">
+						<parameter name="user" value="T04_HKTCommitRep_7399_NGC" />
+					</include>
+					<include name="T05_HKTCommitRep_7399_RiskBoundIsProperlyDisplayedAsPerProvidedBoundsOnCommitmentReport">
+						<parameter name="user" value="T05_HKTCommitRep_7399_HKGTC" />
+					</include>
+					<include name="T06_HKTCommitRep_7400_RiskBoundIsUpdatedOnNewelyAddedPMN">
+						<parameter name="user" value="T06_HKTCommitRep_7400_NGC" />
+					</include>
+				</methods>
+			</class> -->
+			
+		</classes>
+	</test> 
+</suite>

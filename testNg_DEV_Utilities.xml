@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="utilities" verbose="1"
+	thread-count="8" parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="utilities">
+		<parameter name="environment" value="${environment}" /><!--PREPROD ${environment} -->
+		<parameter name="browser" value="CHROME" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+		<classes>
+			<class name="tests.UTILITIES_Driver">
+				<methods>
+					<!-- <include name="IOTRONPersonalFavourites" />
+					
+					<include name="UI_AgreementChecklistReview" />
+					<include name="UI_IOTDiscountAgreement" /> -->
+					
+
+					<exclude name="DeleteToolCreatedAgreements" />
+					<exclude name="ValidateUserCreds" />
+					<exclude name="UnlockUserAndChangePassword" />
+					<include name="CreateNewUser">
+						<parameter name="startRow" value="2"></parameter>
+						<parameter name="endRow" value="64"></parameter>
+					</include>
+
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+</suite>
