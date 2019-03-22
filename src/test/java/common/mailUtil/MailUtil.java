@@ -106,11 +106,11 @@ public class MailUtil {
 	public static void sendNotificationMail(String desc){
 		System.out.println("===============================================================================");
 		System.out.println("Mail STARTED "+ new Date());
-		if (!Constant.enableMailNotification) {
+		/*if (!Constant.enableMailNotification) {
 			System.out.println("Mail feature is STOPPED "+ new Date());
 			System.out.println("===============================================================================");
 			return;
-		}
+		}*/
 		DataTable data=new DataTable(Constant.getTestDataFilePath(), emailCredSheet);
 		
 		final String username=data.getValue(1, "username"); 
@@ -133,8 +133,8 @@ public class MailUtil {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(username));
-			message.setRecipients(Message.RecipientType.TO,
-			InternetAddress.parse(data.getValue( 1, "emailTo")));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("shailendra.rajawat@nextgenclearing.com")); 
+			//TODO  data.getValue( 1, "emailTo")));
 			message.setSubject("Notification of Automated test execution : "+desc);
 			
 

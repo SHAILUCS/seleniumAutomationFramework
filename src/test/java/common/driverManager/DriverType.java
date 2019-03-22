@@ -79,9 +79,7 @@ public enum DriverType implements DriverSetup {
         	if(System.getProperty("webdriver.chrome.driver")==null){
         		System.setProperty("webdriver.chrome.driver", Constant.getChromeDriverLocation("win"));
         	}
-        	ChromeOptions options = new ChromeOptions();
-        	options.merge(capabilities);
-        	return new ChromeDriver(options);
+        	return new ChromeDriver(capabilities);
         }
     },
     IE {

@@ -7,6 +7,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.testng.Assert;
+
 import common.seleniumExceptionHandling.CustomExceptionHandler;
 
 public class ConnectionManager {
@@ -75,6 +77,7 @@ public class ConnectionManager {
 
 			} catch (Exception e) {
 				new CustomExceptionHandler(e);
+				Assert.fail(e.getMessage());
 			}
 		}
 	}

@@ -238,12 +238,12 @@ public class DataTable {
 	 *            String cellTxt=tab.getValue(1,1);// this will return the value in B2 Cell
 	 *            <pre>
 	 */
-	public String getValue(int rowNum,String colName) {
+	public String getValue(int rowIndex,String colName) {
 		String val="";
 		Row row=null;
 		Cell cell=null;
 		try{
-			row = sheet.getRow(rowNum);
+			row = sheet.getRow(rowIndex);
 			if(row!=null){
 				int colNum=getColumnHeaderNum(colName);
 				cell=row.getCell(colNum);

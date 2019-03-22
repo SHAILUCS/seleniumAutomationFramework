@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,7 @@ import common.configData_Util.STATUS;
 import common.configData_Util.Util;
 import common.customReporting.CustomReporter;
 import common.driverManager.DriverFactory;
+import common.seleniumExceptionHandling.CustomExceptionHandler;
 import common.seleniumExceptionHandling.SeleniumMethods;
 import common.seleniumExceptionHandling.WebTable;
 
@@ -28,6 +30,13 @@ public class ApexCommon extends SeleniumMethods {
 	public By table_ResultTabHeader=By.cssSelector("div[class*='head']>table[class='a-IRR-table']");
 	public By table_ResultTabData=By.cssSelector("div[class*='body']>table[class='a-IRR-table']");
 
+	/** GRID Table Objects */
+	public By tab_Left_GRID_Head = By.xpath("(//table[@class='a-GV-table a-GV-table--checkbox'])[1]");
+	public By tab_Left_GRID_Body = By.xpath("(//table[@class='a-GV-table a-GV-table--checkbox'])[2]");
+	public By tab_Right_GRID_Head = By.xpath("(//table[@class='a-GV-table'])[1]");
+	public By tab_Right_GRID_Body = By.xpath("(//table[@class='a-GV-table'])[2]");
+	
+	
 	/**Applied Filter Table Object*/
 	public By table_AppliedFilterTab=By.id("apexir_CONTROL_PANEL_COMPLETE");
 
@@ -49,31 +58,93 @@ public class ApexCommon extends SeleniumMethods {
 	@FindBy(css = "div[id$='sort_widget_search'] input")
 	public WebElement text_RolloverSearchField;
 
-
-
 	/**Apex remove selected values from shuttle**/
 	@FindBy(xpath = "//button[.='Reset']")
 	public WebElement button_Reset;
+	
+	/**GRID Object - Report button on Action popup**/
+	@FindBy(xpath = "//button[.='Report']")
+	public WebElement button_Report_GRID;
 
-	@FindBy(xpath = "//button[.='Help']")
+	/** Common to GRID and normal tables */
+	@FindBy(xpath = "//button[.='Help'][@role='menuitem']")
 	public WebElement button_Help; 
 
-	/**Search Toolbar Objects*/
+	/** Search Toolbar Objects */
 	@FindBy(css = "button[id$='_column_search_root']")
 	public WebElement icon_SelectColumnToSearch;
 
+	/** GRID OBJECT - Select columns to search */
+	@FindBy(css = "button[title='Select columns to search']")
+	public WebElement icon_SelectColumnToSearch_GRID;
+
 	@FindBy(css = "input[class='a-IRR-search-field']")
 	public WebElement text_Search;
+	
+	/** GRID OBJECT - Text Search field */
+	@FindBy(css = "input[id$='toolbar_search_field']")
+	public WebElement text_Search_GRID;
 
+	/** Common to GRID and normal tables */
 	@FindBy(xpath = "//button[.='Go']")
 	public WebElement button_Go;
 	
 	@FindBy(css = "div[class*='rowSelector'] select")
 	public WebElement select_RowsPerPage;
 
+	
+	/**
+	 * GRID has shuttles in it, but at a time only one is visible, so by using
+	 * getInteractiveElement method we can get which one is visible and can
+	 * perform actions
+	 */
+	@FindBy(xpath = "//div[contains(@class,'GV')]//select[contains(@id,'LEFT')]")
+	public WebElement shuttle_LeftVisible_GRID;
+	
+	/**
+	 * GRID has shuttles in it, but at a time only one is visible, so by using
+	 * getInteractiveElement method we can get which one is visible and can
+	 * perform actions
+	 */
+	@FindBy(xpath = "//div[contains(@class,'GV')]//select[contains(@id,'RIGHT')]")
+	public WebElement shuttle_RightVisible_GRID;
+	
+	/**
+	 * GRID has input fields in it, but at a time only one is visible, so by using
+	 * getInteractiveElement method we can get which one is visible and can
+	 * perform actions
+	 */
+	@FindBy(xpath = "//div[contains(@class,'GV')]/input[starts-with(@id,'C')]")
+	public WebElement input_TextfieldVisible_GRID;
+	
+	/** Common to GRID and normal tables */
 	@FindBy(xpath = "//button[.='Actions']")
 	public WebElement button_Action;
 
+	/** GRID OBJECT - Edit checkbox, presented as a button, use Javascript click */
+	@FindBy(css = "input[name='edit']")
+	public WebElement button_Edit_GRID;
+
+	/** GRID OBJECT - Save button*/
+	@FindBy(xpath = "//button[.='Save']")
+	public WebElement button_Save_GRID;
+	
+	/** GRID OBJECT - Add Row button*/
+	@FindBy(xpath = "//button[.='Add Row']")
+	public WebElement button_AddRow_GRID;
+
+	/** GRID OBJECT - Delete Rows button*/
+	@FindBy(xpath = "//button[.='Delete Rows']")
+	public WebElement button_DeleteRows_GRID;
+
+	/** GRID OBJECT - Reset button*/
+	@FindBy(xpath = "//button[.='Reset Rows']")
+	public WebElement button_Reset_GRID;
+	
+	/** GRID OBJECT - Download button*/
+	@FindBy(xpath = "//button[.='Download']")
+	public WebElement button_DownloadXls_GRID;
+	
 	public By select_Reports=By.cssSelector("select[id$='_saved_reports']");
 
 	@FindBy(xpath = "//label[@for='apexir_SAVED_REPORTS']")
@@ -92,6 +163,10 @@ public class ApexCommon extends SeleniumMethods {
 	@FindBy(xpath = "//button[.='Select Columns']")
 	public WebElement button_SelectColumns;
 
+	/** GRID Objects - Columns button on Action Popup */
+	@FindBy(xpath = "//button[.='Columns']")
+	public WebElement button_SelectColumns_GRID;
+	
 	@FindBy(xpath = "//button[.='Save Report']")
 	public WebElement button_SaveReport;
 
@@ -101,11 +176,21 @@ public class ApexCommon extends SeleniumMethods {
 	@FindBy(css = "input[id$='_report_description']")
 	private WebElement text_Description_SaveReport;
 
-	@FindBy(xpath = "//button[.='Download']")
+	/** Works for both GRID and normal tables */
+	@FindBy(xpath = "//button[.='Download'][@role='menuitem']")
 	public WebElement button_Download;
 
+	/** Works for both GRID and normal tables */
 	@FindBy(xpath = "//button[.='Filter']")
 	public WebElement button_Filter;
+
+	/** GRID OBJECT - Data button on Action popup */
+	@FindBy(xpath = "//button[.='Data']")
+	public WebElement button_Data_GRID;
+	
+	/** Common to both GRID and normal table */
+	@FindBy(xpath = "//button[.='Chart']")
+	public WebElement button_Chart;
 	
 	@FindBy(xpath = "//button[.='Subscription']")
 	public WebElement button_Subscription;
@@ -136,6 +221,7 @@ public class ApexCommon extends SeleniumMethods {
 	@FindBy(xpath = "//button[.='Rows Per Page']")
 	public WebElement button_RowsPerPage;
 		
+	/** Common to both GRID and normal tables */
 	@FindBy(xpath = "//button[.='Format']")
 	public WebElement button_Format;
 
@@ -153,9 +239,6 @@ public class ApexCommon extends SeleniumMethods {
 
 	@FindBy(xpath = "//button[.='Aggregate']")
 	public WebElement button_Aggregate;
-
-	@FindBy(xpath = "//button[.='Chart']")
-	public WebElement button_Chart;
 
 	@FindBy(xpath = "//button[.='Group By']")
 	public WebElement button_GroupBy;
@@ -224,36 +307,41 @@ public class ApexCommon extends SeleniumMethods {
 	 * @return true if the Search Result Table displays the searched value, else will return false after waiting for Constant.wait timeout
 	 */
 	public boolean performSearch(String searchVal,String colName){
-		selectColumnName_ProvideSearchVal_ClickGoButton(searchVal, colName);
-		return waitForElementTobe_Visible(getInteractableWebElementFromList(By.xpath("//li[contains(.,'"+searchVal+"') and contains(.,'"+colName+"')]")),"Search filter for data ["+searchVal+"] on Column ["+colName+"]");
+		return selectColumnName_ProvideSearchVal_ClickGoButton(searchVal, colName);
 	}
 	
-	private void selectColumnName_ProvideSearchVal_ClickGoButton(String searchVal,String colName){
-		javaScript_ScrollIntoBOTTOMView_AndHighlight_ThenClick(getInteractableWebElementFromList(icon_SelectColumnToSearch));
-		waitForElementsTobe_NotVisible(icon_SpinnerApex5LoadingIndicator);
+	private boolean selectColumnName_ProvideSearchVal_ClickGoButton(String searchVal,String colName){
 		
-		if (colName==null) {
-			colName="All Columns";
-		}
-		
-		By xp=By.xpath("//button[contains(@id,'column_search_drop')][normalize-space(.)='"+colName+"']");
-		WebElement colNameObj=getInteractableWebElementFromList(xp);
-		
-		//if the column names popup is not getting displayed, we will retry one more time 
-		if (colNameObj==null) {
+		if (colName!=null) {
 			javaScript_ScrollIntoBOTTOMView_AndHighlight_ThenClick(getInteractableWebElementFromList(icon_SelectColumnToSearch));
 			waitForElementsTobe_NotVisible(icon_SpinnerApex5LoadingIndicator);
-			colNameObj=getInteractableWebElementFromList(xp);
+			
+			
+			By xp=By.xpath("//button[contains(@id,'column_search_drop')][normalize-space(.)='"+colName+"']");
+			WebElement colNameObj=getInteractableWebElementFromList(xp);
+			
+			//if the column names popup is not getting displayed, we will try one more time 
+			if (colNameObj==null) {
+				javaScript_ScrollIntoBOTTOMView_AndHighlight_ThenClick(getInteractableWebElementFromList(icon_SelectColumnToSearch));
+				waitForElementsTobe_NotVisible(icon_SpinnerApex5LoadingIndicator);
+				colNameObj=getInteractableWebElementFromList(xp);
+			}
+			
+			if(colNameObj!=null){
+				click_UsingAction(colNameObj);
+				wait(1);
+			}
 		}
 		
-		if(colNameObj!=null){
-			click_UsingAction(colNameObj);
-			wait(1);
-		}
-
 		sendKeys(getInteractableWebElementFromList(text_Search), searchVal);
 		click(getInteractableWebElementFromList(button_Go));
 		waitForElementsTobe_NotVisible(icon_SpinnerApex5LoadingIndicator);
+		
+		if(colName != null){
+			return waitForElementTobe_Visible(getInteractableWebElementFromList(By.xpath("//li[contains(normalize-space(),'" + searchVal + "')][contains(normalize-space(),'" + colName + "')]")),"Search filter for data ["+searchVal+"] on Column ["+colName+"]");
+		}else{
+			return waitForElementTobe_Visible(getInteractableWebElementFromList(By.xpath("//li[contains(normalize-space(),'" + searchVal + "')]")),"Search filter for data ["+searchVal+"] on All Columns");
+		}
 	}
 	
 	public void redefineAppliedFilterValue(String innerTextAppliedFilter, String newFilterText) {
@@ -265,7 +353,7 @@ public class ApexCommon extends SeleniumMethods {
 	}
 	
 	public boolean performSearch(String searchVal){
-		return performSearch(searchVal,"All Columns");
+		return performSearch(searchVal, null);
 	}
 
 	public boolean performUnsuccessfulSearch(String zoneName) {
@@ -390,8 +478,23 @@ public class ApexCommon extends SeleniumMethods {
 					selectByVisibleText(select_Format_Function, function);
 					selectByVisibleText(select_Format_Column, column);
 					wait(1);
-					click(button_Apply);
+					click_UsingAction(button_Apply);
+					wait(1);
 					if(waitForElementsTobe_NotVisible(icon_SpinnerApex5LoadingIndicator)){
+						
+						// While running the scripts on jenkins, 
+						// I encountered a problem where the popup to apply aggregate function 
+						// was not getting removed. So adding this check 
+						if(!waitForElementTobe_NotVisible(select_Format_Function, 1)){
+							CustomReporter.report(STATUS.FAIL, "Function '" + function + "' FAILED to apply on column '"
+									+ column + "', the popup of Apply Aggregate function is not removed from the view");
+							
+							// Also before returning false, I would like to close the popup using the cancel button
+							click(getInteractableWebElementFromList(button_Cancel), "Cancel Button");
+							
+							return false;
+						}
+						
 						CustomReporter.report(STATUS.PASS, "Function '"+function+"' applied on column '"+column+"'");
 						return true;
 					}
@@ -522,6 +625,30 @@ public class ApexCommon extends SeleniumMethods {
 		return sum_newColumn;
 	} 
 
+	/**
+	 * Fills the text in the GRID cell
+	 * @author shailendra.rajawat 22-Mar-2019
+	 * */
+	public void fillGRIDcellText(WebTable grid, int rowNum, int colNum, String val) {
+		try {
+			
+		
+		click(grid.getCellObject(rowNum, colNum));
+		//clear(getInteractableWebElementFromList(input_TextfieldVisible_GRID));
+		//clear(switchTo_ActiveElement());
+		DriverFactory.getDriver().switchTo().activeElement().clear();
+		wait(.25);
+		click(grid.getCellObject(rowNum, colNum));
+		//sendKeys(getInteractableWebElementFromList(input_TextfieldVisible_GRID), val);
+		//sendKeys(switchTo_ActiveElement(), val);
+		DriverFactory.getDriver().switchTo().activeElement().sendKeys(val+Keys.TAB+Keys.TAB);
+		wait(.25);
+		
+		} catch (Exception e) {
+			new CustomExceptionHandler(e, "GRID " + grid + " ROW " + rowNum + " COL " + colNum + " VAL " + val );
+		}
+	}
+	
 	public boolean applyActionsFilter(String filterCol, String filterOperator, String filterExpression) {
 		//javaScript_ScrollIntoBOTTOMView_AndHighlight(button_Action);
 		click(button_Action);
@@ -651,7 +778,30 @@ public class ApexCommon extends SeleniumMethods {
 	public void verifyActionsPopupItems_WithoutSubscription() {
 		verifyActionsPopupItems_WithoutSubscription(button_Action);
 	}
-
+	
+	/**
+	 * Verifies the Action Popup items of GRID
+	 * */
+	public void verifyActionsPopupItems_GRID() {
+		verifyActionsPopupItems_GRID(button_Action);
+	}
+	
+	/**
+	 * Verifies the Action Popup items of GRID
+	 * */
+	public void verifyActionsPopupItems_GRID(Object button_Action) {
+		isElementPresent(button_Action, "Apex Toolbar - Actions button");
+		javaScript_ScrollIntoBOTTOMView_AndHighlight_ThenClick(button_Action);
+		isElementPresent(button_SelectColumns_GRID, "Apex Toolbar - Select Columns Button");
+		isElementPresent(button_Filter, "Apex Toolbar - Filter Button");
+		isElementPresent(button_Data_GRID, "Apex Toolbar - Data Button");
+		isElementPresent(button_Format, "Apex Toolbar - Format Button");
+		isElementPresent(button_Chart, "Apex Toolbar - Chart Button");
+		isElementPresent(button_Report_GRID, "Apex Toolbar - Report Button");
+		isElementPresent(button_Download, "Apex Toolbar - Download Button");
+		isElementPresent(button_Help, "Apex Toolbar - Help Button");
+	}
+	
 	public void verifyActionsPopupItems_WithoutSubscription(Object button_Action) {
 		isElementPresent(button_Action, "Apex Toolbar - Actions button");
 		javaScript_ScrollIntoBOTTOMView_AndHighlight_ThenClick(button_Action);

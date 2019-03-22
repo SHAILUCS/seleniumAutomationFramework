@@ -67,9 +67,10 @@ class WebUtils {
 			} else if (element instanceof WebElement) {
 				byObj =  getByObjectFromWebElement((WebElement) element);
 			}
-			
-			// Applying the findElements method, to get all the web elements who
-			// have the same By Object 
+
+			/* Applying the findElements method, to get all the web elements who
+			 * have the same By Object
+			 */
 			List<WebElement> list=driver.findElements(byObj);
 			WebDriverWait wait=new WebDriverWait(driver, 0);
 			

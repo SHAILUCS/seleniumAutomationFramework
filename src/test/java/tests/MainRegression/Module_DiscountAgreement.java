@@ -276,6 +276,4 @@ public class Module_DiscountAgreement {
 
 	}
 
-
-
 }

@@ -2,6 +2,7 @@ package tests.UI;
 
 import org.testng.annotations.Test;
 
+import common.configData_Util.Util;
 import objectRepository.AgreementCapture.AgreementChecklistReview;
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAddressPage;
 import objectRepository.AgreementCapture.CreateEditIOTDiscountBankAccountPage;
@@ -15,6 +16,7 @@ import objectRepository.AgreementCapture.EditZonePage;
 import objectRepository.AgreementCapture.MaintainIOTDiscountAgreementsPage_P301;
 import objectRepository.AgreementCapture.MaintainIOTDiscountPartyDetailsPage;
 import objectRepository.AgreementCapture.MaintainIOTOperatorGroupsPage;
+import objectRepository.AgreementCapture.MaintainTrafficSegmentationRules_P35;
 import objectRepository.AgreementCapture.SOXReport;
 import objectRepository.AgreementCapture.ZoneDefinition;
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAgreementPkg.AgreementChecklist_Tab;
@@ -385,4 +387,22 @@ public class AgreementCaptureModule
 		AgreementChecklist_Tab.UIVerification();
 	}
 
+	
+
+	/**
+	 * Navigate to MaintainTrafficSegmentationRules_P35 page, 
+	 * and verify the existence of page objects
+	 * precon: Menu Links should be displayed on any page
+	 * postcon: all objects of P35 will be verified   
+	 * @author shailendra.rajawat
+	 * */
+	@Test(description="UI_Maintain Traffic Segmentation Rules_P35")
+	public void UI_MaintainTrafficSegmentationRules_P35() 
+	{
+		Navigator nav= new Navigator();
+		IOTRONHomePage ihp=new IOTRONHomePage();
+		nav.to_IOTRONHomePage().traverseMenu_VerifyPageTitle(PagesTitle.MaintainTrafficSegmentationRules_P35, ihp.link_AgreementCapture, ihp.link_AgreementCapture_MaintainTrafficSegmentationRules_P35);
+		MaintainTrafficSegmentationRules_P35 p35=new MaintainTrafficSegmentationRules_P35();
+		p35.verify_UI( Util.getArray("AUSTA") );
+	}
 }

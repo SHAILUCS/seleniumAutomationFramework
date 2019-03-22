@@ -449,6 +449,8 @@ public class IOTRONHomePage extends Header{
 	public By link_Operations_TestingSuite_ForecastReportperAgreement=By.xpath("//a[normalize-space()='Forecast Report per Agreement']");
 	
 	public By link_Operations_TestingSuite_DeltaReportAdministration=By.xpath("//a[normalize-space()='Delta Report Administration']");
+	
+	public By link_AgreementCapture_MaintainTrafficSegmentationRules_P35 = By.xpath("//a[normalize-space()='Maintain Traffic Segmentation Rules']");
 
 	public void verifyNavigationLinksFunctionality_Operations() {
 		CustomReporter.createNode("Verifying Operations Module links");

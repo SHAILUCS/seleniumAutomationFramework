@@ -5,30 +5,45 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import common.configData_Util.Util;
+import common.seleniumExceptionHandling.CustomExceptionHandler;
 
 public class CSVManager {
 
 	private String CSV_FILE_PATH;
 	private Reader reader;
 	private boolean withFirstRecordAsHeader=false;
+	
+	/** Stores the List of row wise csv records, which will save the time during execution */
+	List<CSVRecord> csvRecordsList; 
 
+	/**
+	 * Use this constructor if you want to fetch cell text based on column Index 
+	 * It sets withFirstRecordAsHeader to FALSE, so rowIndex 0 will point to excel row 1
+	 * */
 	public CSVManager(String CSV_FILE_PATH) {
 		this.CSV_FILE_PATH=CSV_FILE_PATH;
 	}
 
+	/**
+	 * Use this constructor if you want to fetch cell text based on column name 
+	 * If withFirstRecordAsHeader is Set to FALSE, then rowIndex 0 will point to excel row 1
+	 * If withFirstRecordAsHeader is Set to TRUE, then rowIndex 0 will point to excel row 2
+	 * */
 	public CSVManager(String CSV_FILE_PATH, boolean withFirstRecordAsHeader) {
 		this.CSV_FILE_PATH=CSV_FILE_PATH;
 		this.withFirstRecordAsHeader=withFirstRecordAsHeader;
 	}
 
+	/**
+	 * Returns the object of csvParser which is used to get the records out of CSV File
+	 * */
 	private CSVParser getFreshCsvParser() {
 		CSVParser csvParser = null;
 		try {
@@ -49,15 +64,40 @@ public class CSVManager {
 		return csvParser;
 	}
 
+	
+	/**
+	 *  Returns a List<CSVRecord>, where one object of CSVRecord holds one row value.
+	 *  To get all values present inside a row use CSVRecordObject.get() method
+	 *  <pre>
+	 *  Usage : 
+	 *  CSVManager csv=new CSVManager(filePath);
+	 *  List<CSVRecord> list = csv.getRecords();
+	 *  for (CSVRecord csvRecord : list) {
+	 *  	System.out.print(csvRecord.getRecordNumber() + "\t");
+	 *  	for(int i=0; i < csvRecord.size(); i++){
+	 *  		System.out.print(csvRecord.get(i) + "\t");
+	 *  	}
+	 *  System.out.println();
+	 *  }
+	 *  </pre>
+	 * */
+	private List<CSVRecord> getRecords(){
+		if(csvRecordsList == null){
+			csvRecordsList = new ArrayList<CSVRecord>();
+			try{
+				csvRecordsList = getFreshCsvParser().getRecords();
+			}catch (IOException e) {
+				new CustomExceptionHandler(e);
+			}
+		}
+		return csvRecordsList;
+	}
 
 	/** @return Row Count*/
 	public int getRowCount() {
 		int rowCount=0;
 		try{
-			CSVParser p=getFreshCsvParser();
-			while (p.iterator().hasNext()) {
-				rowCount++;
-			}
+			rowCount = getRecords().size();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,46 +106,22 @@ public class CSVManager {
 
 	/** @return Column Count*/
 	public int getColumnCount() {
-		return getFreshCsvParser().iterator().next().size();
+		return getRecords().get(0).size();
 	}
-
-
-	public static void main(String[] args) throws Exception {
-		String filePath=Util.getDownloadedFilePath("maintain_client_defined_countries_map");
-		CSVManager csv=new CSVManager(filePath);
-		int lastRow=csv.getRowCount();
-		Set<String> CountryExpected = new HashSet<>();
-		for (int row = 51; row<=lastRow; row++)
-		{
-			String Temp = csv.getValue(row, 1);
-			CountryExpected.add(Temp);
-			System.out.println(row+Temp);
-		}
-
-		System.out.println(CountryExpected);
-	}
-
 
 	/**
 	 * @return if nothing found then "", else String {@value} present in the cell
 	 * 
-	 * @param rowNum = 1 refers to Excel row 2 -> When the {@link withFirstRecordAsHeader} is TRUE
+	 * @param rowIndex = 0 refers to Excel row 1 -> When the {@link withFirstRecordAsHeader} is FALSE
+	 * @param rowIndex = 0 refers to Excel row 2 -> When the {@link withFirstRecordAsHeader} is TRUE
 	 * @param colName = pass any value from first row when {@link withFirstRecordAsHeader} is TRUE
 	 * 
 	 * */
-	public String getValue(int rowNum,String colName) {
+	public String getValue(int rowIndex,String colName) {
 		String value="";
 		try {
-			CSVParser p=getFreshCsvParser();
-			for (CSVRecord csvRecord : p) {
-				// Accessing values by Header names
-				if (csvRecord.getRecordNumber()==rowNum) {
-					value=csvRecord.get(colName);
-					//byte ptext[] = value.getBytes(Charset.forName("UTF-8")); 
-					//value = new String(ptext, "UTF-8"); 
-					break;
-				}
-			}
+			List<CSVRecord> csvRecordsList = getRecords();
+			value = csvRecordsList.get(rowIndex).get(colName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,68 +131,19 @@ public class CSVManager {
 	/**
 	 * @return if nothing found then "", else String {@value} present in the cell
 	 * 
-	 * @param rowNum = 1 refers to Excel row 1 -> When the {@link withFirstRecordAsHeader} is FALSE
-	 * @param rowNum = 1 refers to Excel row 2 -> When the {@link withFirstRecordAsHeader} is TRUE
+	 * @param rowIndex = 0 refers to Excel row 1 -> When the {@link withFirstRecordAsHeader} is FALSE
+	 * @param rowIndex = 0 refers to Excel row 2 -> When the {@link withFirstRecordAsHeader} is TRUE
 	 * 
-	 * @param colNum = 1 refers to Excel col A
+	 * @param colIndex = 0 refers to Excel col A
 	 * */
-	public String getValue(int rowNum,int colNum){
+	public String getValue(int rowIndex,int colIndex){
 		String value="";
 		try{
-			CSVParser p=getFreshCsvParser();
-			for (CSVRecord csvRecord : p) {
-				// Accessing values by Header names
-				if (csvRecord.getRecordNumber()==rowNum) {
-					value=csvRecord.get(colNum-1);
-					//byte ptext[] = value.getBytes(Charset.forName("UTF-8")); 
-					//value = new String(ptext, "UTF-8"); 
-					break;
-				}
-			}
+			List<CSVRecord> csvRecordsList = getRecords();
+			value = csvRecordsList.get(rowIndex).get(colIndex);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return value;
 	}
-
-	public void printAllContent() {		
-		CSVParser p=getFreshCsvParser();
-		for (CSVRecord csvRecord : p) {
-			// Accessing Values by Column Index
-			String name = csvRecord.get(0);
-			String email = csvRecord.get(1);
-			String phone = csvRecord.get(2);
-			String country = csvRecord.get(3);
-
-			System.out.println("Record No - " + csvRecord.getRecordNumber());
-			System.out.println("---------------");
-			System.out.println("Name : " + name);
-			System.out.println("Email : " + email);
-			System.out.println("Phone : " + phone);
-			System.out.println("Country : " + country);
-			System.out.println("---------------\n\n");
-		}
-	}
-
-	public void printAllContent1(){     
-		CSVParser p=getFreshCsvParser();
-		for (CSVRecord csvRecord : p) {
-			// Accessing values by Header names
-			String name = csvRecord.get("Country Name");
-			String email = csvRecord.get("Traffic Direction");
-			String phone = csvRecord.get("Service Type");
-			String country = csvRecord.get("Event Type");
-
-
-			System.out.println("Record No - " + csvRecord.getRecordNumber());
-			System.out.println("---------------");
-			System.out.println("Name : " + name);
-			System.out.println("Email : " + email);
-			System.out.println("Phone : " + phone);
-			System.out.println("Country : " + country);
-			System.out.println("---------------\n\n");
-		}
-
-	}
-
 }

@@ -76,7 +76,7 @@ public class Constant {
 	 * 	implicit wait time
 	 * 	dimensions width X height
 	 * */
-	public static final long wait = 120;
+	public static final long wait = 180;
 	public static final long implicitWait = 30;
 	public static final int width = 5000;
 	public static final int height = 3000;
@@ -204,12 +204,16 @@ public class Constant {
 	}
 
 	public static String getDownloadsPath() {
+		//System.out.println("=============================================");
 		String val = root + "/" + downloadFolderName;
 		//Creating the Result Folder in case it is not already present
 		File fileObj= new File(val);
 		if(!fileObj.exists()) {
+			System.out.println("CREATING DIRECTORY");
 			fileObj.mkdir();
 		}
+		//System.out.println("DOWNLOADS PATH : " + val);		
+		//System.out.println("=============================================");
 		return val;
 	}
 	

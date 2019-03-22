@@ -165,7 +165,7 @@ public enum PagesTitle {
 	
 	//TODO TMO Module
 	TAPAccrualActualTrueUp("TAP Accrual, Actual & True Up"), 
-	SDRConversionRates_P392("SDR Conversion Rates"),              
+	SDRConversionRates_P392("SDR Conversion Rates"), MaintainTrafficSegmentationRules_P35("Maintain Traffic Segmentation Rules"),              
 	
 	;
 

@@ -1474,18 +1474,34 @@ public class SeleniumMethods extends SelectCustom {
 		return bool;
 	}
 
+	/**Refer to waitForElementsTobe_Present(Object element, long timeoutSeconds, String desc)*/
 	public boolean waitForElementsTobe_Present(Object element, long timeoutSeconds) {
 		return waitForElementsTobe_Present(element, timeoutSeconds, "");
 	}
 
+	/**Refer to waitForElementsTobe_Present(Object element, long timeoutSeconds, String desc)*/
 	public boolean waitForElementsTobe_Present(Object element, String desc) {
 		return waitForElementsTobe_Present(element, Constant.wait, desc);
 	}
 
+	/**Refer to waitForElementsTobe_Present(Object element, long timeoutSeconds, String desc)*/
 	public boolean waitForElementsTobe_Present(Object element) {
 		return waitForElementsTobe_Present(element, Constant.wait, "");
 	}
 
+	/**
+	 * An expectation for checking that there is at least one element present on a web page.
+	 * <code>
+	 * 	wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byObj));
+	 * </code>
+	 * Will Take Snapshot
+	 *  
+	 * @param element : WebElement/By object
+	 * @param timeoutSeconds : timeout to wait in case element is not found
+	 * @param desc : Description to be print in HTML report
+	 * @return true if element is present
+	 * @author shailendra.rajawat
+	 * */
 	public boolean waitForElementsTobe_Present(Object element, long timeoutSeconds, String desc) {
 		boolean bool = false;
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();

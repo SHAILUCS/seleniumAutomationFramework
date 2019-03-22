@@ -80,6 +80,11 @@ public class Util {
 		//return (new SimpleDateFormat("dd_MMM_yyyy_HH_mm_ss_S")).format(new Date());
 		return new Date().getTime()+"";
 	}
+	
+	/**Gives you the time stamp in dd_MMM_yyyy_HH_mm_ss_S format*/
+	public static String getTimeStamp_In_dd_MMM_yyyy_HH_mm_ss_S(){
+		return (new SimpleDateFormat("dd_MMM_yyyy_HH_mm_ss_S")).format(new Date());
+	}
 
 	/**Converts the passed millisecond value to hh:mm:ss.sss format*/
 	public static String convertToHHMMSS(long millis) {
@@ -190,6 +195,9 @@ public class Util {
 		try{
 			String folderPath=Constant.getDownloadsPath();
 			File dir= new File(folderPath);
+			System.out.println("=============================================");
+			System.out.println("DOWNLOADS PATH DIRECTORY : " + dir);		
+			System.out.println("=============================================");
 			if (dir.isDirectory()) {
 				boolean fileFound = true;
 				boolean timeOut = true;

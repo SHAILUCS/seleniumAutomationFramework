@@ -74,18 +74,6 @@ public class TrafficTrend_P31 {
 	@FindBy(xpath = "//button[contains(.,'Add Row')]")
 	private WebElement button_AddRow;
 
-	@FindBy(xpath = "(//div[contains(@class,'hdr')]//table)[1]")
-	public WebElement grid_Header_Checkbox;
-
-	@FindBy(xpath = "(//div[contains(@class,'hdr')]//table)[2]")
-	public WebElement grid_Header_ColNames;
-
-	@FindBy(xpath = "(//div[contains(@class,'bdy')]//table)[1]")
-	public WebElement grid_Body_Checkbox;
-
-	@FindBy(xpath = "(//div[contains(@class,'bdy')]//table)[2]")
-	public WebElement grid_Body_ColData;
-
 	/**
 	 * @author shailendra.rajawat Precondition : p26>>p31 should be loaded
 	 *         Postcondition : page content will be verified
@@ -116,10 +104,10 @@ public class TrafficTrend_P31 {
 		}
 
 		CustomReporter.createNode("Verifying the 'Thresholds per PMNs (Operators)' Section");
-		com.isElementPresent(grid_Header_Checkbox, "grid_Header_Checkbox");
-		com.isElementPresent(grid_Header_ColNames, "grid_Header_Col Names");
-		com.isElementPresent(grid_Body_Checkbox, "grid_Body_Checkbox");
-		com.isElementPresent(grid_Body_ColData, "grid_Body_Col Data");
+		com.isElementPresent(comm.tab_Left_GRID_Head, "grid_Header_Checkbox");
+		com.isElementPresent(comm.tab_Right_GRID_Head, "grid_Header_Col Names");
+		com.isElementPresent(comm.tab_Left_GRID_Body, "grid_Body_Checkbox");
+		com.isElementPresent(comm.tab_Right_GRID_Body, "grid_Body_Col Data");
 
 	}
 
@@ -325,7 +313,7 @@ public class TrafficTrend_P31 {
 
 		com.javaScript_Click(button_AddRow, "Add row");
 
-		WebTable tabData = new WebTable(com.getByObjectFromWebElement(grid_Body_ColData));
+		WebTable tabData = new WebTable(com.getByObjectFromWebElement(comm.tab_Right_GRID_Body));
 
 		int rowCount = tabData.getRowCount();
 

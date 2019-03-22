@@ -50,6 +50,27 @@ public class JSONManager {
 		return jsonObject;
 	}
 	
+	/**
+	 * Changes the JSONManager Object pointing to the passed child
+	 * @return reference to JSONManager object 
+	 * */
+	public JSONManager getChildJSONObject(String childJsonObjkey) {
+		if(jsonObject.containsKey(childJsonObjkey)){
+			if(jsonObject.get(childJsonObjkey) instanceof JSONObject){
+				jsonObject = (JSONObject) jsonObject.get(childJsonObjkey);
+			}else{
+				CustomReporter.report(STATUS.ERROR,
+						"Passed key '" + childJsonObjkey + "' : does not hold a JSON Object as its value, in JSON  Object hierarchy "
+								+ Arrays.toString(jsonObjHierarchy) + " located {" + jsonFilePath + "}");
+			}
+		}else{
+			CustomReporter.report(STATUS.ERROR,
+					"Passed key '" + childJsonObjkey + "' : does not exist, in JSON  Object hierarchy "
+							+ Arrays.toString(jsonObjHierarchy) + " located {" + jsonFilePath + "}");
+		}
+		return this;
+	}
+	
 	/**Getter only to be used by JSONWriter Class, @returns the rootJsonObject*/
 	JSONObject getRootJsonObject() {
 		return rootJsonObject;

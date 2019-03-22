@@ -3,6 +3,7 @@ package common.seleniumExceptionHandling;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -10,8 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Quotes;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 
+import common.configData_Util.Constant;
 import common.configData_Util.STATUS;
 import common.customReporting.CustomReporter;
 import common.customReporting.snapshot.SnapshotManager;
@@ -154,13 +155,26 @@ class SelectCustom extends WebUtils{
 		}
 	}
 
-	
-	public void deselectAllValues_Shuttle_DoubleClick(WebElement select_Elem) {
-		List<String> list_OptionVisTxt=getAllOptionsVisibleText(select_Elem);
-		for (String optionVisTxt : list_OptionVisTxt) {
-			doubleClick(getDynamicElement(select_Elem, By.xpath("option[normalize-space(.)="+Quotes.escape(optionVisTxt)+"]")));
+	/**
+	 * Loops through the shuttle options 
+	 * and deselect them one by one by double clicking.
+	 * */
+	public void deselectAllValues_Shuttle_DoubleClick(Object select_Elem) {
+		/*
+		 * In many cases, when the shuttle does not have any options, this
+		 * method is waiting for the pre-set implicit wait. Which is increasing
+		 * the test execution time, so removing the implicit wait for some time,
+		 * then again adding it at the last point in this method
+		 */
+		DriverFactory.getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		
+		List<WebElement> list_Options = getOptions(select_Elem);
+		for (WebElement option : list_Options) {
+			doubleClick(option);
 		}
 		wait(.5);
+		
+		DriverFactory.getDriver().manage().timeouts().implicitlyWait(Constant.implicitWait, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -617,7 +631,7 @@ class SelectCustom extends WebUtils{
 	}
 
 	/**
-	 * Will return WebElement List<> of all options of passed list object
+	 * Will return WebElement List<> of all options of passed select/shuttle object
 	 * 
 	 * @param element
 	 *            The By/WebElement Object
@@ -626,20 +640,14 @@ class SelectCustom extends WebUtils{
 	public List<WebElement> getOptions(Object element) {
 		StackTraceElement[] ste =Thread.currentThread().getStackTrace();
 		String methodName=ste[1].getMethodName();
-		List<WebElement> listObj = null;
+		List<WebElement> listObj = new ArrayList<>();
 		try {
 			WebElement elem = getWebElement(element);
-
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
-				listObj = sel.getOptions();
-				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
-				SnapshotManager.takeSnapShot(methodName);
-			} else {
-				CustomReporter.report(STATUS.FAIL, "Dropdown does not have options, Locator: "+getByObjectFromWebElement(elem));
-			}
+			listObj = sel.getOptions();
+			javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
+			SnapshotManager.takeSnapShot(methodName);
 		} catch (Exception e) {
-
 			new CustomExceptionHandler(e);
 		}
 		return listObj;
@@ -718,19 +726,14 @@ class SelectCustom extends WebUtils{
 	public List<WebElement> getAllSelectedOptions(Object element) {
 		StackTraceElement[] ste =Thread.currentThread().getStackTrace();
 		String methodName=ste[1].getMethodName();
-		List<WebElement> listObj = null;
+		List<WebElement> listObj = new ArrayList<>();
 		try {
 			WebElement elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
 				listObj = sel.getAllSelectedOptions();
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
-			} else {
-				CustomReporter.report(STATUS.FAIL, "Dropdown does not have options, Locator: "+getByObjectFromWebElement(elem));
-			}
 		} catch (Exception e) {
-
 			new CustomExceptionHandler(e);
 		}
 		return listObj;

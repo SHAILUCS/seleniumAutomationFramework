@@ -1,0 +1,232 @@
+{
+	"T01_VerifyValidationsOnMaintainTrafficSegmentationRules_P35": {
+		"homeOpArr": [
+			"AUSTA"
+		 ],
+
+		"allValidValues": {
+			"partnerPMN": [
+				"ALBVF"
+			 ],
+
+			"imsiRangeStart": "100000000000000",
+			"imsiRangeEnd": "100000000000001",
+			"validFrom": "01-NOV-18",
+			"validTo": "01-NOV-19"
+		 },
+
+		"validations": {
+			"AllBlank": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+					"imsiRangeStart": null,
+					"imsiRangeEnd": null,
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE START must have some value.",
+					"IMSI RANGE END must have some value.",
+					"Partner PMN must have some value."
+				 ]
+			 },
+
+			"imsiStartNonNumeric": {
+				"testData": {
+					"partnerPMN": [
+						"ALBVF"
+					 ],
+					"APN": null,
+
+					"imsiRangeStart": "abc",
+					"imsiRangeEnd": "100000000000001",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE START must be Numeric."
+				 ]
+			 },
+
+			"imsiStartNon14Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "123",
+					"imsiRangeEnd": "100000000000001",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END should be greater than IMSI RANGE START"
+				 ]
+			 },
+
+			"imsiStartAndEndNon14Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "123",
+					"imsiRangeEnd": "124",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE START must be 14 or 15 digit number"
+				 ]
+			 },
+
+			"imsiEndNon14Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "100000000000000",
+					"imsiRangeEnd": "124",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END must be 14 or 15 digit number"
+				 ]
+			 },
+
+			"imsiStartMoreThanEndNon14Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "125",
+					"imsiRangeEnd": "124",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END should be greater than IMSI RANGE START"
+				 ]
+			 },
+
+			"imsiStartMoreThanEnd14Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "10000000000005",
+					"imsiRangeEnd": "10000000000000",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END should be greater than IMSI RANGE START"
+				 ]
+			 },
+
+			"imsiStartIs14DigitAndImsiEndIs15Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "10000000000000",
+					"imsiRangeEnd": "100000000000005",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END must be 14 digit number"
+				 ]
+			 },
+			 
+			 "imsiStartIs15DigitAndImsiEndIs14Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": "100000000000005",
+					"imsiRangeEnd": "10000000000000",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END should be greater than IMSI RANGE START"
+				 ]
+			 },
+
+			"validFromFormatCheck": {
+				"testData": {
+					"partnerPMN":null,
+					"APN": null,
+
+					"imsiRangeStart": "10000000000000",
+					"imsiRangeEnd": "10000000000005",
+					"validFrom": "abc",
+					"validTo": null
+				 },
+
+				"message": [
+					"Valid From does not match format DD-MON-RR."
+				 ]
+			 },
+
+			"validFromInvalidDateButProperFormat": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": null,
+					"imsiRangeEnd": null,
+					"validFrom": "33-JUN-18",
+					"validTo": null
+				 },
+
+				"message": [
+					"Valid From does not match format DD-MON-RR."
+				 ]
+			 },
+
+			"validToFormatCheck": {
+				"testData": {
+					"partnerPMN":null,
+					"APN": null,
+
+					"imsiRangeStart": null,
+					"imsiRangeEnd": null,
+					"validFrom": "01-NOV-18",
+					"validTo": "abc"
+				 },
+
+				"message": [
+					"Valid To does not match format DD-MON-RR."
+				 ]
+			 },
+
+			"validToInvalidDateButProperFormat": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
+					"imsiRangeStart": null,
+					"imsiRangeEnd": null,
+					"validFrom": "01-NOV-18",
+					"validTo": "33-NOV-18"
+				 },
+
+				"message": [
+					"Valid To does not match format DD-MON-RR."
+				 ]
+			 }
+			 
+		 }
+	 }
+ }
