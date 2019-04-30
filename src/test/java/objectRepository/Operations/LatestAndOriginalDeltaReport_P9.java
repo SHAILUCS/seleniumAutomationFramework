@@ -46,7 +46,7 @@ public class LatestAndOriginalDeltaReport_P9 {
 	private WebElement button_FreezeReport;
 
 	public void CheckDeltaInLatestAndOriginal(String setName) {
-		Constant.captureSnapshots = false;
+		Constant.enableCaptureSnapshots = false;
 		CustomReporter.createNode("Check Delta In Latest And Original");
 		if(performSearch(setName)){
 			CustomReporter.report(STATUS.FAIL, "Data displayed in Delta report, Calculation engine has some differences");
@@ -94,7 +94,7 @@ public class LatestAndOriginalDeltaReport_P9 {
 		}else{
 			CustomReporter.report(STATUS.PASS, "No Data displayed, in Delta report, Calculation engine is properly working for Set ["+setName+"]");
 		}
-		Constant.captureSnapshots = true;
+		Constant.enableCaptureSnapshots = true;
 	}	
 
 	private boolean freezeReport(String reportName) {

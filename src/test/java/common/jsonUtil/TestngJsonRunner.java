@@ -2,6 +2,7 @@ package common.jsonUtil;
 
 import org.testng.annotations.Test;
 
+import common.configData_Util.Constant;
 import common.configData_Util.STATUS;
 import common.customReporting.CustomReporter;
 
@@ -9,6 +10,19 @@ public class TestngJsonRunner {
 
 	String jsonFilePath1="C:/Users/shailendra.rajawat/git/iotronApex5/src/test/java/tests/resources/file1.json";
 	String jsonFilePath2="C:/Users/shailendra.rajawat/git/iotronApex5/src/test/java/tests/resources/file2.json";
+	
+	@Test
+	private void testasd() {
+		JSONManager json=new JSONManager(Constant.getResourcesFolderPath() + "Qlik.json","T01_GoMaltaAppDataVerification","YoY Value Performance");
+		
+		
+		System.out.println(json.getChildJSONObject("OB").getStr("removeFilterArr"));
+		
+		System.out.println(json.getChildJSONObject("applyFilter").getStr("filterName"));
+		
+		System.out.println(json.getParentJSONObject().getParentJSONObject().getParentJSONObject().getParentJSONObject().getStr("user"));
+		
+	}
 	
 	@Test
 	private void thread1() {

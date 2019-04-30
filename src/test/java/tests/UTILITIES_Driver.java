@@ -31,6 +31,7 @@ public class UTILITIES_Driver {
 			SystemUsers systemUsers=new SystemUsers();
 			//for excel row 4 set i = 3 
 			for (int i = start; i <= end; i++) {
+				CustomReporter.createNode("Creating user [" + i + "/" + (end-start+1) + "]");
 				systemUsers.createNewUser(i);
 			}
 	}
@@ -41,6 +42,7 @@ public class UTILITIES_Driver {
 		DriverFactory.getDriver().get(dataTable.getValue(1, "url"));
 		int count=dataTable.getRowCount();
 		for (int row = 1; row < count; row++) {
+			CustomReporter.createNode("Validating user [" + row + "/" + (count-1) + "]");
 			LoginPage loginPage= new LoginPage();
 			String userType=dataTable.getValue(row, "user type");
 			//CustomListener.methodList.add(new Object(){}.getClass().getEnclosingMethod().getName()+" | "+userType);

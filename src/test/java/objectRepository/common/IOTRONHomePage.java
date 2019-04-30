@@ -414,7 +414,7 @@ public class IOTRONHomePage extends Header{
 
 	public By link_Operations_DataLoading_DataLoadingAdministration=By.xpath("//a[normalize-space()='Data Loading Administration']");
 
-	public By link_Operations_DataLoading_CalculationSchedule=By.xpath("//a[normalize-space()='Calculation Schedule']");
+	public By link_Operations_DataLoading_CalculationSchedule_P689=By.xpath("//a[normalize-space()='Calculation Schedule']");
 
 	public By link_Operations_DataLoading_DCHreport=By.xpath("//a[normalize-space()='DCH report']");
 
@@ -474,7 +474,7 @@ public class IOTRONHomePage extends Header{
 		nav.traverseMenu_VerifyPageTitle(PagesTitle.LoadClientGeneratedForecastTrafficVolumes, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_LoadClientGeneratedForecastTrafficVolumes);
 		nav.traverseMenu_VerifyPageTitle(PagesTitle.IOTDiscountCalculations, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_IOTDiscountCalculations);
 		nav.traverseMenu_VerifyPageTitle(PagesTitle.DataLoadingAdministration, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_DataLoadingAdministration);
-		nav.traverseMenu_VerifyPageTitle(PagesTitle.CalculationSchedule, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_CalculationSchedule);
+		nav.traverseMenu_VerifyPageTitle(PagesTitle.CalculationSchedule, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_CalculationSchedule_P689);
 		nav.traverseMenu_VerifyPageTitle(PagesTitle.DCHReport, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_DCHreport);
 		nav.traverseMenu_VerifyPageTitle(PagesTitle.ParallelQueueMonitor, link_Operations, link_Operations_DataLoading,link_Operations_DataLoading_ParallelQueueMonitor);
 

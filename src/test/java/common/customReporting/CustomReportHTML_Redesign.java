@@ -72,7 +72,7 @@ public class CustomReportHTML_Redesign {
 
 			reportIn = reportIn.replaceFirst(paralleModePlaceholder,Test.getInParallel());
 			reportIn = reportIn.replaceFirst(assertionEnabledPlaceholder,Constant.enableAssertions+"");
-			reportIn = reportIn.replaceFirst(capturingSnapshotsPlaceholder,Constant.captureSnapshots+"");
+			reportIn = reportIn.replaceFirst(capturingSnapshotsPlaceholder,Constant.enableCaptureSnapshots+"");
 
 			reportIn = reportIn.replaceFirst(envPlaceholder,"<span class='"+Constant.getEnvironmentInfoSheet()+"'>"+Constant.getEnvironmentInfoSheet()+"</span>");
 			reportIn = reportIn.replaceFirst(suitePlaceholder,Test.getTestNG_SuiteName());

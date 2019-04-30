@@ -82,7 +82,7 @@ public class SnapshotManager {
 		String url="";
 
 		try{
-			if(extraIdentifierCanAlsoBeBlank.contains("failure") || Constant.captureSnapshots){
+			if(extraIdentifierCanAlsoBeBlank.contains("failure") || Constant.enableCaptureSnapshots){
 				String timeStamp = Util.getTimeStamp_InMilliSec();
 				String snapShotFolder=Constant.getSnapShotsFolderPath();
 				

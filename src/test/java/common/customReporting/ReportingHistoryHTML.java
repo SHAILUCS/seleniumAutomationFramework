@@ -121,23 +121,27 @@ class ReportingHistoryHTML {
 			e.printStackTrace();
 		}		
 	}
-
+	
 	private static String getLinks(String customReportPath, String NEWcustomReportPath, String extentReportPath) {
 		String links="";
 		try {
 			File f=new File(customReportPath);
+			/* We need href = '../2019Apr22_013641/Result/Report_Redesign_Template.html#1'  */
 			if(f.exists()){
-				links+=" <a href="+customReportPath+"#1' target ='_blank'>Custom</a> <br/>";
+				String href = customReportPath.substring(customReportPath.indexOf(Constant.reportingHistoryFolderName)+Constant.reportingHistoryFolderName.length());
+				links+=" <a href='.."+href+"#1' target ='_blank'>Custom</a> <br/>";
 			}
 
 			f=new File(NEWcustomReportPath);
 			if(f.exists()){
-				links+=" <a href="+NEWcustomReportPath+"#1' target ='_blank' style='color:red;'>Custom_NEW</a> <br/>";
+				String href = NEWcustomReportPath.substring(NEWcustomReportPath.indexOf(Constant.reportingHistoryFolderName)+Constant.reportingHistoryFolderName.length());
+				links+=" <a href='.."+href+"#1' target ='_blank' style='color:red;'>Custom_NEW</a> <br/>";
 			}
 
 			f=new File(extentReportPath);
 			if(f.exists()){
-				links+=" <a href="+extentReportPath+" target ='_blank'>Extent</a>";
+				String href = extentReportPath.substring(extentReportPath.indexOf(Constant.reportingHistoryFolderName)+Constant.reportingHistoryFolderName.length());
+				links+=" <a href='.."+href+"' target ='_blank'>Extent</a>";
 			}
 			
 		} catch (Exception e) {

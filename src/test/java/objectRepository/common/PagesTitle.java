@@ -115,6 +115,7 @@ public enum PagesTitle {
 	//TODO Operations Module 
 	AuditReport("Audit Report"),
 	AlertSubscription_P26("Alert Subscription"),
+	CalculationSchedule_P689("Calculation Schedule"),
 	
 	//TODO Agreement Set - up Errors submenu
 	OverlappingAgreements(""),
@@ -126,6 +127,7 @@ public enum PagesTitle {
 	OverlappingDiscounts("Overlapping discounts"),
 	InvisibleAgreements("Invisible agreements"),
 	SendOrPayTrafficCommitmentWithoutLowerOrUpperBound("Send or Pay Traffic Commitment without lower or upper bound"),
+	
 	//TODO Data Loading Submenu
 	LoadIOTMFSData("Load IOT MFS Data"),
 	ConfigureDataLoading("Configure Data Loading"),
@@ -165,7 +167,7 @@ public enum PagesTitle {
 	
 	//TODO TMO Module
 	TAPAccrualActualTrueUp("TAP Accrual, Actual & True Up"), 
-	SDRConversionRates_P392("SDR Conversion Rates"), MaintainTrafficSegmentationRules_P35("Maintain Traffic Segmentation Rules"),              
+	SDRConversionRates_P392("SDR Conversion Rates"), MaintainTrafficSegmentationRules_P35("Maintain Traffic Segmentation Rules"),               
 	
 	;
 

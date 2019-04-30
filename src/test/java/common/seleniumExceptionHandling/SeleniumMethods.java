@@ -11,6 +11,7 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.WebElement;
@@ -245,6 +246,35 @@ public class SeleniumMethods extends SelectCustom {
 					CustomReporter.report(STATUS.PASS, "'" + desc + "' is clicked");
 				} else {
 					CustomReporter.report(STATUS.FAIL, "'" + desc + "' object is NOT clicked, due to some exception");
+				}
+			}
+		}
+	}
+
+	public void contextClick_UsingAction(Object element) {
+		 contextClick_UsingAction(element, "");
+	}
+	
+	public void contextClick_UsingAction(Object element, String desc) {
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		String methodName = ste[1].getMethodName();
+		boolean bool = false;
+		try {
+			WebElement elem = getWebElement(element);
+			javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
+			SnapshotManager.takeSnapShot(methodName);
+			Actions build = new Actions(DriverFactory.getDriver());
+			build.contextClick(elem).build().perform();
+			//build.moveToElement(elem).click().build().perform();
+			bool = true;
+		} catch (Exception e) {
+			new CustomExceptionHandler(e);
+		} finally {
+			if (!desc.equals("")) {
+				if (bool) {
+					CustomReporter.report(STATUS.PASS, "'" + desc + "' is context clicked");
+				} else {
+					CustomReporter.report(STATUS.FAIL, "'" + desc + "' object is NOT context clicked, due to some exception");
 				}
 			}
 		}
@@ -1073,6 +1103,37 @@ public class SeleniumMethods extends SelectCustom {
 		}
 		return frame;
 	}
+	
+	/**
+	 * Switch the focus of future commands for this driver to Other Available window.
+	 * Use this method when you have only two tabs, and in case you want to alternate between them
+	 *
+	 * @return the window handle of old tab
+	 * @throws NoSuchWindowException
+	 *             If the window cannot be found
+	 */
+	public String switchTo_Tab_TitleContains(String containsTitle) {
+		String oldTabWinHandle = null;
+		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
+		String methodName = ste[1].getMethodName();
+		WebDriver driver = DriverFactory.getDriver();
+		try {
+			oldTabWinHandle = driver.getWindowHandle();
+			for (String currentTab : driver.getWindowHandles()) {
+				if(!currentTab.equals(oldTabWinHandle)){
+					driver.switchTo().window(currentTab);
+					if(driver.getTitle().toLowerCase().contains(containsTitle.toLowerCase())){
+						SnapshotManager.takeSnapShot(methodName);
+						break;
+					}
+				}
+			}
+			
+		} catch (Exception e) {
+			new CustomExceptionHandler(e);
+		}
+		return oldTabWinHandle;
+	}
 
 	/**
 	 * Switch the focus of future commands for this driver to the window with
@@ -1346,7 +1407,7 @@ public class SeleniumMethods extends SelectCustom {
 	 * 
 	 * Will take Snapshot, Will run the Reporter
 	 *
-	 * @param byObj
+	 * @param element
 	 *            The By Object
 	 * @param timeOutInSeconds
 	 *            Seconds to wait before returning false
@@ -1355,7 +1416,7 @@ public class SeleniumMethods extends SelectCustom {
 	 * @return true - element got deleted within timeout, false - element is
 	 *         still visible after timeout
 	 */
-	public boolean waitForElementsTobe_NotVisible(By byObj, long timeOutInSeconds, String desc) {
+	public boolean waitForElementsTobe_NotVisible(Object element, long timeOutInSeconds, String desc) {
 
 		boolean bool = false;
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
@@ -1364,6 +1425,7 @@ public class SeleniumMethods extends SelectCustom {
 		try {
 			driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+			By byObj = getByObjectFromWebElement(element);
 			wait.until(ExpectedConditions.numberOfElementsToBe(byObj, 0));
 			bool = true;
 		} catch (Exception e) {
@@ -1383,16 +1445,16 @@ public class SeleniumMethods extends SelectCustom {
 		return bool;
 	}
 
-	public boolean waitForElementsTobe_NotVisible(By byObj, String desc) {
-		return waitForElementsTobe_NotVisible(byObj, Constant.wait, desc);
+	public boolean waitForElementsTobe_NotVisible(Object element, String desc) {
+		return waitForElementsTobe_NotVisible(element, Constant.wait, desc);
 	}
 
-	public boolean waitForElementsTobe_NotVisible(By byObj, long timeOutInSeconds) {
-		return waitForElementsTobe_NotVisible(byObj, timeOutInSeconds, "");
+	public boolean waitForElementsTobe_NotVisible(Object element, long timeOutInSeconds) {
+		return waitForElementsTobe_NotVisible(element, timeOutInSeconds, "");
 	}
 
-	public boolean waitForElementsTobe_NotVisible(By byObj) {
-		return waitForElementsTobe_NotVisible(byObj, Constant.wait, "");
+	public boolean waitForElementsTobe_NotVisible(Object element) {
+		return waitForElementsTobe_NotVisible(element, Constant.wait, "");
 	}
 
 	/**
@@ -1426,15 +1488,19 @@ public class SeleniumMethods extends SelectCustom {
 	}
 
 	/**
+	 * <pre>
 	 * if (element instanceof By) {
 	 * wait.until(ExpectedConditions.visibilityOfElementLocated((By) element));
 	 * } else if (element instanceof WebElement) {
-	 * wait.until(ExpectedConditions.visibilityOf((WebElement) element)); } An
-	 * expectation for checking that an element is present on the DOM of a page
+	 * wait.until(ExpectedConditions.visibilityOf((WebElement) element)); 
+	 * }
+	 * </pre> 
+	 * 
+	 * An expectation for checking that an element is present on the DOM of a page
 	 * and visible. Visibility means that the element is not only displayed but
-	 * also has a height and width that is greater than 0. Also takes timeout as
-	 * a parameter for applying the wait for element to get visible Will Take
-	 * Snapshot
+	 * also has a height and width that is greater than 0.
+	 *  Also takes timeout as a parameter for applying the wait for element to get visible 
+	 *  Will Take Snapshot
 	 * 
 	 * @param element
 	 *            The By/WebElement Object
@@ -1444,6 +1510,8 @@ public class SeleniumMethods extends SelectCustom {
 	 *            element description to be display in report
 	 * @return true - element is located and visible, false - element is not
 	 *         visible within the passed timeout value
+	 *         
+	 * @throws TimeoutException
 	 */
 	public boolean waitForElementTobe_Visible(Object element, long timeoutSeconds, String desc) {
 		boolean bool = false;
@@ -1537,6 +1605,8 @@ public class SeleniumMethods extends SelectCustom {
 	 * An expectation for checking an element is visible and enabled such that
 	 * you can click it.
 	 * 
+	 * Gives TimeOutException and add exception details in the report 
+	 * 
 	 * @Param : locator or WebElement
 	 * @Return : the WebElement once it is located and clickable (visible and
 	 *         enabled)
@@ -1571,14 +1641,17 @@ public class SeleniumMethods extends SelectCustom {
 		return webElem;
 	}
 
+	/**Refer to waitForElementTobe_Clickable(Object element, long timeoutSeconds, String desc)*/
 	public WebElement waitForElementTobe_Clickable(Object element, String desc) {
 		return waitForElementTobe_Clickable(element, Constant.wait, desc);
 	}
-
+	
+	/**Refer to waitForElementTobe_Clickable(Object element, long timeoutSeconds, String desc)*/
 	public WebElement waitForElementTobe_Clickable(Object element, long timeoutSeconds) {
 		return waitForElementTobe_Clickable(element, timeoutSeconds, "");
 	}
-
+	
+	/**Refer to waitForElementTobe_Clickable(Object element, long timeoutSeconds, String desc)*/
 	public WebElement waitForElementTobe_Clickable(Object element) {
 		return waitForElementTobe_Clickable(element, Constant.wait, "");
 	}
@@ -1591,4 +1664,31 @@ public class SeleniumMethods extends SelectCustom {
 		return waitForElementTobe_Visible(element, Constant.wait, desc);
 	}
 
+	/**
+	 * Returns the integer height of the passed By/WebElement Object
+	 * Provided that element is present.
+	 * Sometimes the element is present but hidden so its height will be 0.
+	 * This method will be useful to make decisions
+	 * @return height of the passed WebElement/By Object
+	 * @param elem the By/WebElement Object
+	 * @param waitTime the time to wait in case element is not present
+	 * @throws does not throws any exception  
+	 * */
+	public int getHeight(Object elem, long waitTime) {
+		int height = 0;
+		try{
+			DriverFactory.getDriver().manage().timeouts().implicitlyWait(waitTime, TimeUnit.SECONDS);
+			WebElement element = getWebElement(elem);
+			height = element.getRect().getHeight();
+		}catch (Exception e) {
+		}finally {
+			DriverFactory.getDriver().manage().timeouts().implicitlyWait(Constant.implicitWait, TimeUnit.SECONDS);
+		}
+		return height;
+	}
+	
+	/** refer getHeight(elem, waitTime) */
+	public int getHeight(Object elem) {
+		return getHeight(elem, Constant.implicitWait);
+	}
 }

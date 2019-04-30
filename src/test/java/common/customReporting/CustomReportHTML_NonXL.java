@@ -100,7 +100,7 @@ public class CustomReportHTML_NonXL {
 				+ "<div class='properties-div'><fieldset><legend>Framework Cofiguration</legend>"
 				+ "<span class='properties-span'>Parallel Mode:<b> "+ Test.getInParallel() +"</b></span>"
 				+ "<span class='properties-span'>Assertion Enabled:<b> "+ Constant.enableAssertions +"</b></span>"
-				+ "<span class='properties-span'>Capturing Snapshots:<b> "+ Constant.captureSnapshots +"</b></span>"
+				+ "<span class='properties-span'>Capturing Snapshots:<b> "+ Constant.enableCaptureSnapshots +"</b></span>"
 				+ "</fieldset></div>"
 
 				+ "<h4 >"

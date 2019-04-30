@@ -318,16 +318,16 @@ public class ApexCommon extends SeleniumMethods {
 			
 			
 			By xp=By.xpath("//button[contains(@id,'column_search_drop')][normalize-space(.)='"+colName+"']");
-			WebElement colNameObj=getInteractableWebElementFromList(xp);
 			
-			//if the column names popup is not getting displayed, we will try one more time 
-			if (colNameObj==null) {
+			if(waitForElementsTobe_NotVisible(xp,1)){
+				//if the column names popup is not getting displayed, we will try one more time 
 				javaScript_ScrollIntoBOTTOMView_AndHighlight_ThenClick(getInteractableWebElementFromList(icon_SelectColumnToSearch));
 				waitForElementsTobe_NotVisible(icon_SpinnerApex5LoadingIndicator);
-				colNameObj=getInteractableWebElementFromList(xp);
-			}
-			
-			if(colNameObj!=null){
+				WebElement colNameObj=getInteractableWebElementFromList(xp);
+				click_UsingAction(colNameObj);
+				wait(1);
+			}else{
+				WebElement colNameObj=getInteractableWebElementFromList(xp);
 				click_UsingAction(colNameObj);
 				wait(1);
 			}

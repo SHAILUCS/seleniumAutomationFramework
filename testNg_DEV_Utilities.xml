@@ -6,7 +6,7 @@
 		<listener class-name="common.testNgListener.CustomListener_HMap" />
 	</listeners>
 	<test name="utilities">
-		<parameter name="environment" value="${environment}" /><!--PREPROD ${environment} -->
+		<parameter name="environment" value="PREPROD" /><!--PREPROD ${environment} -->
 		<parameter name="browser" value="CHROME" />
 		<parameter name="platform" value="" />
 		<parameter name="user" value="NGC-S" />
@@ -20,12 +20,12 @@
 					
 
 					<exclude name="DeleteToolCreatedAgreements" />
-					<exclude name="ValidateUserCreds" />
+					<include name="ValidateUserCreds" />
 					<exclude name="UnlockUserAndChangePassword" />
-					<include name="CreateNewUser">
+					<!-- <include name="CreateNewUser">
 						<parameter name="startRow" value="2"></parameter>
-						<parameter name="endRow" value="64"></parameter>
-					</include>
+						<parameter name="endRow" value="65"></parameter>
+					</include> -->
 
 
 				</methods>

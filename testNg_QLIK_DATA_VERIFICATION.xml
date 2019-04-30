@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Qlik Data Verification" verbose="1" thread-count="5" parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	
+	<test name="Qlik_MLTGO">
+		<parameter name="environment" value="Qlik" />  <!-- Qlik ${environment}--> 
+		<parameter name="browser" value="chrome" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="ssr" />
+		<classes>
+			<class name="tests.qlik.QlikAppTests">
+				<methods>
+					<include name="T01_DataVerification"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+</suite>

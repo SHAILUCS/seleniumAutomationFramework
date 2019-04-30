@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DEV" verbose="1" thread-count="5"
+	parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="common.testNgListener.CustomListener_HMap" />
+	</listeners>
+	<test name="DEV">
+		<parameter name="environment" value="${environment}" />
+		<parameter name="browser" value="chrome" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-S" />
+		<classes>
+		
+			<class name="tests.MainRegression.HKT_AccrualReport_7490">
+				<methods>
+					<!-- <include name="T01_7490_AccrRep_P25_VerifyContent">
+						<parameter name="user" value="T01_7490_NGC" />
+					</include> -->
+					<include name="T02_7490_AccrRep_P25_Verify_AgreementCurrencyRepData_With_OvRep">
+						<parameter name="user" value="T02_7490_NGC" />
+					</include>
+					<!-- <include name="T03_7490_AccrRep_P25_Verify_DownloadButtonsCheck">
+						<parameter name="user" value="T03_7490_NGC" />
+						<parameter name="browser" value="CHROME"/>
+					</include>
+					<include name="T04_7490_AccrRep_P25_Verify_HomeCurrencyRep_With_OvRep">
+						<parameter name="user" value="T04_7490_NGC" />
+					</include>
+					<include name="T05_7490_AccrRep_P25_Verify_CurrentMonthDataRep_With_OvRep">
+						<parameter name="user" value="T05_7490_NGC" />
+					</include> -->
+				</methods>
+			</class>
+			
+		</classes>
+	</test>
+</suite>

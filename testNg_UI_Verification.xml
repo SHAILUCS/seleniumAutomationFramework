@@ -6,7 +6,7 @@
 	</listeners>
 	<test name="UITests">
 		<parameter name="environment" value="${environment}" /><!-- PREPROD  ${environment}-->
-		<parameter name="browser" value="FIREFOX" />
+		<parameter name="browser" value="CHROME" />
 		<parameter name="platform" value="" />
 		<parameter name="user" value="NGC-S" />
 		<classes>
@@ -188,6 +188,8 @@
 					<include name="UI_DiscountParameters_Tab_p303" /> 
 					<include name="UI_SettlementStatement_Tab_p303" />
 					
+					<include name="UI_MaintainTrafficSegmentationRules_P35"/>
+					
 				</methods>
 			</class>  -->
 
@@ -213,7 +215,14 @@
 					<include name="UI_IOTRONSystemAdministration_CreateClientJobTitle_p696" /> 
 					<include name="UI_IOTRONSystemAdministration_EditClientJobTitle_p696" />
 				</methods>
-			</class>   
+			</class> 
+			
+			<class name="tests.UI.OperationsModule">
+				<methods>
+					<include name="UI_CalculationSchedule_P689"/>
+				</methods>
+			</class>
+			  
 
 		</classes>
 	</test>

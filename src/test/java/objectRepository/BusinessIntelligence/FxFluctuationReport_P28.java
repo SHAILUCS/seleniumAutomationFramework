@@ -17,7 +17,7 @@ import common.customReporting.CustomReporter;
 import common.driverManager.DriverFactory;
 import common.jsonUtil.JSONManager;
 import common.seleniumExceptionHandling.SeleniumMethods;
-import database.ConnectionManager;
+import database.DBManager;
 import database.ContentReader;
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAgreement_P303;
 import objectRepository.AgreementCapture.MaintainIOTDiscountAgreementsPage_P301;
@@ -270,17 +270,18 @@ public class FxFluctuationReport_P28 {
 	}
 	
 	private void verifyCalculationResultWithDATABASE(String curr, String[] trafPerArr, Map<String, String> fluctuation_Percent_Calc) {
-		String query=ContentReader.readLineByLineJava8(Constant.getDbQueriesFolderPath()+"/hktAlertsCSVemailData.sql");
-		ResultSet rs=ConnectionManager.executeQuery(query);
+		String query=ContentReader.readLineByLineJava8(Constant.getDbQueriesFolderPath()+"hktAlertsCSVemailData.sql");
+		DBManager db = new DBManager();
+		ResultSet rs=db.executeQuery(query);
 		
 		for (int i=1;i<trafPerArr.length-1;i++) {
 			String trafP =trafPerArr[i];
 			String formatted=Util.convertToString("m/d/yyyy",Util.convertToDate("mmyy", trafP));
-			String fluctuationPercentDB=ConnectionManager.getCellText("FLUCTUATION_PERCENT", rs, "PERIOD_START_DATE=="+formatted+" 0:0:0","CURR_TO=="+curr);
+			String fluctuationPercentDB=db.getCellText("FLUCTUATION_PERCENT", rs, "PERIOD_START_DATE=="+formatted+" 0:0:0","CURR_TO=="+curr);
 			Util.comparator(fluctuation_Percent_Calc.get(trafP), fluctuationPercentDB, "Fx Fluctuation for "+curr+"(" + trafP + ")");
 		}
 		
-		ConnectionManager.closeConnection();
+		db.closeConnection();
 		
 	}
 

@@ -2,6 +2,10 @@ package common.configData_Util;
 
 import java.io.File;
 
+import org.testng.Assert;
+
+import common.customReporting.CustomReporter;
+
 /**
  * <pre>
  * This class holds some values which controls specific features/flow of
@@ -31,7 +35,7 @@ public class Constant {
 	 * this flag also controls the movie generation
 	 * if this is true then only movie will be generated
 	 */
-	public static boolean captureSnapshots = false;
+	public static boolean enableCaptureSnapshots = true;
 
 	/**
 	 * {@code enableAssertions} : set true to enable TestNG Assertion feature while
@@ -117,6 +121,9 @@ public class Constant {
 	/**All downloaded files will be stored in this folder*/
 	public static final String downloadFolderName = "Downloads";
 	
+	/**All Qlik downloaded files will be stored in this folder*/
+	private static final String downloadFolderName_Qlik = "Downloads_Qlik";
+	
 	/**All snapshots will be stored in this folder*/
 	public static final String snapshotsFolderName = "Snapshots";
 	
@@ -164,7 +171,7 @@ public class Constant {
 	}
 	
 	public static String getDbQueriesFolderPath() {
-		String path = root + "/" + dbQueriesFolderName ;
+		String path = root + "/" + dbQueriesFolderName +"/" ;
 		return path;
 	}
 	
@@ -215,6 +222,33 @@ public class Constant {
 		//System.out.println("DOWNLOADS PATH : " + val);		
 		//System.out.println("=============================================");
 		return val;
+	}
+	
+	/**
+	 * This method checks, whether the Downloads_Qlik folder exists in 
+	 * [C:/] directory in windows, and [***TBD***] directory in linux/jenkins
+	 * If it is not found then a new folder will be created
+	 * @return absolute path of Downloads_Qlik folder as per OS(C:\Downloads_Qlik\IOTRON) 
+	 * */
+	public static String getQlikDownloadsPath() {
+		String folderDir = "";
+		String platform = Util.getOSName();
+		if(platform.toLowerCase().contains("win")){
+			folderDir = "C:/" + downloadFolderName_Qlik + "/" + "IOTRON";
+		}else{
+			folderDir = "/var/lib/jenkins/workspace/"+ downloadFolderName_Qlik + "/" + "IOTRON";
+		}
+		
+		File f = new File(folderDir);
+		if(!f.exists()){
+			if(f.mkdirs()){
+				CustomReporter.report(STATUS.INFO, "DIRECTORY CREATED: "+ folderDir);
+			} else {
+				CustomReporter.report(STATUS.ERROR, "DIRECTORY CREATION FAILED: "+ folderDir);
+				Assert.fail("STOPPING TESTS AS, DIRECTORY CREATION FAILED: "+ folderDir);
+			}
+		}
+		return folderDir;
 	}
 	
 	

@@ -26,7 +26,7 @@ public class SnapshotsMovieMaker {
 		System.out.println("===============================================================================");
 		System.out.println(Util.convertToHHMMSS(new Date().getTime()) +" | "+ Thread.currentThread().getId()
 				+" | "+ "Snapshot Movie Maker STARTED for TEST: " + testFolderName + " | " + new Date());
-		if (!Constant.captureSnapshots) {
+		if (!Constant.enableCaptureSnapshots) {
 			System.out.println(Util.convertToHHMMSS(new Date().getTime()) +" | "+ Thread.currentThread().getId()
 					+" | "+ "Snapshot Movie Maker feature is STOPPED by Constant.captureSnapshots | "+ new Date());
 			System.out.println("===============================================================================");

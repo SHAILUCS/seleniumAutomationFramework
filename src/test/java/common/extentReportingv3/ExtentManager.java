@@ -29,7 +29,7 @@ public class ExtentManager {
 		extentReport.setSystemInfo("Test Environment", Constant.getEnvironmentInfoSheet());
 		extentReport.setSystemInfo("Parallel Mode", testData.get(TestNGKeys.parallel));
 		extentReport.setSystemInfo("Assertion Enabled", Constant.enableAssertions+"");
-		extentReport.setSystemInfo("Capturing Snapshots", Constant.captureSnapshots+"");
+		extentReport.setSystemInfo("Capturing Snapshots", Constant.enableCaptureSnapshots+"");
 		extentReport.attachReporter(getHtmlReporter("Environment: '" + Constant.getEnvironmentInfoSheet() + "'"
 				+ " | suite: " + testData.get(TestNGKeys.suite) + " | test: " + testData.get(TestNGKeys.test) + ""));
 		extentReport.setAnalysisStrategy(AnalysisStrategy.TEST);
@@ -45,7 +45,7 @@ public class ExtentManager {
 		extentReport.setSystemInfo("Test Environment", Constant.getEnvironmentInfoSheet());
 		extentReport.setSystemInfo("Parallel Mode", inParallel);
 		extentReport.setSystemInfo("Assertion Enabled", Constant.enableAssertions+"");
-		extentReport.setSystemInfo("Capturing Snapshots", Constant.captureSnapshots+"");
+		extentReport.setSystemInfo("Capturing Snapshots", Constant.enableCaptureSnapshots+"");
 		extentReport.attachReporter(getHtmlReporter("Environment: '" +Constant.getEnvironmentInfoSheet() + "'"));
 		extentReport.setAnalysisStrategy(AnalysisStrategy.TEST);
 		return extentReport;

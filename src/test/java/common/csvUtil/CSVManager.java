@@ -59,7 +59,7 @@ public class CSVManager {
 				csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			new CustomExceptionHandler(e,CSV_FILE_PATH);
 		}
 		return csvParser;
 	}

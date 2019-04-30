@@ -645,7 +645,7 @@
 
 </body>
 
-     <script>
+    <script>
         window.onload = function() {
             var title = getElementsByXPath("//div[@class='title']");
             var node = getElementsByXPath("//div[@class='node']");
@@ -787,9 +787,10 @@
 				
 				var str = objectArray[i].textContent;
 				for (j = 0; j < searchArr.length; j++) {
-					if (! str.toLowerCase().includes(searchArr[j].trim().toLowerCase())) {
-						visible=visible && false;
-					}
+					
+						if (! str.toLowerCase().includes(searchArr[j].trim().toLowerCase())) {
+							visible=visible && false;
+						}
 				}
 				
 				if(visible){
@@ -876,8 +877,62 @@
 				}
 			}
 			
+			hideShowNodesBasedOnSteps();
+			
             initTitlesOffestArray();
         }
+		
+		function hideShowNodesBasedOnSteps(){
+			/*
+				if atleast one step is visible under a node
+				we will not hide that node, and if all steps are hidden
+				then we will hide the node
+			*/
+			var nodeObjects = getElementsByXPath("//div[@class='node']");
+			
+			for( ee=0; ee < nodeObjects.length ; ee++){
+				var atleastOneIsVisible = true;
+				var followingSibling = nodeObjects[ee].nextElementSibling;
+				if(followingSibling!=null){
+					var liObjects = followingSibling.getElementsByTagName("li");
+					
+					for( j=0; j < liObjects.length ; j++){
+						var value = liObjects[j];
+						if (value != null) {
+							if (value.style.display != "none"){
+								atleastOneIsVisible = false;
+								break;
+							}
+						}
+					}
+					
+					if(atleastOneIsVisible){
+						nodeObjects[ee].parentElement.style.display = "none";
+					}else{
+						nodeObjects[ee].parentElement.style.display = "list-item";
+					}
+				}else{
+					// Code for Node that have Steps : 0 
+					var searchFieldVal = document.getElementById("search-steps").value;
+					var titleFilter = document.getElementsByName("stepsfilter")[0].value;
+					var objArr = [nodeObjects[ee].parentElement];
+					//Check the search Algorithm
+					if(searchFieldVal.trim() == ""){
+						setNotHighlightStepObjectId(objArr[0]);
+					}else{
+						if(titleFilter == "not-contains"){
+							notContainsSearchStepsElements(objArr,searchFieldVal);
+						}else if(titleFilter == "contains-multiple"){
+							containsMultipleSearchStepsElements(objArr,searchFieldVal);
+						}
+					}
+				}
+			}
+			
+			
+            initTitlesOffestArray();
+			
+		}
 
         function performStepsSearch(obj) {
             var parentObj = obj;

@@ -363,9 +363,9 @@ public class DTSummary_MarketGrowth extends DTSummary_Header {
 		boolean flag = true;
 		WebTable table = new WebTable(tableObj);
 		CSVManager csvVerification = new CSVManager(FilePath);
-		for (int row = 2; row <= csvVerification.getRowCount(); row++) {
-			for (int col = 1; col <= csvVerification.getColumnCount(); col++) {
-				String cvsVal = csvVerification.getValue(row, col);
+		for (int rowIndex = 1; rowIndex < csvVerification.getRowCount(); rowIndex++) {
+			for (int colIndex = 0; colIndex < csvVerification.getColumnCount(); colIndex++) {
+				String cvsVal = csvVerification.getValue(rowIndex, colIndex);
 
 				/*
 				String htmlVal = ""
@@ -376,10 +376,10 @@ public class DTSummary_MarketGrowth extends DTSummary_Header {
 					htmlVal = table.getCellText(row, colNum);
 				}
 				 */
-				String htmlVal = table.getCellText(row, col);
+				String htmlVal = table.getCellText(rowIndex+1, colIndex+1);
 				if (!htmlVal.contains(cvsVal)) {
 					CustomReporter.report(STATUS.FAIL,
-							"CSV Value:["+cvsVal+"] is failed to match with HTML Value:["+htmlVal+ "] on Row " + row + " Col " + col);
+							"CSV Value:["+cvsVal+"] is failed to match with HTML Value:["+htmlVal+ "] on Row " + rowIndex + " Col " + colIndex);
 					flag = false;
 				}
 			}

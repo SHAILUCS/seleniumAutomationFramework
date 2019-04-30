@@ -1,17 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Regression" verbose="1" thread-count="5" parallel="methods">
+<suite name="Regression" verbose="1" thread-count="3" parallel="methods">
 	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
 	<listeners>
 		<listener class-name="common.testNgListener.CustomListener_HMap" />
 	</listeners>
 	<test name="Regression">
-		<parameter name="environment" value="${environment}" /><!-- ${environment} PREPROD-->
-		<parameter name="browser" value="CHROME_HEADLESS"/>
+		<parameter name="environment" value="PREPROD" /><!-- ${environment} PREPROD-->
+		<parameter name="browser" value="CHROME"/>
 		<parameter name="platform" value=""/>
 		<parameter name="user" value="NGC-S"/>
 		<classes>
 		
-			<!-- <class name="tests.MainRegression.KPN_DealTracker7216">
+			<class name="tests.MainRegression.KPN_DealTracker7216">
 				<methods>
 					<include name="T01_ForecastCountryLevelGrowthDisableBulkUpdateForIB_7217"><parameter name="browser" value="CHROME" /></include>
 					<include name="T02_ForecastCountryLevelGrowthManualManipulationForObTrafficFE_7218"><parameter name="browser" value="CHROME" /></include> 
@@ -27,9 +27,9 @@
 					<include name="T12_ForecastCountryLevelGrowthAddVoiceMOgrowthInreportFE_7219"><parameter name="browser" value="CHROME" /></include>
 					<include name="T13_ForecastCountryLevelGrowthEnableViewOptionForIBTrafficFE_7230"><parameter name="browser" value="CHROME" /></include> 
 				</methods>
-			</class> -->
+			</class>
 		
-		<!-- 	<class name="tests.MainRegression.Module_OverviewReport">
+			<class name="tests.MainRegression.Module_OverviewReport">
 				<methods>
 					<include name="OR_T01ReportingParametersNextgenUser"><parameter name="user" value="OR_T01_NGC" /></include>
 					<include name="OR_T02ReportingParametersAUSOPUser"><parameter name="user" value="OR_T02_AUSOP" /></include>
@@ -45,9 +45,9 @@
 					<include name="OR_T17_18MarketAndProportionalShareColumn" ><parameter name="user" value="OR_T17_NGC" /></include> 
 					<include name="OR_T19MarketShareAndProportionalShareWithPseudoCountry" ><parameter name="user" value="OR_T19_NGC" /></include> 
 				</methods>
-			</class>  -->
+			</class> 
  					
-			<!--  <class name="tests.MainRegression.Module_DiscountAgreement">
+			 <class name="tests.MainRegression.Module_DiscountAgreement">
 			 	<methods>
 			 		
 					<include name="discAgr_T01_AgreementChecklistReviewEditFeature" />
@@ -63,9 +63,9 @@
 					<include name="discAgr_T11_GenerationOfTermSheet_AUSOP"><parameter name="user" value="AUSOP-S" /><parameter name="browser" value="CHROME" /></include>
 					<include name="discAgr_T12_GenerationOfTermSheet_USAW6"><parameter name="user" value="USAW6-S" /><parameter name="browser" value="CHROME" /></include>
 			 	</methods>
-			</class> -->
+			</class>
 			
-			<!-- <class name="tests.MainRegression.Module_TMO">
+			<class name="tests.MainRegression.Module_TMO">
 			 	<methods>
 					<include name="TMO_T01_VerifyAllcolumnsOn_TAPAccrualActualAndTrueUpPage" >
 						<parameter name="user" value="TMO_T01_NGC" />
@@ -80,7 +80,7 @@
 						<parameter name="user" value="TMO_T09_NGC" />
 					</include>
 			 	</methods> 
-			</class> -->
+			</class>
 			
 			<class name="tests.MainRegression.Module_KPN_Op4">
 			 	<methods>
@@ -117,7 +117,7 @@
 			 	</methods> 
 			</class> 
 			
-			<!-- <class name="tests.MainRegression.HKT_AccrualReport_7490">
+			<class name="tests.MainRegression.HKT_AccrualReport_7490">
 				<methods>
 					<include name="T01_7490_AccrRep_P25_VerifyContent">
 						<parameter name="user" value="T01_7490_NGC" />
@@ -136,9 +136,9 @@
 						<parameter name="user" value="T05_7490_NGC" />
 					</include>
 				</methods>
-			</class> -->
+			</class>
 			
-			<!-- <class name="tests.MainRegression.HKT_Alerts_7465">
+			<class name="tests.MainRegression.HKT_Alerts_7465">
 				<methods>
 					<include name="T01_AlertSubscriptionP26_VerifyContent">
 						<parameter name="user" value="T01_HKT_Alerts_7465_NGC" />
@@ -177,9 +177,9 @@
 						<parameter name="user" value="T12_HKT_Alerts_7465_HKGTC" />
 					</include>
 				</methods>
-			</class> -->
+			</class>
 			
-			<!-- <class name="tests.MainRegression.HKT_CommitmentReport_7393">
+			<class name="tests.MainRegression.HKT_CommitmentReport_7393">
 				<methods>
 					<include name="T01_HKTCommitRep_7395_AddingUpAnAdditionalReportParameter_HomeOperator">
 						<parameter name="user" value="T01_HKTCommitRep_7395_NGC" />
@@ -200,7 +200,14 @@
 						<parameter name="user" value="T06_HKTCommitRep_7400_NGC" />
 					</include>
 				</methods>
-			</class> -->
+			</class>
+			
+			
+			<class name="tests.MainRegression.Module_AgreementCapture">
+				<methods>
+					<include name="T01_VerifyValidationsOnMaintainTrafficSegmentationRules_P35"/>
+				</methods>
+			</class>
 			
 		</classes>
 	</test> 

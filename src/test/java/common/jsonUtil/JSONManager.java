@@ -58,6 +58,14 @@ public class JSONManager {
 		if(jsonObject.containsKey(childJsonObjkey)){
 			if(jsonObject.get(childJsonObjkey) instanceof JSONObject){
 				jsonObject = (JSONObject) jsonObject.get(childJsonObjkey);
+				
+				String[] newJsonObjHierarchy = new String[jsonObjHierarchy.length+1];
+				for(int i = 0; i<jsonObjHierarchy.length; i++){
+					newJsonObjHierarchy[i] = jsonObjHierarchy[i];
+				}
+				newJsonObjHierarchy[newJsonObjHierarchy.length - 1] = childJsonObjkey;
+				this.jsonObjHierarchy = newJsonObjHierarchy;
+				init("READ CHILD");
 			}else{
 				CustomReporter.report(STATUS.ERROR,
 						"Passed key '" + childJsonObjkey + "' : does not hold a JSON Object as its value, in JSON  Object hierarchy "
@@ -66,6 +74,26 @@ public class JSONManager {
 		}else{
 			CustomReporter.report(STATUS.ERROR,
 					"Passed key '" + childJsonObjkey + "' : does not exist, in JSON  Object hierarchy "
+							+ Arrays.toString(jsonObjHierarchy) + " located {" + jsonFilePath + "}");
+		}
+		return this;
+	}
+	
+	/**
+	 * Changes the JSONManager Object pointing to the parent
+	 * @return reference to JSONManager object 
+	 * */
+	public JSONManager getParentJSONObject() {
+		if(jsonObjHierarchy.length > 0){
+				String newJsonObjHeirarchy[] = new String[jsonObjHierarchy.length-1];
+				for (int i = 0; i < jsonObjHierarchy.length-1; i++) {
+					newJsonObjHeirarchy[i] = jsonObjHierarchy[i];
+				}
+				this.jsonObjHierarchy = newJsonObjHeirarchy;
+				init("READ PARENT");
+		}else{
+			CustomReporter.report(STATUS.ERROR,
+					"You have reached at root object '"
 							+ Arrays.toString(jsonObjHierarchy) + " located {" + jsonFilePath + "}");
 		}
 		return this;

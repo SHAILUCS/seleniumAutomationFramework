@@ -63,7 +63,7 @@
 				 },
 
 				"message": [
-					"IMSI RANGE END should be greater than IMSI RANGE START"
+					"IMSI RANGE START must be 14 or 15 digit number"
 				 ]
 			 },
 
@@ -88,6 +88,23 @@
 					"partnerPMN": null,
 					"APN": null,
 
+					"imsiRangeStart": "10000000000000",
+					"imsiRangeEnd": "124",
+					"validFrom": null,
+					"validTo": null
+				 },
+
+				"message": [
+					"IMSI RANGE END must be 14 digit number",
+					"IMSI RANGE END should be greater than IMSI RANGE START"
+				 ]
+			 },
+
+			"imsiEndNon15Digit": {
+				"testData": {
+					"partnerPMN": null,
+					"APN": null,
+
 					"imsiRangeStart": "100000000000000",
 					"imsiRangeEnd": "124",
 					"validFrom": null,
@@ -95,7 +112,8 @@
 				 },
 
 				"message": [
-					"IMSI RANGE END must be 14 or 15 digit number"
+					"IMSI RANGE END must be 15 digit number",
+					"IMSI RANGE END should be greater than IMSI RANGE START"
 				 ]
 			 },
 

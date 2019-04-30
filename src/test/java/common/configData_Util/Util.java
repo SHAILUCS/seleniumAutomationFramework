@@ -1,6 +1,7 @@
 package common.configData_Util;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
@@ -29,7 +30,7 @@ public class Util {
 
 	public static void killExcelProcess() {
 		try{
-			String platform=System.getProperty("os.name");
+			String platform = getOSName();
 			if(platform.toLowerCase().contains("win")){
 				System.out.println("Killing Excel Process on "+platform);
 				Runtime.getRuntime().exec("cmd /c taskkill /f /im EXCEL.EXE");
@@ -38,7 +39,14 @@ public class Util {
 			new CustomExceptionHandler(e);
 		}
 	}
-	
+
+	/**
+	 * @return the os name, in which the scripts are currently running
+	 * */
+	public static String getOSName(){
+		return System.getProperty("os.name");
+	}
+
 	/**Converts the provided String value to passed format(DD/MM/YYYY) date*/
 	public static Date convertToDate(String format,String stringDate){
 		try {
@@ -80,7 +88,7 @@ public class Util {
 		//return (new SimpleDateFormat("dd_MMM_yyyy_HH_mm_ss_S")).format(new Date());
 		return new Date().getTime()+"";
 	}
-	
+
 	/**Gives you the time stamp in dd_MMM_yyyy_HH_mm_ss_S format*/
 	public static String getTimeStamp_In_dd_MMM_yyyy_HH_mm_ss_S(){
 		return (new SimpleDateFormat("dd_MMM_yyyy_HH_mm_ss_S")).format(new Date());
@@ -107,12 +115,12 @@ public class Util {
 	public static String timeConversion(long milliseconds) {
 		int seconds=(int)milliseconds/1000;
 		double sss=(double)milliseconds/1000-seconds;
-		
+
 		String sssInString=".000"; 
 		try{
 			sssInString=(sss+"").substring(1, 5);
 		}catch (Exception e) {}
-		
+
 		final int MINUTES_IN_AN_HOUR = 60;
 		final int SECONDS_IN_A_MINUTE = 60;
 		int minutes = (int) (seconds / SECONDS_IN_A_MINUTE);
@@ -139,7 +147,7 @@ public class Util {
 			if(val.trim().equals("-")){
 				val="0";
 			}
-			
+
 			if(val.contains(",")){
 				val=val.replaceAll(",", "");
 			}
@@ -195,9 +203,9 @@ public class Util {
 		try{
 			String folderPath=Constant.getDownloadsPath();
 			File dir= new File(folderPath);
-			System.out.println("=============================================");
-			System.out.println("DOWNLOADS PATH DIRECTORY : " + dir);		
-			System.out.println("=============================================");
+			//System.out.println("=============================================");
+			//System.out.println("DOWNLOADS PATH DIRECTORY : " + dir);		
+			//System.out.println("=============================================");
 			if (dir.isDirectory()) {
 				boolean fileFound = true;
 				boolean timeOut = true;
@@ -210,7 +218,7 @@ public class Util {
 							if (children[i].isFile()) {
 								if (children[i].getName().contains(fileNameContains)) { 
 									String currentTestName=SnapshotManager.getSnapshotDestinationDirectory();
-									
+
 									FileUtils.copyFileToDirectory(children[i], new File(children[i].getParent()+"/"+currentTestName));
 									FileUtils.forceDelete(children[i]);
 									filePath=folderPath+"/"+currentTestName+"/"+children[i].getName();
@@ -234,7 +242,39 @@ public class Util {
 		}
 		return filePath;
 	}
-	
+
+
+	/**
+	 * This method moves the downloaded file to the destination folder
+	 * @param filePath the absolute path of the file which needs to be moved
+	 * @param destinationFolder the absolute path of the folder in which file needs to be moved
+	 * */
+	public static String moveFileToDirectory(String filePath, String destinationFolder) {
+		String destFilePath=null;
+		try {
+			File fSrc = new File(filePath);
+			if(fSrc.exists()){
+				String fileName = fSrc.getName();
+				destFilePath = destinationFolder + "/" + fileName;
+				File fDest = new File(destFilePath);
+				FileUtils.copyFile(fSrc, fDest);
+				FileUtils.forceDelete(fSrc);
+				CustomReporter.report(STATUS.INFO, "File ["+fileName+"] moved to "+destinationFolder);
+			}
+		} catch (IOException e) {
+			new CustomExceptionHandler(e);
+		}
+		
+		return destFilePath;
+	}
+
+	public static void main(String[] args) {
+		String srcFile = "C:\\Users\\shailendra.rajawat\\git\\iotronApex5\\Downloads\\T01_GoMaltaAppDataVerification\\VOICE TAP Gross Outbound charge in EUR.xlsx";
+		String destFolder = "C:\\Downloads_Qlik\\IOTRON\\GoMalta_IOTRON Discount Management App\\DATA TAP Gross Outbound charge in EUR\\OB";
+		
+		moveFileToDirectory(srcFile, destFolder);
+		
+	}
 	
 	public static void verifyFile_Downloaded(String fileName,String desc) {
 		String path=Util.getDownloadedFilePath(fileName);
@@ -303,13 +343,13 @@ public class Util {
 		if(page1Val.equals("-")){
 			page1Val="0";
 		}
-		
+
 		page2Val=Util.removeCommas(page2Val);
 		if(page2Val.equals("-")){
 			page2Val="0";
 		}
-		
-		if(compare(page1Val,page2Val)){
+
+		if(compareNumeric(page1Val,page2Val)){
 			CustomReporter.report(STATUS.PASS, "Displayed Value of [<b>"+comparingObject+"</b>] on [<b>"+page1Name+"</b>] : '<b>" + page1Val + "</b>' has matched with value of: [<b>"+page2Name+"</b>] : '<b>" + page2Val +"</b>'");
 		}else{
 			CustomReporter.report(STATUS.FAIL, "Displayed Value of [<b>"+comparingObject+"</b>] on [<b>"+page1Name+"</b>] : '<b>" + page1Val + "</b>' has NOT matched with value of: [<b>"+page2Name+"</b>] : '<b>" + page2Val +"</b>'");
@@ -324,9 +364,9 @@ public class Util {
 			CustomReporter.report(STATUS.FAIL, "Displayed Value of [<b>"+comparingObject+"</b>] on [<b>"+page1Name+"</b>] : '<b>" + page1Val + "</b>' has NOT matched with value of: [<b>"+page2Name+"</b>] : '<b>" + page2Val +"</b>'");
 		}
 	}
-	
+
 	/** Private method for performing the comparison logic - on numbers only*/
-	private static boolean compare(String d1,String d2) {
+	public static boolean compareNumeric(String d1,String d2) {
 		try{
 			d1=(d1.trim().equals("-"))?"0":d1.replaceAll("[^0-9.-]", "");
 			d2=(d2.trim().equals("-"))?"0":d2.replaceAll("[^0-9.-]", "");
@@ -365,14 +405,14 @@ public class Util {
 				// If both numbers are greater than 1, and lesser than -1. 
 				// Then we will assume that the difference of 5 in both numbers is OK
 				/*
-				*	n1	n2	Difference(n1-n2)	-5 <= Difference <= 5
-				*	65	75		-10					Fail
-				*	98	-98		196					Fail
-				*	98	95		3					Pass
-				*	95	98		-3					Pass
-				*	95	-100	-5					Pass
-				*	105	100		5					Pass
-				* */
+				 *	n1	n2	Difference(n1-n2)	-5 <= Difference <= 5
+				 *	65	75		-10					Fail
+				 *	98	-98		196					Fail
+				 *	98	95		3					Pass
+				 *	95	98		-3					Pass
+				 *	95	-100	-5					Pass
+				 *	105	100		5					Pass
+				 * */
 				double temp=n1-n2;
 				if(5d>=temp && -5d<=temp){
 					return true;
@@ -402,8 +442,8 @@ public class Util {
 		if(onPage.equals("-")){
 			onPage=onPage.replace("-", "0");
 		}
-		
-		if(compare(Util.removeCommas(calculated),Util.removeCommas(onPage))){
+
+		if(compareNumeric(Util.removeCommas(calculated),Util.removeCommas(onPage))){
 			CustomReporter.report(STATUS.PASS, "Calculated value of [<b>"+desc+"</b>] : '<b>" + calculated + "</b>' and on Page value displayed is '<b>"+onPage +"</b>'");
 		}else{
 			CustomReporter.report(STATUS.FAIL,"Calculated value of [<b>"+desc+"</b>] : '<b>" + calculated + "</b>' and on Page value displayed is '<b>"+onPage +"</b>'");
@@ -451,7 +491,7 @@ public class Util {
 			} else {
 				boolean flag=true;
 				for (int i = 0; i < onPage.size(); i++) {
-					if (!compare(onPage.get(i), calculatedOrExpected.get(i))) {
+					if (!compareNumeric(onPage.get(i), calculatedOrExpected.get(i))) {
 						flag = false;
 						CustomReporter.report(STATUS.FAIL, "Values of [<b>"+desc+"</b>] are not matching expected: <b>"+calculatedOrExpected.get(i)+"</b> actual: <b>"+onPage.get(i)+"</b>");
 					}
@@ -498,5 +538,48 @@ public class Util {
 
 	public static List<String> getList(String... values) {
 		return new ArrayList<>(Arrays.asList(values));
+	}
+
+	/**
+	 * Uses the regular expression and removes all the special characters(except spaces, dot and underscores) 
+	 * from the passed string
+	 * @param inputStr the string from which all special chars needs to be removed
+	 * @return the string from which all special chars are removed(except spaces, dot and underscores)
+	 * @author shailendra.rajawat 27-Mar-2019
+	 * */
+	public static String removeSpeacialCharacters(String inputStr) {
+		return inputStr.replaceAll("[^A-Za-z0-9._ ]", "");
+	}
+
+
+	/**
+	 * This method first look the download folder for the file which contains the passed name, 
+	 * once the file is found, it will rename the file to the newly passed name.
+	 * To remove the chances of run time failures, this method will remove all special characters 
+	 * from the new file Name(except dot(.), underscore(_) and spaces( )).
+	 * @param fileNameContains the string with which method can locate the file in download folder
+	 * @param newFileNameWithExtension new file name with extension for ex. [my New File1.xlsx]
+	 * @return the file path of renamed file
+	 * @author shailendra.rajawat 27-Mar-2019
+	 * */
+	public static String renameDownloadedFile(String fileNameContains, String newFileNameWithExtension) {
+		String filePathWithNewName = null;
+
+		// Getting the downloaded file path
+		String filePathWithOldName = getDownloadedFilePath(fileNameContains);
+		if(filePathWithOldName!=null){
+			// Renaming the file to the dataVisualizationSnapshotHeading, for better access
+			File fOld = new File(filePathWithOldName);
+
+			String newFileNameNoSpecialChar = removeSpeacialCharacters(newFileNameWithExtension);
+			filePathWithNewName = fOld.getParent()+"/"+newFileNameNoSpecialChar;
+			File fNew = new File(filePathWithNewName);
+			if(fOld.renameTo(fNew)){
+				CustomReporter.report(STATUS.INFO, "Downloaded file successfully renamed to ["+newFileNameNoSpecialChar+"] stored on path [" + filePathWithNewName + "]");
+			}else{
+				CustomReporter.report(STATUS.INFO, "Downloaded file renaming failed, Downloaded File : [" + filePathWithOldName + "] Tried renaming to new Name : ["+ filePathWithNewName +"]");
+			}
+		}
+		return filePathWithNewName;
 	}
 }

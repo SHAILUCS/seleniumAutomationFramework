@@ -130,25 +130,32 @@ class WebUtils {
 		
 		By byObj=null;
 		try{
-			
 			String webElementInString=element.toString();
-			int locatorStartIndex=webElementInString.indexOf("->")+2;
-			int locatorEndIndex=webElementInString.indexOf(":",locatorStartIndex);
-			int expressionStartIndex=locatorEndIndex+1;
-			int expressionEndIndex=webElementInString.length()-1;
-
-			//[[ChromeDriver: chrome on XP (d20ae2a31239671c5aad2f7789dc343e)] -> id: P22_USERNAME]
-			//[[ChromeDriver: chrome on XP (d20ae2a31239671c5aad2f7789dc343e)] -> xpath: //a[.='Login'] | //button[.='Login']]
-			//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> class name: container]
-			//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> css selector: button]
-			//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> link text: Some Text In A Link]
-			//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> name: P22_USERNAME]
-			//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> partial link text: link]
-			//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> tag name: input]
-
-			String LOCATOR=webElementInString.substring(locatorStartIndex, locatorEndIndex).trim().toLowerCase();
+			int locatorStartIndex = -1, locatorEndIndex = -1, expressionStartIndex = -1, expressionEndIndex = -1;
+			if(webElementInString.contains("Proxy element for")){
+				// Proxy element for: DefaultElementLocator 'By.cssSelector: button[title='Close'][class*='fade-button']'
+				locatorStartIndex = webElementInString.indexOf("By")+3;
+				locatorEndIndex = webElementInString.indexOf(":",locatorStartIndex);
+				expressionStartIndex = locatorEndIndex+1;
+				expressionEndIndex = webElementInString.length()-1;
+			}else{
+				//[[ChromeDriver: chrome on XP (d20ae2a31239671c5aad2f7789dc343e)] -> id: P22_USERNAME]
+				//[[ChromeDriver: chrome on XP (d20ae2a31239671c5aad2f7789dc343e)] -> xpath: //a[.='Login'] | //button[.='Login']]
+				//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> class name: container]
+				//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> css selector: button]
+				//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> link text: Some Text In A Link]
+				//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> name: P22_USERNAME]
+				//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> partial link text: link]
+				//[[ChromeDriver: chrome on XP (900e5a8b2929a57615ca5873a347116a)] -> tag name: input]
+				
+				locatorStartIndex = webElementInString.indexOf("->")+2;
+				locatorEndIndex = webElementInString.indexOf(":",locatorStartIndex);
+				expressionStartIndex = locatorEndIndex+1;
+				expressionEndIndex = webElementInString.length()-1;
+			}
+			String LOCATOR=webElementInString.substring(locatorStartIndex, locatorEndIndex).trim().toLowerCase().replaceAll(" ", "");
 			String EXPRESSION=webElementInString.substring(expressionStartIndex, expressionEndIndex).trim();
-
+			
 			switch (LOCATOR) {
 			case "xpath":
 				byObj=By.xpath(EXPRESSION);
@@ -156,22 +163,22 @@ class WebUtils {
 			case "id":
 				byObj=By.id(EXPRESSION);
 				break;
-			case "class name":
+			case "classname":
 				byObj=By.className(EXPRESSION);
 				break;
-			case "css selector":
+			case "cssselector":
 				byObj=By.cssSelector(EXPRESSION);
 				break;
-			case "link text":
+			case "linktext":
 				byObj=By.linkText(EXPRESSION);
 				break;
 			case "name":
 				byObj=By.name(EXPRESSION);
 				break;
-			case "partial link text":
+			case "partiallinktext":
 				byObj=By.partialLinkText(EXPRESSION);
 				break;
-			case "tag name":
+			case "tagname":
 				byObj=By.tagName(EXPRESSION);
 				break;
 			default:

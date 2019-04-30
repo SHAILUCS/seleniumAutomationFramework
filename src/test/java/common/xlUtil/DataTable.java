@@ -44,7 +44,7 @@ public class DataTable {
 	 * come to this List and get the corresponding column number, because java
 	 * uses column and row number to work with excel
 	 */  
-	private List<String> colHeader;
+	private List<String> colHeaderList;
 	
 	// apache.poi object instances  
 	private Sheet sheet;
@@ -171,8 +171,8 @@ public class DataTable {
 	 *            <pre>
 	 */
 	public int getColumnHeaderNum(String colName) {
-		for (int j = 0; j < colHeader.size(); j++) {
-			if(colHeader.get(j).equalsIgnoreCase(colName)){
+		for (int j = 0; j < colHeaderList.size(); j++) {
+			if(colHeaderList.get(j).equalsIgnoreCase(colName)){
 				return j;
 			}
 		}
@@ -262,15 +262,15 @@ public class DataTable {
 	 * Used by getColumnHeaderNum(), getCellValue(int,String) and setCellValue(int,String,String)methods 
 	 */ 
 	private void initColHeader() {
-		colHeader = new ArrayList<String>();
+		colHeaderList = new ArrayList<String>();
 		Row row = sheet.getRow(0);
 		if(row!=null){
 			for (int j = 0; j < row.getLastCellNum(); j++) {
 				Cell cell=row.getCell(j);
 				if(cell!=null){
-					colHeader.add(getCellValue(cell));
+					colHeaderList.add(getCellValue(cell));
 				}else{
-					colHeader.add("");
+					colHeaderList.add("");
 				}
 			}
 		}

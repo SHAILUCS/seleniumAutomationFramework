@@ -247,6 +247,9 @@ public class MaintainTrafficSegmentationRules_P35 {
 		json = new JSONManager(Module_AgreementCapture.jsonFilePath, jsonObjName, "validations", "imsiEndNon14Digit");
 		fillValueAndCheckValidation(json, "imsiEndNon14Digit");
 		
+		json = new JSONManager(Module_AgreementCapture.jsonFilePath, jsonObjName, "validations", "imsiEndNon15Digit");
+		fillValueAndCheckValidation(json, "imsiEndNon15Digit");
+		
 		json = new JSONManager(Module_AgreementCapture.jsonFilePath, jsonObjName, "validations", "imsiStartMoreThanEndNon14Digit");
 		fillValueAndCheckValidation(json, "imsiStartMoreThanEndNon14Digit");
 

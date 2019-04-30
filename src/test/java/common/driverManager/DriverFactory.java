@@ -26,7 +26,6 @@ public class DriverFactory {
 	static Map<Integer, WebDriver> driverList = new HashMap<Integer, WebDriver>();
 	private static WebDriver driver = null;
 
-
 	public static WebDriver getDriver() {
 		//SessionId session = ((ChromeDriver)driverList.get((int) (long) (Thread.currentThread().getId()))).getSessionId();
 		//System.out.println(Thread.currentThread().getId()+ " Session Id "+ session.toString());
@@ -39,7 +38,13 @@ public class DriverFactory {
 		CustomReporter.report(STATUS.INFO, "BROWSER DETAILS: "+"<br/><br/><b style='font-size: small;'>"+cap.asMap().toString()+"</b>");
 		
 		String baseUrl = new DataTable(Constant.getTestDataFilePath(), Constant.getEnvironmentInfoSheet()).getValue( 1, "url");
-		driver.manage().window().setSize(new Dimension(Constant.width,Constant.height));
+		
+		/* In case of Qlik application we have to keep the resolution fix among all platfoms */
+		if(Constant.getEnvironmentInfoSheet().toUpperCase().contains("QLIK")){
+			driver.manage().window().setSize(new Dimension(1600,900));
+		}else{
+			driver.manage().window().setSize(new Dimension(Constant.width,Constant.height));
+		}
 		//driver.manage().window().maximize();
 		if(Constant.implicitWait>0){
 			driver.manage().timeouts().implicitlyWait(Constant.implicitWait,TimeUnit.SECONDS);

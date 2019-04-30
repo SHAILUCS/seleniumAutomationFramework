@@ -1750,6 +1750,16 @@ public class OverviewReport_P507 {
 
 
 
+	/**
+	 * This will reset the page by clicking Reset Page button
+	 * @author shailendra.rajawat 08-Apr-2019
+	 * */
+	public void resetPage() {
+		com.click(button_ResetPage, "Reset Page button");
+	}
+
+
+
 
 
 }
