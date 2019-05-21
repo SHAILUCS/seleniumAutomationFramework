@@ -100,7 +100,7 @@ public class Navigator {
 					
 					WebDriver driver=DriverFactory.getDriver();
 					
-					//Firefox is not waiting for page to load, so what I am doing here is
+					// Firefox is not waiting for page to load, so what I am doing here is
 					// I will wait for the first element to be available for click, from the passed hierarchy 
 					com.waitForElementTobe_Clickable(elementArr[0]);
 					

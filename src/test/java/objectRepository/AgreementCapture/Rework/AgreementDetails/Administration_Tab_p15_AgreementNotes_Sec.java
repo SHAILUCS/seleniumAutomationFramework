@@ -97,7 +97,7 @@ public class Administration_Tab_p15_AgreementNotes_Sec extends Administration_Ta
 			String notesFile=Util.getDownloadedFilePath("agreement_notes.csv");
 			if (notesFile!=null) {
 				CustomReporter.report(STATUS.PASS, notesFile+" notes file successfully downloaded");
-				Util.deleteSpecificFile(notesFile);
+				Util.forceDelete(notesFile);
 			} else {
 				CustomReporter.report(STATUS.FAIL, "Notes file download failed");
 			}
@@ -107,7 +107,7 @@ public class Administration_Tab_p15_AgreementNotes_Sec extends Administration_Ta
 			String notesFile=Util.getDownloadedFilePath("Agreement_Notes.pdf");
 			if (notesFile!=null) {
 				CustomReporter.report(STATUS.PASS, notesFile+" notes file successfully downloaded");
-				Util.deleteSpecificFile(notesFile);
+				Util.forceDelete(notesFile);
 			} else {
 				CustomReporter.report(STATUS.FAIL, "Notes file Export failed");
 			}

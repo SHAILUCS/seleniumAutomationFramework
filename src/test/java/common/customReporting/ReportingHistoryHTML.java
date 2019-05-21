@@ -28,7 +28,7 @@ import common.configData_Util.Util;
  *  3. Links lets you open the report in new tab
  *  4. You can use keyboard to scroll up down and to navigate to next/prev page
  * */
-class ReportingHistoryHTML {
+public class ReportingHistoryHTML {
 
 	private static SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMMdd_HHmmss");
 	private final static String pickerQuickAccessStartPlaceholder = "<!-- PICKER0_START -->";
@@ -151,7 +151,7 @@ class ReportingHistoryHTML {
 		return links;
 	}
 
-	private static String getQuickViewContent(String customReportPath, String NEWcustomReportPath) {
+	public static String getQuickViewContent(String customReportPath, String NEWcustomReportPath) {
 		String quickAccessContent="";
 		try {
 			File f=new File(NEWcustomReportPath);
@@ -175,7 +175,7 @@ class ReportingHistoryHTML {
 		return quickAccessContent;
 	}
 
-	private static String getDashboardContent(String customReportPath, String NEWcustomReportPath){
+	public static String getDashboardContent(String customReportPath, String NEWcustomReportPath){
 		String dashBoardContent="";
 		try {
 			File f=new File(NEWcustomReportPath);

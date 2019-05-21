@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import common.configData_Util.Constant;
 import common.configData_Util.STATUS;
@@ -54,6 +55,8 @@ public class QlikAppOverview {
 		return this;
 	}
 
+	
+		
 
 	/**
 	 * This method will perform the search with passed data in the provided 
@@ -69,16 +72,18 @@ public class QlikAppOverview {
 		String filterSection = colonSeparatedfilterSectionAndData.split(separator)[0].trim();
 		String filterData = colonSeparatedfilterSectionAndData.split(separator)[1].trim();
 
-		//TODO
 		By filterInput = By.xpath("//div[contains(.,'"+filterSection+"')][contains(@class,'filterpane')]//input");
-		if(com.getHeight(filterInput,1)==0){
+		
+		for (int i = 1; i <= 5; i++) {
 			com.click_UsingAction(By.xpath("//h1[contains(.,'"+filterSection+"')]/a"));
-			com.wait(1);
+			if(com.getHeight(filterInput,1) != 0)
+			{
+				com.sendKeys(filterInput, filterData);
+				com.wait(1);
+				break;
+			}
 		}
-
-		com.sendKeys(filterInput, filterData);
-		com.wait(1);
-
+		
 		By filterObj = By.xpath("//li[contains(.,'" + filterData + "')][@tid='listbox.item']");
 		String classData = com.getAttribute(filterObj, "class");
 		if(!classData.toLowerCase().contains("selected")){
@@ -138,7 +143,10 @@ public class QlikAppOverview {
 	 * @param Heading of the snapshot/view/sheet on the App Overview Page 
 	 * @author shailendra.rajawat 27-Mar-2019
 	 * */
-	private void exportDataForPassedChart(String chartTableOrKpiHeading) {
+	private static synchronized void exportDataForPassedChart(String chartTableOrKpiHeading) {
+		SeleniumMethods com = new SeleniumMethods();
+		QlikCommon qcom = new QlikCommon();
+		
 		CustomReporter.createNode("Exporting the chart [" + chartTableOrKpiHeading + "] data in XLSX");
 		By chartTableOrKpiObj = By.xpath("//div[contains(.,'"+chartTableOrKpiHeading+"')][@class='qv-object-title-text ng-binding ng-scope']");
 		com.contextClick_UsingAction(chartTableOrKpiObj);
@@ -243,7 +251,6 @@ public class QlikAppOverview {
 		}
 	}
 
-
 	/**
 	 * This method will verify the data from the newly downloaded xls files with
 	 * already downloaded Overview Report
@@ -258,15 +265,33 @@ public class QlikAppOverview {
 
 		String fileName = new File(destFilePath).getName();
 		CustomReporter.createNode("Verifying " + obIb + " sheet ["+sheet+"] >> ["+fileName+"] "+" data with Overview Report" );
+	
 		DataMap mapSheet = new DataMap();
 		mapSheet.loadXls(destFilePath);
 
 		Map<String, String> filter_OR = new HashMap<String, String>();
 
 		/* Path of already downloaded IOTRON Overview Report csv to be loaded into DataMap For Verifying the values */
-		String overviewReportPathObIb = Constant.getQlikDownloadsPath() + "/" + appName + "/"+ QlikAppTests.overviewReportFolderName+"/"+obIb+"/"+QlikAppTests.overViewReportFileNameWithoutExtension+" "+month+".csv";
+		String overviewReportPathObIb = Constant.getQlikDownloadsPath() + "/" + appName + "/"
+				+ QlikAppTests.overviewReportFolderName + "/" + obIb + "/"
+				+ QlikAppTests.overViewReportFileNameWithoutExtension + " " + month
+				+ QlikAppTests.overViewReportFileExtension;
+		
+		/* 
+		 * In case you downloaded oerview report xls using the download Xls button
+		 * then below logic will prevent the test from breaking 
+		 * */
+		   
 		DataMap mapOR_ObIb = new DataMap();
-		mapOR_ObIb.loadCsv(overviewReportPathObIb);
+		if(QlikAppTests.overViewReportFileExtension.contains("xl")){
+			// In Overciew Report excel the tabular data starts from 4, thats why we have to pass 4
+			mapOR_ObIb.loadXls(overviewReportPathObIb,4);	
+		}else if(QlikAppTests.overViewReportFileExtension.contains("csv")){
+			mapOR_ObIb.loadCsv(overviewReportPathObIb);
+		}else{
+			Assert.fail("Invalid extension mentioned in constant QlikAppTests.overViewReportFileExtension");
+		}
+		
 
 		// for each month, apply filter and repeat the below comparison steps
 
@@ -390,7 +415,7 @@ public class QlikAppOverview {
 					com.waitForElementsTobe_NotVisible(qcom.icon_Sheet_RotatingCircle);
 					CustomReporter.report(STATUS.PASS, "Filter with text ["+filterTxt+"] removed successfully");
 				}else{
-					CustomReporter.report(STATUS.WARNING, "Filter with text ["+filterTxt+"] can not be removed as it is not already applied");
+					CustomReporter.report(STATUS.INFO, "Filter with text ["+filterTxt+"] can not be removed as it is not already applied");
 				}
 			}
 		}

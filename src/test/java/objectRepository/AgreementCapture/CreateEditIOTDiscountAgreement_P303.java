@@ -914,7 +914,7 @@ public class CreateEditIOTDiscountAgreement_P303 {
 		if (filePath != null) {
 			CustomReporter.report(STATUS.PASS, "Settlement Statement file name:'" + fileName + "' downloaded");
 			verifyDataInSettlementStatementXls(filePath, agreementName, client, partner);
-			Util.deleteSpecificFile(filePath);
+			Util.forceDelete(filePath);
 		} else {
 			CustomReporter.report(STATUS.FAIL, "Settlement Statement file name:'" + fileName + "' not downloaded");
 		}

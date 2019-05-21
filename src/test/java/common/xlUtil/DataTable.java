@@ -35,9 +35,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import common.seleniumExceptionHandling.CustomExceptionHandler;
+
 @ThreadSafe
 public class DataTable {
-	
+
 	/**
 	 * This is added to Speed up the r/w process on fixed column set, that means
 	 * when you want to set/get a value based on column name, program will first
@@ -45,7 +47,7 @@ public class DataTable {
 	 * uses column and row number to work with excel
 	 */  
 	private List<String> colHeaderList;
-	
+
 	// apache.poi object instances  
 	private Sheet sheet;
 	private Workbook workbook;
@@ -194,6 +196,22 @@ public class DataTable {
 		return DataTableWriter.getRowCount(this);
 	}
 
+
+	/**
+	 * This provides the index of Last row, 0 based
+	 * it is a thread safe method.
+	 *  
+	 * @return row count, if row is not present then 0
+	 *            <pre>
+	 *            USAGE : 
+	 *            DataTable tab=new DataTable("c:\folder\name.xlsx","sheetName");
+	 *            int rowCount=tab.getRowCount;// this can be used further
+	 *            <pre>
+	 */
+	public int getLastRowIndex() {
+		return DataTableWriter.getLastRowNum(this);
+	}
+
 	/**
 	 * This method provides the cell(located by rowIndex X colIndex) value in String format 
 	 * 
@@ -262,17 +280,21 @@ public class DataTable {
 	 * Used by getColumnHeaderNum(), getCellValue(int,String) and setCellValue(int,String,String)methods 
 	 */ 
 	private void initColHeader() {
-		colHeaderList = new ArrayList<String>();
-		Row row = sheet.getRow(0);
-		if(row!=null){
-			for (int j = 0; j < row.getLastCellNum(); j++) {
-				Cell cell=row.getCell(j);
-				if(cell!=null){
-					colHeaderList.add(getCellValue(cell));
-				}else{
-					colHeaderList.add("");
+		try{
+			colHeaderList = new ArrayList<String>();
+			Row row = sheet.getRow(0);
+			if(row!=null){
+				for (int j = 0; j < row.getLastCellNum(); j++) {
+					Cell cell=row.getCell(j);
+					if(cell!=null){
+						colHeaderList.add(getCellValue(cell));
+					}else{
+						colHeaderList.add("");
+					}
 				}
 			}
+		}catch (Exception e) {
+			new CustomExceptionHandler(e, "File path " + workbookPath);
 		}
 	}
 
@@ -402,9 +424,15 @@ class DataTableWriter{
 		writeXlFile(filePath);
 	}
 
+	public static synchronized int getLastRowNum(DataTable tab) {
+		init(tab);
+		return sheet.getLastRowNum();
+	}
+
 	public static synchronized int getRowCount(DataTable tab) {
 		init(tab);
 		return sheet.getPhysicalNumberOfRows();
+		// return sheet.getLastRowNum();
 	}
 
 	private static synchronized void init(DataTable tab) {

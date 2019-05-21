@@ -159,7 +159,7 @@ public class Administration_Tab_p15_DocLibs_Sec extends Administration_Tab_p15 {
 			String downloadedFilePath=Util.getDownloadedFilePath(downloadedFileName);
 			if (downloadedFilePath!=null) {
 				CustomReporter.report(STATUS.PASS, downloadedFileName+" is successfully downloaded");
-				Util.deleteSpecificFile(downloadedFilePath);
+				Util.forceDelete(downloadedFilePath);
 			} else {
 				CustomReporter.report(STATUS.FAIL, downloadedFileName+" failed to downloaded");
 			}

@@ -355,7 +355,7 @@ public class MaintainIOTDiscountAgreementsPage_P301 {
 						json.getStr("DiscParam", i, "discBasis"),
 						json.getStr("DiscParam", i, "discBasisVal"));
 			}
-			Util.deleteSpecificFile(filePath);
+			Util.forceDelete(filePath);
 		}
 		createEditIOTDiscountAgreement.deleteAgreement();
 	}

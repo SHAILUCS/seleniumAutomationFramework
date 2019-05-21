@@ -36,7 +36,7 @@ class SelectCustom extends WebUtils{
 
 			Select sel = new Select(elem);
 			if(sel.isMultiple()){
-				if (sel.getOptions().size() > 0) {
+				if (elem.getAttribute("innerHTML").contains("<option")) {
 					sel.deselectAll();
 					javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 					SnapshotManager.takeSnapShot(methodName);
@@ -71,7 +71,7 @@ class SelectCustom extends WebUtils{
 
 			Select sel = new Select(elem);
 
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				sel.deselectByIndex(index);
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
@@ -108,7 +108,7 @@ class SelectCustom extends WebUtils{
 			WebElement elem = getWebElement(element);
 
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				sel.deselectByValue(value);
 				SnapshotManager.takeSnapShot(methodName);
 			} else {
@@ -142,7 +142,7 @@ class SelectCustom extends WebUtils{
 			WebElement elem = getWebElement(element);
 
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				sel.deselectByVisibleText(text);
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
@@ -220,7 +220,7 @@ class SelectCustom extends WebUtils{
 		try {
 			WebElement elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				sel.selectByValue(value);
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
@@ -259,14 +259,14 @@ class SelectCustom extends WebUtils{
 			WebElement elem = getWebElement(element);
 
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				if (!sel.isMultiple()) {
 					throw new UnsupportedOperationException(
 							"You may only deselect options of a multi-select");
 				}
 
 				List<WebElement> options = elem.findElements(By.xpath(
-						".//option[contains(normalize-space(.) , " + Quotes.escape(text) + ")]"));
+						".//option[contains(normalize-space(.) , " + Quotes.escape(normalizeSpace(text)) + ")]"));
 
 				boolean matched = false;
 				for (WebElement option : options) {
@@ -303,10 +303,10 @@ class SelectCustom extends WebUtils{
 			WebElement elem = getWebElement(element);
 			javaScript_ScrollIntoBOTTOMView(elem);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				// try to find the option via XPATH ...
 				List<WebElement> options =
-						elem.findElements(By.xpath(".//option[contains(normalize-space(.) , " + Quotes.escape(text) + ")]"));
+						elem.findElements(By.xpath(".//option[contains(normalize-space(.) , " + Quotes.escape(normalizeSpace(text)) + ")]"));
 
 				boolean matched = false;
 				for (WebElement option : options) {
@@ -365,13 +365,20 @@ class SelectCustom extends WebUtils{
 		try {
 			WebElement elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				// try to find the option via XPATH ...
 				List<WebElement> options =
-						elem.findElements(By.xpath(".//option[contains(normalize-space(.) , " + Quotes.escape(text) + ")]"));
+						elem.findElements(By.xpath(".//option[contains(normalize-space(.) , " + Quotes.escape(normalizeSpace(text)) + ")]"));
 
 				boolean matched = false;
-				oldVal = getAllSelectedOptionsVisibleText(element).toString();
+				if(runReport){
+					if(sel.isMultiple()){
+						oldVal = getAllSelectedOptionsVisibleText_FromPassedSelObj(sel).toString();
+					}else{
+						oldVal = sel.getFirstSelectedOption().getText();
+					}
+				}
+				
 				for (WebElement option : options) {
 					setSelected(option, true);
 					flag = true;
@@ -506,7 +513,7 @@ class SelectCustom extends WebUtils{
 		try {
 			WebElement elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				sel.selectByVisibleText(text);
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
@@ -546,10 +553,10 @@ class SelectCustom extends WebUtils{
 		try {
 			WebElement elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				// try to find the option via XPATH ...
 				List<WebElement> options =
-						elem.findElements(By.xpath(".//option[normalize-space(.) = " + Quotes.escape(text) + "]"));
+						elem.findElements(By.xpath(".//option[normalize-space(.) = " + Quotes.escape(normalizeSpace(text)) + "]"));
 
 				boolean matched = false;
 				for (WebElement option : options) {
@@ -608,7 +615,7 @@ class SelectCustom extends WebUtils{
 		try {
 			WebElement elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				oldVal=sel.getFirstSelectedOption().getText();
 				sel.selectByVisibleText(text);
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
@@ -669,14 +676,9 @@ class SelectCustom extends WebUtils{
 			String innerHTML=elem.getAttribute("innerHTML");
 			if (innerHTML.contains("option")) {
 				Select sel = new Select(elem);
-				List<WebElement> optionsList=sel.getAllSelectedOptions();
-				if (optionsList.size() > 0) {
-					for (WebElement temp : optionsList) {
-						listStr.add(temp.getText().trim());
-					}
-					javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
-					SnapshotManager.takeSnapShot(methodName);
-				}
+				listStr = getAllSelectedOptionsVisibleText_FromPassedSelObj(sel);
+				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
+				SnapshotManager.takeSnapShot(methodName);
 			}
 		} catch (Exception e) {
 			new CustomExceptionHandler(e);
@@ -684,6 +686,21 @@ class SelectCustom extends WebUtils{
 		return listStr;
 	}
 
+	/**
+	 * Returns the list of visible texts of selected options, from the passed
+	 * select object
+	 * 
+	 */
+	private List<String> getAllSelectedOptionsVisibleText_FromPassedSelObj(Select sel) {
+		List<String> listStr = new ArrayList<String>();
+		List<WebElement> optionsList=sel.getAllSelectedOptions();
+		if (optionsList.size() > 0) {
+			for (WebElement temp : optionsList) {
+				listStr.add(temp.getText().trim());
+			}
+		}
+		return listStr;
+	}
 
 	/**
 	 * Will return Visible Text (String List<>) of all options of passed select object
@@ -757,7 +774,7 @@ class SelectCustom extends WebUtils{
 			WebElement elem = getWebElement(element);
 
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				sel.selectByIndex(index);
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
@@ -826,7 +843,7 @@ class SelectCustom extends WebUtils{
 		try {
 			elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				elem = sel.getFirstSelectedOption();
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(elem);
 				SnapshotManager.takeSnapShot(methodName);
@@ -858,7 +875,7 @@ class SelectCustom extends WebUtils{
 		try {
 			elem = getWebElement(element);
 			Select sel = new Select(elem);
-			if (sel.getOptions().size() > 0) {
+			if (elem.getAttribute("innerHTML").contains("<option")) {
 				elem = sel.getFirstSelectedOption();
 				javaScript_ScrollIntoMIDDLEView_AndHighlight(element);
 				SnapshotManager.takeSnapShot(methodName);
@@ -870,6 +887,18 @@ class SelectCustom extends WebUtils{
 			new CustomExceptionHandler(e);
 		}
 		return null;
+	}
+	
+	/**
+	 * Just like normalize-space() function in xpath.
+	 * This method will remove all the leading and trailing white spaces.
+	 * and replace multiple white spaces from the middle by single space.
+	 * @param str The String from which spaces needs to be removed
+	 * @return a normalized String will be returned
+	 * @author shailendra.rajawat 06-May-2019
+	 * */
+	private String normalizeSpace(String str){
+		return str.replaceAll("^ +| +$|( )+", "$1");
 	}
 
 }

@@ -69,9 +69,9 @@
 					<include name="UI_TMO_MonthlyDiscountActual_VarianceAnalysis_14" /> 
 					<include name="UI_TMO_SnapshotManagement_17" />
 				</methods>
-			</class>-->
+			</class>
  
-		 <!-- <class name="tests.UI.DealTrackerModule">
+		 <class name="tests.UI.DealTrackerModule">
 				<methods>
 					<include name="UI_DT_DTSummary_HEADER_4" />
 					<include name="UI_DT_DTSummary_NetEffectiveRates_4" />
@@ -121,13 +121,13 @@
 					</include>
 					<include name="UI_DT_ChangeAuditReport_3">
 						<parameter name="user" value="EE-S"></parameter>
-					</include>
-					<include name="UI_DT_HeaderDataAndMenuLinksVerification" /> 
+					</include> 
+					<include name="UI_DT_HeaderDataAndMenuLinksVerification" />
 														
 				</methods>
-			</class>  -->
+			</class> 
 
-			<!--  <class name="tests.UI.ReportModule">
+			 <class name="tests.UI.ReportModule">
 				<methods>
 					<include name="UI_Rep_OverviewReport_NextgenUser" />
 					<exclude name="UI_Rep_OverviewReport_SearchResultSectionWithNgcUser" />
@@ -154,9 +154,9 @@
   					<include name="UI_Rep_RODATReportFileExport_278" />
   					<include name="UI_Rep_ChartCumulativeAnnualisedNetworkOutpaymentSavingsfromIOTs_678" />
  				</methods>
-			</class> -->
+			</class>
  
-			 <!-- <class name="tests.UI.AgreementCaptureModule">
+			 <class name="tests.UI.AgreementCaptureModule">
 				<methods>
  
 					<include name="UI_MaintainIOTDiscountAgreements_p301" />
@@ -191,7 +191,7 @@
 					<include name="UI_MaintainTrafficSegmentationRules_P35"/>
 					
 				</methods>
-			</class>  -->
+			</class> 
 
 	 		<class name="tests.UI.SettlementStatementModule">
 				<methods>
@@ -221,7 +221,7 @@
 				<methods>
 					<include name="UI_CalculationSchedule_P689"/>
 				</methods>
-			</class>
+			</class> -->
 			  
 
 		</classes>

@@ -241,8 +241,8 @@ public class DealTrackerModule {
 
 		NavigatorDT nav=new NavigatorDT();
 		FlashReport flashReport =nav.to_IOTRONHomePage().to_DealTrackerHome().to_FlashReport();
-		Country[] c= {Country.Afghanistan};
-		flashReport.verify_UI("01-aug-2017", "30-sep-2017", null, null, null, null, null, c, null, null, null);
+		Country[] c= {Country.Austria};
+		flashReport.verify_UI("01-Nov-2018", "30-Nov-2018", null, Util.getArray("Not available"), null, null, null, c, null, null, null);
 	}
 
 	@Test(description = "UI_DT_YTD Trueup(p16)")

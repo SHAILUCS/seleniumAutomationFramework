@@ -35,8 +35,10 @@ public class FlashReport {
 			TrafficDirection TrafficDirection, ServiceType ServiceType, EventType EventType, Country[] Country,
 			String region, TADIG[] TADIG, String agreementStatus) {
 
+		CustomReporter.createNode("Verifying the report parameters");
 		com.isElementPresent(data_FlashReport_BreadCrumb, "Flash Report heading in Bread Crumb");
 		verifyReportParametersSection();
+		CustomReporter.createNode("Verifying the result section");
 		if (performSearch(dateFrom, dateTo, brand, subscriberType, TrafficDirection, ServiceType, EventType, Country,
 				region, TADIG, agreementStatus)) {
 			verifyTrendsSection();

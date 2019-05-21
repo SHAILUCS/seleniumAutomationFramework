@@ -1,7 +1,9 @@
 package or.qlik.pojo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import common.configData_Util.Util;
 
@@ -20,6 +22,7 @@ public class QlikGRID {
 	private String iotronValue;
 	private String difference;
 	private String passFail;
+	
 	
 	public static void addRow(String appName, String sheet, String year, String month, String obIb, String fileName, String fieldName, String qlikValue, String iotronValue){
 		QlikGRID gridRow = new QlikGRID();
@@ -44,10 +47,21 @@ public class QlikGRID {
 	
 	private static List<QlikGRID> list;
 	
+	private static Map<Long,List<QlikGRID>> listMap;
+	
 	private static void addObject(QlikGRID obj){
+		
+		if(listMap == null){
+			listMap = new HashMap<Long, List<QlikGRID>>();
+		}
+
+		list = listMap.get(Thread.currentThread().getId());
+		
 		if (list == null) {
 			list = new ArrayList<QlikGRID>();
+			listMap.put(Thread.currentThread().getId(),list);
 		}
+		
 		list.add(obj);
 	}
 	
@@ -159,9 +173,11 @@ public class QlikGRID {
 				+ "<th>" + "Pass/Fail"	+ "</th>"
 				+ "</tr>";
 		
-		for (QlikGRID qlikRow : list) {
+		List<QlikGRID> listTemp = listMap.get(Thread.currentThread().getId());
+		
+		for (QlikGRID qlikRow : listTemp) {
 			row = row + 
-					"<tr>"
+					"<tr class='" + qlikRow.getPassFail() + "'>"
 					+ "<td>" + rowNum++ + "</td>"
 					+ "<td>" + getStream() + "</td>"
 					+ "<td>" + qlikRow.getApp() + "</td>"
@@ -181,6 +197,14 @@ public class QlikGRID {
 		
 		String htmlTable = "<table><tbody>" + row + "</tbody></table>";
 
+		/*
+		 * Removing the current thread list, because for single threaded execution,
+		 * Grid has ovelapping results
+		 */
+		if(listMap.containsKey((Thread.currentThread().getId()))){
+			listMap.remove((Thread.currentThread().getId()));
+		}		
+		
 		return htmlTable;
 	}
 	

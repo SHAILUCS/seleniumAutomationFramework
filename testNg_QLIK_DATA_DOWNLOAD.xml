@@ -5,8 +5,8 @@
 		<listener class-name="common.testNgListener.CustomListener_HMap" />
 	</listeners>
 	
-	<test name="Qlik_OR_MLTGO">
-		<parameter name="environment" value="${environment}" /> <!-- ${environment} PROD-->
+	<test name="Qlik_OR_ALL_APPS">
+		<parameter name="environment" value="PROD" /> <!-- ${environment} PROD-->
 		<parameter name="browser" value="chrome" />
 		<parameter name="platform" value="" />
 		<parameter name="user" value="NGC-M" />
@@ -14,7 +14,7 @@
 		
 			<class name="tests.qlik.QlikAppTests">
 				<methods>
-					<include name="T02_IOTRON_DataDownload"/>
+					<include name="T00_IOTRON_DataDownload"/>
 				</methods>
 			</class>
 		</classes>

@@ -15,7 +15,7 @@ import org.apache.commons.csv.CSVRecord;
 import common.seleniumExceptionHandling.CustomExceptionHandler;
 
 public class CSVManager {
-
+	
 	private String CSV_FILE_PATH;
 	private Reader reader;
 	private boolean withFirstRecordAsHeader=false;
@@ -142,6 +142,7 @@ public class CSVManager {
 			List<CSVRecord> csvRecordsList = getRecords();
 			value = csvRecordsList.get(rowIndex).get(colIndex);
 		}catch (Exception e) {
+			System.err.println("Row Index : "+rowIndex+ " Col Index : "+ colIndex);
 			e.printStackTrace();
 		}
 		return value;

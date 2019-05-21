@@ -35,7 +35,7 @@ public class Constant {
 	 * this flag also controls the movie generation
 	 * if this is true then only movie will be generated
 	 */
-	public static boolean enableCaptureSnapshots = true;
+	public static boolean enableCaptureSnapshots = false;
 
 	/**
 	 * {@code enableAssertions} : set true to enable TestNG Assertion feature while
@@ -122,7 +122,7 @@ public class Constant {
 	public static final String downloadFolderName = "Downloads";
 	
 	/**All Qlik downloaded files will be stored in this folder*/
-	private static final String downloadFolderName_Qlik = "Downloads_Qlik";
+	public static final String downloadFolderName_Qlik = "Downloads_Qlik";
 	
 	/**All snapshots will be stored in this folder*/
 	public static final String snapshotsFolderName = "Snapshots";

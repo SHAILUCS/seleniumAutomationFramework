@@ -751,12 +751,29 @@ public class ApexCommon extends SeleniumMethods {
 			if (flag) {
 				CustomReporter.report(STATUS.PASS, "All columns found : "+expectedColNames);
 			}else{
-				CustomReporter.report(STATUS.INFO, "COLUMNS EXPECTED: "+expectedColNames);
-				CustomReporter.report(STATUS.INFO, "COLUMNS ACTUAL : "+actualColNames);
+				CustomReporter.report(STATUS.INFO, "COLUMNS EXPECTED: ["+getStringifiedColNames(expectedColNames)+"]");
+				CustomReporter.report(STATUS.INFO, "COLUMNS ACTUAL : ["+getStringifiedColNames(actualColNames)+"]");
 			}
 		}
 	}
 
+	/**
+	 * Returns the double quoted comma separated string
+	 * i.e. if you pass an List with values => v1,v2,v3
+	 * You will get => "v1", "v2", "v3"
+	 * So that you can directly copy it from html report or console 
+	 * and paste to Java Class file :)
+	 * 
+	 * @author shailendra.rajawat 07-May-2019
+	 * */
+	private String getStringifiedColNames(List<String> colNamesList){
+		String colNames="";
+		for (String temp: colNamesList) {
+			colNames=colNames+", \""+temp+"\"";
+		}
+		return colNames.length()>1 ? colNames.substring(2) : colNames; 
+	}
+	
 	public void verifyActionsPopupItems_WithRowsPerPage() {
 		verifyActionsPopupItems_WithRowsPerPage(button_Action);
 	}
@@ -841,7 +858,7 @@ public class ApexCommon extends SeleniumMethods {
 		}
 
 	}
-
+	
 	public void downloadCSV() {
 		//javaScript_ScrollIntoBOTTOMView_AndHighlight(button_Action);
 		click(getInteractableWebElementFromList(button_Action));

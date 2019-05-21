@@ -5,13 +5,13 @@
 		<listener class-name="common.testNgListener.CustomListener_HMap" />
 	</listeners>
 	<test name="Regression">
-		<parameter name="environment" value="PREPROD" /><!-- ${environment} PREPROD-->
+		<parameter name="environment" value="${environment}" /><!-- ${environment} PREPROD-->
 		<parameter name="browser" value="CHROME"/>
 		<parameter name="platform" value=""/>
 		<parameter name="user" value="NGC-S"/>
 		<classes>
 		
-			<class name="tests.MainRegression.KPN_DealTracker7216">
+			<!-- <class name="tests.MainRegression.KPN_DealTracker7216">
 				<methods>
 					<include name="T01_ForecastCountryLevelGrowthDisableBulkUpdateForIB_7217"><parameter name="browser" value="CHROME" /></include>
 					<include name="T02_ForecastCountryLevelGrowthManualManipulationForObTrafficFE_7218"><parameter name="browser" value="CHROME" /></include> 
@@ -200,7 +200,7 @@
 						<parameter name="user" value="T06_HKTCommitRep_7400_NGC" />
 					</include>
 				</methods>
-			</class>
+			</class> -->
 			
 			
 			<class name="tests.MainRegression.Module_AgreementCapture">

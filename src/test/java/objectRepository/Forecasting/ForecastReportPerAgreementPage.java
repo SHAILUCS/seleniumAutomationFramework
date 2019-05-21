@@ -365,8 +365,7 @@ public class ForecastReportPerAgreementPage {
 		
 	}
 
-	public void UIVerification(String Agreement,ServiceType ServiceType, EventType EventType) 
-	{
+	public void UIVerification(String yesOrNo_LiveAgreements,String Agreement,ServiceType serviceType, EventType EventType, String latestOrOriginal_InformationSet) {
 		CustomReporter.createNode("Verifying page content");
 		com.isElementPresent(breadcrumb_IOTRONWelcome, "IOTRON Welcome, BreadCrumb");
 		com.isElementPresent(breadcrumb_Forecasting, "Forecasting, BreadCrumb");
@@ -402,8 +401,7 @@ public class ForecastReportPerAgreementPage {
 		com.isElementPresent(region_AgreementDataVisitorInbound, "Agreement Data Visitor Inbound, Region");
 
 		CustomReporter.createNode("Verifying the Table columns");
-		if(performSearch(null,Agreement, ServiceType, EventType,null))
-		{
+		if(performSearch(yesOrNo_LiveAgreements, Agreement, serviceType, EventType, latestOrOriginal_InformationSet)){
 			comm.verifyColumnHeaders(comm.table_ResultTabHeader,tableColumns, 1);
 			comm.verifyActionsPopupItems_WithoutSubscription();	
 		}

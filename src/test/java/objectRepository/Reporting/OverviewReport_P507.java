@@ -101,6 +101,12 @@ public class OverviewReport_P507 {
 
 	@FindBy(id = "P507_CALL_DESTINATION_LEVEL_0")
 	private WebElement checkbox_MOCallDestinationBreakdown;
+	
+	@FindBy(xpath = "//button[contains(.,'Download CSV')]")
+	private WebElement button_DownloadCSV;
+	
+	@FindBy(xpath = "//button[.='Download'][contains(@class,'iconRight')]")
+	private WebElement button_DownloadXls;
 
 	private List<String> colNames = new ArrayList<>(Arrays.asList("Operator/ Group Name", "Country", "PMN code",
 			"Agreement Reference", "Agreement Start Date", "Agreement End Date", "Direction", "Service Type",
@@ -815,7 +821,7 @@ public class OverviewReport_P507 {
 		String absPath=Util.getDownloadedFilePath(json.getStr("downloaded-csv"));
 		if(absPath!=null){
 			CustomReporter.report(STATUS.PASS, "'"+json.getStr("downloaded-csv")+"' downloaded");
-			Util.deleteSpecificFile(absPath);
+			Util.forceDelete(absPath);
 		}else{
 			CustomReporter.report(STATUS.FAIL, "'"+json.getStr("downloaded-csv")+"' is NOT downloaded");
 		}
@@ -823,7 +829,7 @@ public class OverviewReport_P507 {
 		absPath=Util.getDownloadedFilePath(json.getStr("downloaded-html"));
 		if(absPath!=null){
 			CustomReporter.report(STATUS.PASS, "'"+json.getStr("downloaded-html")+"' downloaded");
-			Util.deleteSpecificFile(absPath);
+			Util.forceDelete(absPath);
 		}else{
 			CustomReporter.report(STATUS.FAIL, "'"+json.getStr("downloaded-html")+"' is NOT downloaded");
 		}
@@ -1759,7 +1765,21 @@ public class OverviewReport_P507 {
 	}
 
 
-
-
+	/**
+	 * This will click on Right side displayed Download CSV button
+	 * @author shailendra.rajawat 14-May-2019
+	 * */
+	public void clickDownloadCsvButton(){
+		com.click(button_DownloadCSV, "button_Download CSV");
+	}
+	
+	/**
+	 * This will click on Right side displayed Download Xls button, 
+	 * xlsx file will be downloaded
+	 * @author shailendra.rajawat 16-May-2019
+	 * */
+	public void clickDownloadXlsButton(){
+		com.click(button_DownloadXls, "button_Download Xls");
+	}
 
 }

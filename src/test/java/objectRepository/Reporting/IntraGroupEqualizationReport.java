@@ -3,8 +3,10 @@ package objectRepository.Reporting;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import common.configData_Util.STATUS;
+import common.configData_Util.Util;
 import common.customReporting.CustomReporter;
 import common.driverManager.DriverFactory;
 import common.seleniumExceptionHandling.SeleniumMethods;
@@ -60,11 +62,11 @@ public class IntraGroupEqualizationReport
 	private WebElement data_HomeCurrency;
 
 	public void verify_UI(String agreementRef,ServiceType ServiceType,EventType EventType, String latestOrOriginal) {
-		CustomReporter.report(STATUS.INFO, "Bread Crumb data verification");
+		CustomReporter.createNode("Bread Crumb data verification");
 		com.isElementPresent(breadcrumb_Reporting,"breadcrumb_Reporting");
 		com.isElementPresent(data_IntraGroupEqualizationReport_BreadCrumb,"data_IntraGroupEqualizationReport_BreadCrumb");
 
-		CustomReporter.report(STATUS.INFO, "Report Parameters Section verification");
+		CustomReporter.createNode("Report Parameters Section verification");
 		com.isElementPresent(data_ReportParameters_Section,"Report Parameters Section heading");
 		com.isElementPresent(hideShowIcon_ReportParameters,"Report Parameters hide Show Icon");
 		com.isElementPresent(dropdown_IotAgreement,"Iot Agreement dropdown");
@@ -73,7 +75,8 @@ public class IntraGroupEqualizationReport
 		com.isElementPresent(radioButton_Latest,"Latest radio Button");
 		com.isElementPresent(radioButton_Original,"Original radio Button");
 		com.isElementPresent(button_RefreshReport,"Refresh Report button");
-
+		
+		CustomReporter.createNode("Verifying the result section");
 		if(performSearch(agreementRef, ServiceType, EventType, latestOrOriginal)){
 			CustomReporter.report(STATUS.INFO, "Search results Section verification");
 			com.isElementPresent(data_EqualizationReport_Section,"data_EqualizationReport_Section");
@@ -83,6 +86,7 @@ public class IntraGroupEqualizationReport
 	}
 
 	private boolean performSearch(String agreementRef,ServiceType ServiceType,EventType EventType, String latestOrOriginal) {
+
 		String message = "";
 
 		if (agreementRef != null) {

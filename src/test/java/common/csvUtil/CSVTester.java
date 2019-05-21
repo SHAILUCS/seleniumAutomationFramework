@@ -7,17 +7,17 @@ import common.configData_Util.Util;
 public class CSVTester {
 	public static void main(String[] args) throws IOException {
 	
-		String filePath = "C:/Users/shailendra.rajawat/Downloads/overview_report(1).csv";
+		String filePath = "C:\\Users\\shailendra.rajawat\\Downloads\\Overview_report_download_csv - Verizon.csv";
 		
-		CSVManager csv=new CSVManager(filePath,true);
+		CSVManager csv=new CSVManager(filePath);
 		
 		String d2 = Util.getTimeStamp_In_dd_MMM_yyyy_HH_mm_ss_S();
 		
 		String[] arr = Util.getArray("Home  Operator Name"	,"Traffic Period"	,"Partner Group Name"	,"Country","Partner PMN"); 
 		
-		for (int row = 1; row <= 10; row++) {
+		for (int row = 0; row < 10; row++) {
 			System.out.print(row + "\t");
-			for (int col = 1; col <= csv.getColumnCount(); col++) {
+			for (int col = 0; col < csv.getColumnCount(); col++) {
 				System.out.print(csv.getValue(row, col)+"\t");
 			}
 			/*

@@ -1,19 +1,33 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Qlik Data Verification" verbose="1" thread-count="5" parallel="methods">
+<suite name="Qlik Data Verification" verbose="1" thread-count="1" parallel="methods">
 	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
 	<listeners>
 		<listener class-name="common.testNgListener.CustomListener_HMap" />
 	</listeners>
 	
-	<test name="Qlik_MLTGO">
+	<test name="Qlik_ALL_APPS">
 		<parameter name="environment" value="Qlik" />  <!-- Qlik ${environment}--> 
-		<parameter name="browser" value="chrome" />
+		<parameter name="browser" value="CHROME" />
 		<parameter name="platform" value="" />
 		<parameter name="user" value="ssr" />
 		<classes>
 			<class name="tests.qlik.QlikAppTests">
 				<methods>
-					<include name="T01_DataVerification"/>
+					<include name="T01_DataVerification_EE"/>
+					<include name="T02_DataVerification_GoMalta"/>
+					<include name="T03_DataVerification_HKT"/>
+					<include name="T04_DataVerification_JT"/>
+					<include name="T05_DataVerification_KPN"/>
+					<include name="T06_DataVerification_MTN_Cyprus"/>
+					<include name="T07_DataVerification_MTN_Group"/>
+					<include name="T08_DataVerification_Optus"/>
+					<include name="T09_DataVerification_Siminn"/>
+					<include name="T10_DataVerification_Spark"/>
+					<include name="T11_DataVerification_Telstra"/>
+					<include name="T12_DataVerification_TMO"/>
+					<include name="T13_DataVerification_Verizon"/>
+					<include name="T14_DataVerification_Vivacom"/>
+					<include name="T15_DataVerification_Vodafon"/> 
 				</methods>
 			</class>
 		</classes>

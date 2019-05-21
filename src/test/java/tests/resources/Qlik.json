@@ -2,20 +2,44 @@
 	"T01_DataVerification": {
 		"stream": "IOTRON",
 		"pmnArr": [
+			"GBRME, GBROR",
 			"MLTGO",
-			"HKGTC"
+			"HKGTC, HKGSI, HKGNW, HKGMC, HKGM3",
+			"GBRJT",
+			"NLDPT, NLDTM",
+			"CYPSC",
+			"AFGAR, BENSP, BWAGA, CIVTL, CMRMT, COGLB, GHASC, GINAG, GNBSB, IRNMI, LBRLC, NGAMN, RWAMN, SDNBT, SSDMN, SWZMN, SYRSP, UGAMN, YEMSP, ZAFMM, ZAFMN, ZMB02",
+			"AUSOP",
+			"AAMOW, ISLOC, ISLPS, ISLTA",
+			"NZLTM",
+			"AUSTA",
+			"USAW6",
+			"USAVZ",
+			"BGRVA",
+			"FROKA, ISLTL, XFOKA, XSLTL"
 		 ],
 
-		"HKT_IOTRON Discount Management App":"",
+		
 		"appsArr": [
-			"GoMalta_IOTRON Discount Management App"
+			"EE IOTRON Discount Management App",
+			"GoMalta_IOTRON Discount Management App",
+			"HKT_IOTRON Discount Management App",
+			"JT_IOTRON Discount Management App",
+			"KPN_IOTRON Discount Management App",
+			"MTN Cyprus IOTRON Discount Management App",
+			"MTN Group_IOTRON Discount Management App",
+			"Optus_IOTRON Discount Management App",
+			"Siminn_IOTRON Discount Management App",
+			"Spark_IOTRON Discount Management App",
+			"Telstra_IOTRON Discount Management App",
+			"TMO_IOTRON Discount Management App",
+			"Verizon_IOTRON Discount Management App",
+			"Vivacom Bulgaria IOTRON Discount Management App",
+			"Vodafone Iceland_IOTRON Discount Management App"
 		 ],
 
-		"Traffic Year": "2018",
-		"Traffic Month": [
-			"Nov",
-			"Dec"
-		 ],
+		"Traffic Year": "2019",
+		"Traffic Month": ["Jan"],
 
 		"YoY Value Performance": {
 			"OB": {

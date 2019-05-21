@@ -8,6 +8,7 @@ package tests.qlik;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import common.configData_Util.Constant;
@@ -16,7 +17,6 @@ import common.configData_Util.Util;
 import common.customReporting.CustomReporter;
 import common.jsonUtil.JSONManager;
 import objectRepository.Reporting.OverviewReport_P507;
-import objectRepository.common.ApexCommon;
 import objectRepository.common.Currency;
 import objectRepository.common.IOTRONHomePage;
 import objectRepository.common.Navigator;
@@ -30,6 +30,7 @@ public class QlikAppTests {
 
 	public static final String jsonFilePath = Constant.getResourcesFolderPath() + "Qlik.json";
 	public static final String overViewReportFileNameWithoutExtension = "Overview Report";
+	public static final String overViewReportFileExtension = ".csv";
 	public static final String overviewReportFolderName = "Overview Report";
 	private static final String OB = "OB";
 	private static final String IB = "IB";
@@ -59,10 +60,14 @@ public class QlikAppTests {
 			Calendar cal = Calendar.getInstance();
 			int currentMonthIndex = cal.get(Calendar.MONTH);
 			if (currentMonthIndex == 0) {
-				trafficMonthArr = Util.getArray("Jan");
+				trafficMonthArr = Util.getArray("Oct","Nov","Dec");
+				trafficYear = (Integer.parseInt(trafficYear) - 1)+"";
 			} else if (currentMonthIndex == 1) {
-				trafficMonthArr = Util.getArray("Jan", "Feb");
+				trafficMonthArr = Util.getArray("Jan");
+			}  else if (currentMonthIndex == 2) {
+				trafficMonthArr = Util.getArray("Jan","Feb");
 			} else {
+				cal.add(Calendar.MONTH, -1);
 				String currentMonth = Util.convertToString("MMM", cal.getTime());
 				cal.add(Calendar.MONTH, -1);
 				String oldMonth = Util.convertToString("MMM", cal.getTime());
@@ -76,6 +81,87 @@ public class QlikAppTests {
 		pmnArr = json.getStrArr("pmnArr");
 	}
 	
+
+	/**
+	 * Below are the tests for each App
+	 * Restructuring the scripts to have different test for different clients,
+	 * because of an issue in jenkins
+	 * @author shailendra.rajawat 10-May-2019
+	 */
+	@Test(description = "T01_Data Verification - EE IOTRON Discount Management App")
+	private void T01_DataVerification_EE() {
+		dataVerification_COMMON("EE IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T02_Data Verification - GoMalta_IOTRON Discount Management App")
+	private void T02_DataVerification_GoMalta() {
+		dataVerification_COMMON("GoMalta_IOTRON Discount Management App");
+	}
+
+	@Test(description = "T03_Data Verification - HKT_IOTRON Discount Management App")
+	private void T03_DataVerification_HKT() {
+		dataVerification_COMMON("HKT_IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T04_Data Verification - JT_IOTRON Discount Management App")
+	private void T04_DataVerification_JT() {
+		dataVerification_COMMON("JT_IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T05_Data Verification - KPN_IOTRON Discount Management App")
+	private void T05_DataVerification_KPN() {
+		dataVerification_COMMON("KPN_IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T06_Data Verification - MTN Cyprus IOTRON Discount Management App")
+	private void T06_DataVerification_MTN_Cyprus() {
+		dataVerification_COMMON("MTN Cyprus IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T07_Data Verification - MTN Group_IOTRON Discount Management App")
+	private void T07_DataVerification_MTN_Group() {
+		dataVerification_COMMON("MTN Group_IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T08_Data Verification - Optus_IOTRON Discount Management App")
+	private void T08_DataVerification_Optus() {
+		dataVerification_COMMON("Optus_IOTRON Discount Management App");
+	}
+
+	@Test(description = "T09_Data Verification - Siminn_IOTRON Discount Management App")
+	private void T09_DataVerification_Siminn() {
+		dataVerification_COMMON("Siminn_IOTRON Discount Management App");
+	}
+
+	@Test(description = "T10_Data Verification - Spark_IOTRON Discount Management App")
+	private void T10_DataVerification_Spark() {
+		dataVerification_COMMON("Spark_IOTRON Discount Management App");
+	}
+
+	@Test(description = "T11_Data Verification - Telstra_IOTRON Discount Management App")
+	private void T11_DataVerification_Telstra() {
+		dataVerification_COMMON("Telstra_IOTRON Discount Management App");
+	}
+
+	@Test(description = "T12_Data Verification - TMO_IOTRON Discount Management App")
+	private void T12_DataVerification_TMO() {
+		dataVerification_COMMON("TMO_IOTRON Discount Management App");
+	}
+
+	@Test(description = "T13_Data Verification - Verizon_IOTRON Discount Management App")
+	private void T13_DataVerification_Verizon() {
+		dataVerification_COMMON("Verizon_IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T14_Data Verification - Vivacom Bulgaria IOTRON Discount Management App")
+	private void T14_DataVerification_Vivacom() {
+		dataVerification_COMMON("Vivacom Bulgaria IOTRON Discount Management App");
+	}
+	
+	@Test(description = "T15_Data Verification - Vodafone Iceland_IOTRON Discount Management App")
+	private void T15_DataVerification_Vodafon() {
+		dataVerification_COMMON("Vodafone Iceland_IOTRON Discount Management App");
+	}
 	
 	/**
 	 * <pre>
@@ -91,8 +177,7 @@ public class QlikAppTests {
 	 *  		2.2.4 <b>Load</b> the xlsx file content and <b>compare</b> its values with IOTRON's Overview Report csv
 	 *  </pre>
 	 * */
-	@Test(description = "T01_Data Verification")
-	private void T01_DataVerification() {
+	private void dataVerification_COMMON(String appName) {
 
 		String jsonObjName = "T01_DataVerification";
 		initParameters(jsonObjName);
@@ -111,7 +196,7 @@ public class QlikAppTests {
 		//String[] trafficMonthArr = json.getStrArr("Traffic Month");
 
 		/* Here we are downloading the sheets data for each app */
-		for(String appName : appArr){
+		//for(String appName : appArr){
 
 			/* Opening app in new tab */
 			QlikAppOverview app = hub.openClientAppOverview_InNewTab(appName);
@@ -138,7 +223,7 @@ public class QlikAppTests {
 
 			/* switching back to hub so that other app can be opened in new tab */
 			hub.switchBackToHub(appName);
-		}
+		//}
 
 		CustomReporter.report_ExitCurrentNode(STATUS.INFO, QlikGRID.generateHTMLTable());
 
@@ -149,8 +234,12 @@ public class QlikAppTests {
 	 * inside the app / ibOb / month folder
 	 * @author shailendra.rajawat 11-Apr-2019
 	 */
-	@Test(description = "T02_IOTRON Data Download")
-	private void T02_IOTRON_DataDownload() {
+	@Test(description = "T00_IOTRON Data Download")
+	private void T00_IOTRON_DataDownload() {
+		
+		CustomReporter.report(STATUS.INFO, "Removing all older files from "+Constant.getQlikDownloadsPath());
+		Util.forceDelete(Constant.getQlikDownloadsPath());
+		
 		String jsonObjName = "T01_DataVerification";
 		initParameters(jsonObjName);
 		//JSONManager json = new JSONManager(jsonFilePath,jsonObjName);
@@ -165,26 +254,38 @@ public class QlikAppTests {
 		nav.to_IOTRONHomePage().traverseMenu_VerifyPageTitle(PagesTitle.OverviewReport_P507, h.link_Reporting,
 				h.link_Reporting_OverviewReport);
 
-		ApexCommon comm = new ApexCommon();
-
 		OverviewReport_P507 p507 = new OverviewReport_P507();
 		for (int i = 0; i < appArr.length; i++) {
 			for (int j = 0; j < trafficMonthArr.length; j++) {
 				// For OB
 				String monthName = trafficMonthArr[j];
 				String trafPeriod = Util.convertToString("MMyy",Util.convertToDate("MMMyyyy", monthName + trafficYear));
-				String trafPeriodRange = trafPeriod+","+trafPeriod; 
+				String trafPeriodRange = trafPeriod+","+trafPeriod;
+				
+				CustomReporter.createNode("Downloading the data for | " + appArr[i] + " | " + trafPeriod);
 				p507.performSearch(pmnArr[i], trafPeriodRange, null, null, TrafficDirection.CustomerOutbound.value, Currency.SDR.value, null, true, false, 0);
-				comm.downloadCSV();
-				String srcFilePath = Util.renameDownloadedFile("csv", overViewReportFileNameWithoutExtension + " " + monthName + ".csv");
+				if(overViewReportFileExtension.contains("xl")){
+					p507.clickDownloadXlsButton();
+				}else if(overViewReportFileExtension.contains("csv")){
+					p507.clickDownloadCsvButton();
+				}else{
+					Assert.fail("Invalid extension mentioned in constant overViewReportFileExtension");
+				}
+				String srcFilePath = Util.renameDownloadedFile(overViewReportFileExtension, overViewReportFileNameWithoutExtension + " " + monthName + overViewReportFileExtension);
 				String overviewReportPathOB = Constant.getQlikDownloadsPath() + "/" + appArr[i] + "/" + overviewReportFolderName + "/" + OB;
 				Util.moveFileToDirectory(srcFilePath, overviewReportPathOB);
 
 
 				//For IB
 				p507.performSearch(null, null, null, null, TrafficDirection.VisitorInbound.value, null, null, false, false, 0);
-				comm.downloadCSV();
-				srcFilePath = Util.renameDownloadedFile("csv", overViewReportFileNameWithoutExtension + " " + monthName + ".csv");
+				if(overViewReportFileExtension.contains("xl")){
+					p507.clickDownloadXlsButton();
+				}else if(overViewReportFileExtension.contains("csv")){
+					p507.clickDownloadCsvButton();
+				}else{
+					Assert.fail("Invalid extension mentioned in constant overViewReportFileExtension");
+				}
+				srcFilePath = Util.renameDownloadedFile(overViewReportFileExtension, overViewReportFileNameWithoutExtension + " " + monthName + overViewReportFileExtension);
 				String overviewReportPathIB = Constant.getQlikDownloadsPath() + "/" + appArr[i] + "/" + overviewReportFolderName + "/" + IB;
 				Util.moveFileToDirectory(srcFilePath, overviewReportPathIB);
 

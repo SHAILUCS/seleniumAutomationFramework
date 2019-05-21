@@ -51,6 +51,46 @@ public class JSONManager {
 	}
 	
 	/**
+	 * TODO NEED TO DESIGN/CODE THIS METHOD, can not think of anything right now(07 May 2019) may be in near future 
+	 *  ................................................................ 
+	 * Changes the JSONManager Object pointing to the passed child index,
+	 *  which is inside an json Object array.
+	 *  This idea is created to achieve multi level read/write inside array 
+	 *  of json objects and so on.
+	 *  
+	 *  example json:
+	 *  
+	 *  "validationsArr":[
+	 *  	{
+	 *  		"testData":{
+	 *  			"field1":"val1",
+	 *  			"field2":"val2"
+	 *  		},
+	 *  		"message":[
+	 *  			"validation message 1",
+	 *  			"validation message 2"	
+	 *  		]
+	 *  	},
+	 *  	{
+	 *  		"testData":{
+	 *  			"field1":"val3",
+	 *  			"field2":"val4"
+	 *  		},
+	 *  		"message":[
+	 *  			"validation message 3",
+	 *  			"validation message 4"	
+	 *  		]
+	 *  	}
+	 *  ]
+	 * @param jsonArrObjName the name of the json Obj Arr
+	 * @param childJsonObjIndex the index of Json Object inside the json obj arr
+	 * @return reference to JSONManager object 
+	 * */
+	public JSONManager getChildJSONObject(String jsonArrObjName, int childJsonObjIndex) {
+		return this;
+	}
+	
+	/**
 	 * Changes the JSONManager Object pointing to the passed child
 	 * @return reference to JSONManager object 
 	 * */

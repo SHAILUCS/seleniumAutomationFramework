@@ -24,7 +24,7 @@ public class ForecastingModule {
 		IOTRONHomePage Ihp = new IOTRONHomePage();
 		nav.traverseMenu_VerifyPageTitle( PagesTitle.ForecastReportperAgreement, Ihp.link_Forecasting,Ihp.link_Forecasting_ForecastReportPerAgreement);
 		ForecastReportPerAgreementPage ForecastReportPerAgreementPage = new ForecastReportPerAgreementPage();
-		ForecastReportPerAgreementPage.UIVerification("2 D",ServiceType.VOICE,EventType.MO);
+		ForecastReportPerAgreementPage.UIVerification(null, "A1 Group:JUN18 MAY19", ServiceType.VOICE, null, null);
 	}
 
 	/**@author prafull.barve*/

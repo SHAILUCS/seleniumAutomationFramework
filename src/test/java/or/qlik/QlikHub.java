@@ -31,22 +31,22 @@ public class QlikHub {
 
 	@FindBy(css = "span[class*='user-name']")
 	public WebElement link_UserName;
-	
+
 	@FindBy(xpath = "//span[.='Operations - FC']")
 	public WebElement link_Operations_FC;
-	
+
 	@FindBy(xpath = "//span[.='Operations - IOTRON']")
 	public WebElement link_Operations_IOTRON;
 
 	@FindBy(xpath = "//span[.='Operations - DCH']")
 	public WebElement link_Operations_DCH;
-	
+
 	@FindBy(xpath = "//button[contains(.,'Open')]")
 	private WebElement button_Open;
-	
+
 	@FindBy(css = "button[title='Close'][class*='fade-button']")
 	private WebElement button_Close;
-	
+
 
 	/**
 	 * Clicks on the Stream to show its internal apps
@@ -55,30 +55,43 @@ public class QlikHub {
 	 * @author shailendra.rajawat 26-Mar-2019
 	 * */
 	public void selectStream(String streamName) {
-		CustomReporter.createNode("OPENING THE ["+streamName+"] STREAM");
-		switch (streamName) {
-		case "IOTRON":
-			com.click_UsingAction(link_Operations_IOTRON, "IOTRON Stream link");
-			break;
-		case "FC":
-			com.click_UsingAction(link_Operations_FC, "FC Stream link");
-			break;
-		case "DCH":
-			com.click_UsingAction(link_Operations_DCH, "DCH Stream link");
-			break;
 
-		default:
-			CustomReporter.report(STATUS.WARNING, "Invalid value provided, Opening IOTRON app!");
-			com.click_UsingAction(link_Operations_IOTRON, "IOTRON Stream link");
-			streamName = "IOTRON";
-			break;
+		int retry = 5;
+		CustomReporter.createNode("OPENING THE ["+streamName+"] STREAM");
+
+		while(true){
+			// Repeat this stuff, till the passed Stream is not visible, Or the retry attempts are exceeded
+			switch (streamName) {
+			case "IOTRON":
+				com.click_UsingAction(link_Operations_IOTRON, "IOTRON Stream link");
+				break;
+			case "FC":
+				com.click_UsingAction(link_Operations_FC, "FC Stream link");
+				break;
+			case "DCH":
+				com.click_UsingAction(link_Operations_DCH, "DCH Stream link");
+				break;
+
+			default:
+				CustomReporter.report(STATUS.WARNING, "Invalid value provided, Opening IOTRON app!");
+				com.click_UsingAction(link_Operations_IOTRON, "IOTRON Stream link");
+				streamName = "IOTRON";
+				break;
+			}
+			com.wait(2);
+			
+			if(retry-- == 0){
+				CustomReporter.report(STATUS.FAIL, "Failed to select "+streamName+" after multiple Retry attempts");
+				break;
+			}
+				
+			if( ! com.waitForElementsTobe_NotVisible(By.xpath("//div[.='Operations - "+streamName+"']"),5)){
+				CustomReporter.report(STATUS.INFO, " Dashboard opened for stream [" + streamName + "]");
+				break;
+			}
+
 		}
-		
-		com.wait(2);
-		
-		if(com.waitForElementTobe_Visible(By.xpath("//div[.='Operations - "+streamName+"']"))){
-			CustomReporter.report(STATUS.INFO, " Dashboard opened for stream [" + streamName + "]");
-		}
+
 	}
 
 	/**
@@ -98,12 +111,12 @@ public class QlikHub {
 			com.click(button_Close);
 			com.wait(1);
 		}
-		
+
 		com.click_UsingAction(By.xpath("//span[.='"+client+"']"));
 		com.wait(1);
 		com.click_UsingAction(button_Open);
 		com.wait(5);
-		
+
 		int winCount = com.getWindowHandles().size();
 		if(winCount>0){
 			CustomReporter.report(STATUS.PASS, "App overview of ["+ client +"] is successfully opened in New Tab");
@@ -113,7 +126,7 @@ public class QlikHub {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Close the passed app tab, and switch back to hub, for selecting other tabs
 	 * @param app The name of the app which is getting closed

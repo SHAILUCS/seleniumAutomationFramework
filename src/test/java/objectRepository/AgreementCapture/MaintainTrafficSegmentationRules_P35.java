@@ -273,6 +273,13 @@ public class MaintainTrafficSegmentationRules_P35 {
 		
 	}
 
+	
+	public static void main(String[] args) {
+		JSONManager json = new JSONManager(Module_AgreementCapture.jsonFilePath, "T01_VerifyValidationsOnMaintainTrafficSegmentationRules_P35");
+		System.out.println(json.getStr("validationsArr", 1, "imsiRangeStart"));
+		
+	}
+	
 	/**
 	 * This method will fill the values in added row, and will click on Save
 	 * button to verify the validation messages

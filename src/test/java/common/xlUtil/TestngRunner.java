@@ -6,6 +6,14 @@ import common.configData_Util.STATUS;
 import common.customReporting.CustomReporter;
 
 public class TestngRunner {
+	
+	public static void main(String[] args) {
+		String filePath = "C:\\Users\\shailendra.rajawat\\Downloads\\overview_report Verizon.xlsx";
+		DataTable tab=new DataTable(filePath, 0);
+		
+		System.out.println(tab.getLastRowIndex());
+		
+	}
 
 	String fileName1="C:/Users/shailendra.rajawat/git/iotronApex5/src/test/java/common/xlUtil/Testing1.xlsx";
 	String fileName2="C:/Users/shailendra.rajawat/git/iotronApex5/src/test/java/common/xlUtil/Testing2.xlsx";
