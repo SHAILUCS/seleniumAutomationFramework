@@ -30,12 +30,9 @@ public class QlikCommon {
 	public WebElement data_PageLoadingIndicator_OpeningTheAppOverview;
 	
 	/** On Sheet Page Button displayed on Top Right corner for selecting other sheets */
-	@FindBy(css = "button[qui-model='sheetNavigatorButton']")
+	@FindBy(xpath = "//button[@title='Sheets']")
 	public WebElement button_SheetNavigatorButton;
 
-	/** On multiple Sheets when the data is still loading, this spinner is displayed */
-	public By icon_Sheet_RotatingCircle = By.cssSelector("div[class*='rotating']");
-	
 	/** Export button on popup */
 	@FindBy(xpath = "//span[.='Export']")
 	public WebElement button_Export;

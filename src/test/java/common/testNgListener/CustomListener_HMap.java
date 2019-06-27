@@ -85,6 +85,7 @@ public class CustomListener_HMap implements ITestListener,IExecutionListener{
 			DriverFactory.setUp(testDataMap);
 			SnapshotManager.setUp(context.getName());
 		}
+		Test.setTotalScenario(context.getSuite().getAllMethods().size());
 	}
 
 	/**
@@ -304,7 +305,6 @@ public class CustomListener_HMap implements ITestListener,IExecutionListener{
 		testDataMap.put(TestNGKeys.group,Arrays.toString(result.getMethod().getGroups()));
 		testDataMap.put(TestNGKeys.dependsOn,Arrays.toString(result.getMethod().getMethodsDependedUpon()));
 		
-		Test.setTotalScenario(result.getTestContext().getAllTestMethods().length);
 		return testDataMap;
 	}
 	

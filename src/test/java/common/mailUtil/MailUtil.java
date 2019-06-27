@@ -235,9 +235,10 @@ public class MailUtil {
 				+ "<br/><br/>"
 				+ "This is the System generated mail for Automation Testing."
 				+ "<h3>"+  desc + "</h3>"
-				+ "<h4>Quick Reference</h4>"
+				+ "<h4>Quick Reference: </h4>"
 				+ ReportingHistoryHTML.getDashboardContent("", Constant.getResultHtmlFilePath())
 				+ "<br/> "
+				+ "<h4>Scenarios: </h4>"
 				+ ReportingHistoryHTML.getQuickViewContent("", Constant.getResultHtmlFilePath())
 				
 				+ "<h4>Please find the attached HTML report</h4>"

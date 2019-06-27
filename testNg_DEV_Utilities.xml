@@ -22,10 +22,10 @@
 					<exclude name="DeleteToolCreatedAgreements" />
 					<include name="ValidateUserCreds" />
 					<exclude name="UnlockUserAndChangePassword" />
-					<!-- <include name="CreateNewUser">
+					<include name="CreateNewUser">
 						<parameter name="startRow" value="2"></parameter>
 						<parameter name="endRow" value="65"></parameter>
-					</include> -->
+					</include>
 
 
 				</methods>

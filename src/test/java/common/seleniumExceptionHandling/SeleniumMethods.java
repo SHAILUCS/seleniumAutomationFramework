@@ -431,8 +431,7 @@ public class SeleniumMethods extends SelectCustom {
 				val = elem.getAttribute(name);
 				SnapshotManager.takeSnapShot(methodName);
 			} catch (Exception e) {
-
-				new CustomExceptionHandler(e);
+				new CustomExceptionHandler(e, element.toString() +" Attribute "+ name);
 			}
 		}
 		return val;
@@ -1112,27 +1111,22 @@ public class SeleniumMethods extends SelectCustom {
 	 * @throws NoSuchWindowException
 	 *             If the window cannot be found
 	 */
-	public String switchTo_Tab_TitleContains(String containsTitle) {
-		String oldTabWinHandle = null;
+	public void switchTo_Tab_TitleContains(String containsTitle) {
 		StackTraceElement[] ste = Thread.currentThread().getStackTrace();
 		String methodName = ste[1].getMethodName();
 		WebDriver driver = DriverFactory.getDriver();
 		try {
-			oldTabWinHandle = driver.getWindowHandle();
 			for (String currentTab : driver.getWindowHandles()) {
-				if(!currentTab.equals(oldTabWinHandle)){
-					driver.switchTo().window(currentTab);
-					if(driver.getTitle().toLowerCase().contains(containsTitle.toLowerCase())){
-						SnapshotManager.takeSnapShot(methodName);
-						break;
-					}
+				driver.switchTo().window(currentTab);
+				if(driver.getTitle().toLowerCase().contains(containsTitle.toLowerCase())){
+					SnapshotManager.takeSnapShot(methodName);
+					break;
 				}
 			}
 			
 		} catch (Exception e) {
 			new CustomExceptionHandler(e);
 		}
-		return oldTabWinHandle;
 	}
 
 	/**

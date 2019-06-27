@@ -1,6 +1,8 @@
 package common.configData_Util;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.testng.Assert;
 
@@ -70,7 +72,7 @@ public class Constant {
 	 * This constant will control how rows one page of reporting history HTML
 	 * should display, this enables the pagination.
 	 */
-	public static final int reportingHistoryFolderPerPage = 5;
+	private static final int reportingHistoryFolderPerPage = 5;
 	public static final String reportingHistoryFolderName = "ReportingHistory";
 	public static final String reportingHistoryHTMLFolderName= "HTML";
 
@@ -81,7 +83,7 @@ public class Constant {
 	 * 	dimensions width X height
 	 * */
 	public static final long wait = 180;
-	public static final long implicitWait = 30;
+	public static final long implicitWait = 0;
 	public static final int width = 5000;
 	public static final int height = 3000;
 	
@@ -134,7 +136,7 @@ public class Constant {
 	/**This method will tell you how many items will get display on single html page of Reporting History*/
 	public static int getReportinghistoryfolderperpage() {
 		int val=reportingHistoryFolderPerPage;
-		if (val<0) {
+		if (val <= 0) {
 			return 1;
 		}else{
 			return val;
@@ -212,7 +214,7 @@ public class Constant {
 
 	public static String getDownloadsPath() {
 		//System.out.println("=============================================");
-		String val = root + "/" + downloadFolderName;
+		String val = root + "\\" + downloadFolderName;
 		//Creating the Result Folder in case it is not already present
 		File fileObj= new File(val);
 		if(!fileObj.exists()) {
@@ -226,7 +228,7 @@ public class Constant {
 	
 	/**
 	 * This method checks, whether the Downloads_Qlik folder exists in 
-	 * [C:/] directory in windows, and [***TBD***] directory in linux/jenkins
+	 * [C:/] directory in windows, and [/var/lib/jenkins/workspace/] directory in linux/jenkins
 	 * If it is not found then a new folder will be created
 	 * @return absolute path of Downloads_Qlik folder as per OS(C:\Downloads_Qlik\IOTRON) 
 	 * */
@@ -313,5 +315,5 @@ public class Constant {
 		String val = root+"/"+"src/test/java/";
 		return val;
 	}
-	
+
 }

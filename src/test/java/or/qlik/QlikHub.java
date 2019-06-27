@@ -20,8 +20,7 @@ import common.seleniumExceptionHandling.SeleniumMethods;
 public class QlikHub {
 	private SeleniumMethods com;
 	private QlikCommon qcom;
-	public static String title = "Qlik Sense";
-	private String hubWindowHandle;
+	public static String title = "Qlik Sense Hub";
 
 	public QlikHub() {
 		PageFactory.initElements(DriverFactory.getDriver(), this);
@@ -32,13 +31,13 @@ public class QlikHub {
 	@FindBy(css = "span[class*='user-name']")
 	public WebElement link_UserName;
 
-	@FindBy(xpath = "//span[.='Operations - FC']")
+	@FindBy(xpath = "//span[normalize-space()='Operations - FC']")
 	public WebElement link_Operations_FC;
 
-	@FindBy(xpath = "//span[.='Operations - IOTRON']")
+	@FindBy(xpath = "//span[normalize-space()='Operations - IOTRON']")
 	public WebElement link_Operations_IOTRON;
 
-	@FindBy(xpath = "//span[.='Operations - DCH']")
+	@FindBy(xpath = "//span[normalize-space()='Operations - DCH']")
 	public WebElement link_Operations_DCH;
 
 	@FindBy(xpath = "//button[contains(.,'Open')]")
@@ -85,7 +84,7 @@ public class QlikHub {
 				break;
 			}
 				
-			if( ! com.waitForElementsTobe_NotVisible(By.xpath("//div[.='Operations - "+streamName+"']"),5)){
+			if( ! com.waitForElementsTobe_NotVisible(By.xpath("//h2[normalize-space()='Operations - "+streamName+"']"),5)){
 				CustomReporter.report(STATUS.INFO, " Dashboard opened for stream [" + streamName + "]");
 				break;
 			}
@@ -120,7 +119,7 @@ public class QlikHub {
 		int winCount = com.getWindowHandles().size();
 		if(winCount>0){
 			CustomReporter.report(STATUS.PASS, "App overview of ["+ client +"] is successfully opened in New Tab");
-			hubWindowHandle = com.switchTo_Tab_TitleContains(client);
+			com.switchTo_Tab_TitleContains(client);
 			com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain);
 			return new QlikAppOverview();
 		}
@@ -129,13 +128,25 @@ public class QlikHub {
 
 	/**
 	 * Close the passed app tab, and switch back to hub, for selecting other tabs
-	 * @param app The name of the app which is getting closed
 	 * @author shailendra.rajawat 17-Apr-2019
 	 * */
-	public void switchBackToHub(String app) {
-		CustomReporter.createNode("CLOSING THE [" + app + "] APP");
+	public void switchBackToHub() {
+		String currentPageTitle = com.getTitle(); 
+		
+		CustomReporter.createNode("CLOSING THE [" + currentPageTitle + "] APP, and switching Back To Hub");
+		
+		// Sometimes Login is failed, in that case I will not close the tab as report will not be generated because of this
+		if(currentPageTitle.toLowerCase().contains("login")){
+			return;
+		}
+		
 		com.close();
-		com.switchTo_Window(hubWindowHandle);
+		com.switchTo_Tab_TitleContains(title);
+		
+		// Refreshing the page so that we do not get stale element exception
+		com.refresh();
+		com.wait(5);
+		com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain);
 	}
 
 }

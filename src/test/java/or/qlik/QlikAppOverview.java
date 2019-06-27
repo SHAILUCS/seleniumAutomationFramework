@@ -8,6 +8,7 @@ package or.qlik;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.openqa.selenium.By;
@@ -37,7 +38,7 @@ public class QlikAppOverview {
 		com = new SeleniumMethods();
 		qcom = new QlikCommon();
 	}
-
+	
 	@FindBy(xpath = "//button[@title='Confirm selection']")
 	private WebElement button_Filter_ConfirmSelection;
 
@@ -55,7 +56,6 @@ public class QlikAppOverview {
 		return this;
 	}
 
-	
 		
 
 	/**
@@ -74,6 +74,7 @@ public class QlikAppOverview {
 
 		By filterInput = By.xpath("//div[contains(.,'"+filterSection+"')][contains(@class,'filterpane')]//input");
 		
+		// Logic to try to make the filterInput object visible(max 5 attempts) 
 		for (int i = 1; i <= 5; i++) {
 			com.click_UsingAction(By.xpath("//h1[contains(.,'"+filterSection+"')]/a"));
 			if(com.getHeight(filterInput,1) != 0)
@@ -107,7 +108,7 @@ public class QlikAppOverview {
 	 * */
 	private QlikAppOverview closeFilter(){
 		com.click_UsingAction(button_Filter_CloseFullScreen);
-		com.waitForElementsTobe_NotVisible(qcom.icon_Sheet_RotatingCircle);
+		com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain);
 		return this;
 	}
 
@@ -131,7 +132,7 @@ public class QlikAppOverview {
 
 			com.click_UsingAction(sheetObj,sheetName + " link");
 			com.wait(1);
-			com.waitForElementsTobe_NotVisible(qcom.icon_Sheet_RotatingCircle);
+			com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain);
 		}
 	}
 
@@ -183,9 +184,7 @@ public class QlikAppOverview {
 	 * @author shailendra.rajawat 28-Mar-2019 
 	 * @param gridLine 
 	 * */
-	public void exportData_VerifyWithOvRep(String methodName, String appName, String sheet, String obIb, String year, String[] months) {
-
-		String destFilePath = null;
+	public void exportData_VerifyWithOvRep(String methodName, String appName, String sheet, String obIb, String year, String[] months, Locale locale) {
 
 		JSONManager json = new JSONManager(QlikAppTests.jsonFilePath, methodName, sheet, obIb);
 
@@ -216,22 +215,42 @@ public class QlikAppOverview {
 			String[] exportDataArr = json.getStrArr("exportDataArr");
 			if(exportDataArr != null){
 				for (String chart : exportDataArr) {
-					/* Downloading the xlsx file for passed chart in default downloads folder */
+					
+					/*// Downloading the xlsx file for passed chart in default downloads folder
 					exportDataForPassedChart(chart);
 					String fileName = chart+" "+month+".xlsx";
 					String filePath = Util.renameDownloadedFile("xlsx",fileName);
 
-					/* Moving the downloaded xlsx file in desired dest folder */
+					// Moving the downloaded xlsx file in desired dest folder 
 					String destinationFolder = Constant.getQlikDownloadsPath() + "/" + appName + "/" + sheet + "/" + obIb;
 					destFilePath = Util.moveFileToDirectory(filePath, destinationFolder);
 
-					/* Verifying the data with IOTRON overview report */
-					verify_Data_OvRep(sheet, destFilePath, appName, obIb, year, month);
+					// Verifying the data with IOTRON overview report 
+					verify_Data_OvRep(sheet, destFilePath, appName, obIb, year, month, locale);*/
+					
+					downloadDataAndVerifyWithIOTRONData(chart, month, appName, sheet, obIb, year, locale);
+					
 				}
 			}
 
 		}
 
+	}
+	
+	
+	private static synchronized void downloadDataAndVerifyWithIOTRONData(String chart, String month, String appName,
+			String sheet, String obIb, String year, Locale locale) {
+		/* Downloading the xlsx file for passed chart in default downloads folder */
+		exportDataForPassedChart(chart);
+		String fileName = chart+" "+month+".xlsx";
+		String filePath = Util.renameDownloadedFile("xlsx",fileName);
+
+		/* Moving the downloaded xlsx file in desired dest folder */
+		String destinationFolder = Constant.getQlikDownloadsPath() + "/" + appName + "/" + sheet + "/" + obIb;
+		String destFilePath = Util.moveFileToDirectory(filePath, destinationFolder);
+
+		/* Verifying the data with IOTRON overview report */
+		verify_Data_OvRep(sheet, destFilePath, appName, obIb, year, month, locale);
 	}
 
 	/**
@@ -260,13 +279,14 @@ public class QlikAppOverview {
 	 * @param year
 	 * @param months  
 	 * @param mapOR_ObIb 
+	 * @param locale Locale.GERMAN or can be null
 	 */
-	private void verify_Data_OvRep(String sheet, String destFilePath, String appName, String obIb, String year, String month) {
+	private static void verify_Data_OvRep(String sheet, String destFilePath, String appName, String obIb, String year, String month, Locale locale) {
 
 		String fileName = new File(destFilePath).getName();
 		CustomReporter.createNode("Verifying " + obIb + " sheet ["+sheet+"] >> ["+fileName+"] "+" data with Overview Report" );
 	
-		DataMap mapSheet = new DataMap();
+		DataMap mapSheet = new DataMap(locale);
 		mapSheet.loadXls(destFilePath);
 
 		Map<String, String> filter_OR = new HashMap<String, String>();
@@ -412,7 +432,7 @@ public class QlikAppOverview {
 				By filterObj = By.xpath("//div[contains(@class,'item')][contains(.,'" + filterTxt + "')]//a");
 				if(!com.waitForElementsTobe_NotVisible(filterObj,1)){
 					com.click_UsingAction(filterObj, "");
-					com.waitForElementsTobe_NotVisible(qcom.icon_Sheet_RotatingCircle);
+					com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain);
 					CustomReporter.report(STATUS.PASS, "Filter with text ["+filterTxt+"] removed successfully");
 				}else{
 					CustomReporter.report(STATUS.INFO, "Filter with text ["+filterTxt+"] can not be removed as it is not already applied");

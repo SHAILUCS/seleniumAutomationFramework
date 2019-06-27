@@ -89,8 +89,9 @@ public class DTSummary_Header {
 	private List<String> tdItems=new ArrayList<>(Arrays.asList(TrafficDirection.CustomerOutbound.value,TrafficDirection.VisitorInbound.value));
 	private List<String> stItems=new ArrayList<>(Arrays.asList(ServiceType.DATA.value,ServiceType.SMS.value,ServiceType.VOICE.value));
 	private List<String> etItems=new ArrayList<>(Arrays.asList(EventType.MB.value,EventType.MO.value,EventType.MT.value));
-		
+	
 	public void verify_UI() {
+		
 		CustomReporter.createNode("Sections verification");
 		com.isElementPresent(data_DealTrackerSummary_BreadCrumb, "Deal Tracker Summary heading in Bread Crumb");
 		com.isElementPresent(data_Deals_Section, "Deals Section");

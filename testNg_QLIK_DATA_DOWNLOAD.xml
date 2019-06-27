@@ -1,12 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Qlik Data Download" verbose="1" thread-count="5" parallel="methods">
+<suite name="Qlik Data Download" verbose="1" thread-count="2" parallel="tests">
 	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
 	<listeners>
 		<listener class-name="common.testNgListener.CustomListener_HMap" />
 	</listeners>
 	
-	<test name="Qlik_OR_ALL_APPS">
-		<parameter name="environment" value="PROD" /> <!-- ${environment} PROD-->
+	<test name="Qlik_OR_ALL_APPS1">
+		<parameter name="environment" value="PROD" /> <!-- ${environment} PROD -->
 		<parameter name="browser" value="chrome" />
 		<parameter name="platform" value="" />
 		<parameter name="user" value="NGC-M" />
@@ -14,10 +14,39 @@
 		
 			<class name="tests.qlik.QlikAppTests">
 				<methods>
-					<include name="T00_IOTRON_DataDownload"/>
+					<!-- <include name="T001_IOTRON_DataDownload_EE"/> -->
+					<include name="T002_IOTRON_DataDownload_GoMalta"/>
+					<!-- <include name="T003_IOTRON_DataDownload_HKT"/>
+					<include name="T004_IOTRON_DataDownload_JT"/>
+					<include name="T005_IOTRON_DataDownload_KPN"/>
+					<include name="T006_IOTRON_DataDownload_MTN_Cyprus"/>
+					<include name="T007_IOTRON_DataDownload_MTN_Group"/>
+					<include name="T008_IOTRON_DataDownload_Optus"/> -->
 				</methods>
 			</class>
 		</classes>
 	</test>
-	
+	<!-- 
+	<test name="Qlik_OR_ALL_APPS2">
+		<parameter name="environment" value="PROD" /> ${environment} PROD
+		<parameter name="browser" value="chrome" />
+		<parameter name="platform" value="" />
+		<parameter name="user" value="NGC-SS" />
+		<classes>
+		
+			<class name="tests.qlik.QlikAppTests">
+				<methods>
+					<include name="T009_IOTRON_DataDownload_Simminn"/>
+					<include name="T010_IOTRON_DataDownload_Spark"/>
+					<include name="T011_IOTRON_DataDownload_Telstra"/>
+					<include name="T012_IOTRON_DataDownload_TMO"/>
+					<include name="T013_IOTRON_DataDownload_Verizon"/>
+					<include name="T014_IOTRON_DataDownload_Vivacom"/>
+					<include name="T015_IOTRON_DataDownload_VodafoneIceland"/>
+					<include name="T016_IOTRON_DataDownload_NovaIceland"/>
+					<include name="T017_IOTRON_DataDownload_HutchGroup"/>
+				</methods>
+			</class>
+		</classes>
+	</test> -->
 </suite>

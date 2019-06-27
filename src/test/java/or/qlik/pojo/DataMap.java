@@ -8,7 +8,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import common.configData_Util.STATUS;
 import common.configData_Util.Util;
@@ -19,6 +21,9 @@ import common.xlUtil.DataTable;
 
 public class DataMap {
 
+	/** This is required or setting the locale of passed data*/
+	private Locale locale;
+
 	/** The name of the file to be used while reporting */
 	private String fileName;
 
@@ -27,6 +32,19 @@ public class DataMap {
 
 	/** for storing the row wise data of passed xls */
 	private List<ArrayList<String>> rowsList;
+
+	/**
+	 * Pass the locale value to make sure proper results are returned, from get
+	 * sum method, pass null if you are not sure what is locale 
+	 */
+	public DataMap(Locale locale){
+		this.locale = locale;
+	}
+
+
+	public DataMap(){
+		this(null);
+	}
 
 	/**
 	 * A static method, which will load the data of XLSX and store it into List
@@ -46,14 +64,14 @@ public class DataMap {
 		DataTable xls = new DataTable(xlsPath, 0);
 
 		for (int col = 0; col < xls.getColumnCount(colHeaderIndex); col++) {
-			String colName = Util.removeSpeacialCharacters(Util.normalizeSpace(xls.getValue(colHeaderIndex,col)));
+			String colName = Util.normalizeSpace(xls.getValue(colHeaderIndex,col));
 			colNamesMap.put(colName, col);
 		}
 
 		for (int row = colHeaderIndex+1; row <= xls.getLastRowIndex(); row++) {
 			ArrayList<String> colData = new ArrayList<String>();
 			for (int col = 0; col < xls.getColumnCount(colHeaderIndex); col++) {
-				String cellTxt = xls.getValue(row, col).replaceAll("[^A-Za-z0-9._ -]", "");
+				String cellTxt = xls.getValue(row, col);
 				if(cellTxt.equals("") || cellTxt.equals("-")){
 					cellTxt = "0";
 				}
@@ -66,7 +84,17 @@ public class DataMap {
 
 	public static void main(String[] args) {
 		DataMap map =  new DataMap();
-		map.loadCsv("C:\\Users\\shailendra.rajawat\\git\\iotronApex5\\src\\test\\java\\or\\qlik\\pojo\\Overview_report_download_csv(4) Jan.csv");
+
+		//map.loadXls("C:\\Downloads_Qlik\\IOTRON\\Vodafone Iceland_IOTRON Discount Management App\\Data.xlsx");
+
+		map.loadCsv("C:\\Users\\shailendra.rajawat\\git\\iotronApex5\\src\\test\\java\\or\\qlik\\pojo\\Overview Report MarBackup.csv");
+
+		Map<String, String> filter = new HashMap<String, String>();
+		filter.put("Service Type", "Voice");
+		//filter.put("Traffic Period", "0119");
+		
+		map.getSum("Traffic Volume", map.applyFilter(filter));
+
 	}
 
 	/**
@@ -85,21 +113,21 @@ public class DataMap {
 		 * Management App], because this csv processing is slowing down the
 		 * execution
 		 */
-		if(csvPath.contains("Verizon_IOTRON Discount Management App")){
-			processCsvToRemoveDoubleQuotes(csvPath);
-		}
+		//if(csvPath.contains("Verizon_IOTRON Discount Management App")){
+			processCsvToRemoveDoubleQuotes_Regex(csvPath);
+		//}
 
 		CSVManager csv = new CSVManager(csvPath);
 
 		for (int col = 0; col < csv.getColumnCount(); col++) {
-			String colName = Util.removeSpeacialCharacters(Util.normalizeSpace(csv.getValue(0,col)));
+			String colName =Util.normalizeSpace(csv.getValue(0,col));
 			colNamesMap.put(colName, col);
 		}
 
 		for (int row = 1; row < csv.getRowCount(); row++) {
 			ArrayList<String> sigleRow = new ArrayList<String>();
 			for (int col = 0; col < csv.getColumnCount(); col++) {
-				String cellTxt = csv.getValue(row, col).replaceAll("[^A-Za-z0-9._ -]", "");
+				String cellTxt = csv.getValue(row, col);
 				if(cellTxt.equals("") || cellTxt.equals("-")){
 					cellTxt = "0";
 				}
@@ -110,7 +138,71 @@ public class DataMap {
 		CustomReporter.report(STATUS.INFO, "Loaded " + rowsList.size() + " rows from csv [" + csvPath + "]");
 	}
 
+	
 	/**
+	 * This method is using regular expression and replacing the whole data at once, 
+	 * it is way faster than processing the data line by line.
+	 * 
+	 * This method will process the passed csv file, and remove the extra "(double quotes) 
+	 * from the cells, because the CsvManager class was throwing below exeception. 
+	 * invalid char between encapsulated token and delimiter
+	 * Stack Trace :- null
+	 * org.apache.commons.csv.Lexer.parseEncapsulatedToken(Lexer.java:281)
+	 * @author shailendra.rajawat 05-Jun-2019
+	 * */
+	private void processCsvToRemoveDoubleQuotes_Regex(String filePath){
+		try {
+
+			String reportIn = new String(Files.readAllBytes(Paths.get(filePath)));
+			// Replacing the middle (,"",) valid data with (,__SINGLE__,)
+			String regex = ",\"\",";
+			String MIDDLE = ",__SINGLE__,";
+			do{
+				reportIn = Pattern.compile(regex).matcher(reportIn).replaceAll(MIDDLE);
+			}while(Pattern.compile(regex).matcher(reportIn).find());
+
+
+			// Replacing the ending (,""\n) valid data with (,__SINGLE__\n)
+			regex = ",\"\"\\s*\n";
+			String LINE_ENDING =  ",__SINGLE__\n";
+			reportIn = Pattern.compile(regex).matcher(reportIn).replaceAll(LINE_ENDING);
+
+			// Replacing the starting (\n"",) valid data with (\n__SINGLE__,)
+			regex = "\n\\s*\"\",";
+			String LINE_STARTING =  "\n__SINGLE__,"; 
+			reportIn = Pattern.compile(regex).matcher(reportIn).replaceAll(LINE_STARTING);
+			//System.out.println("\n\n"+reportIn);
+
+			/* 
+			 * we have replaced all valid combinations("",) AND (,"",) AND (,"") of consecutive ("")
+			 * Now we can replace the invalid consecutive ("") with single (")
+			 * */
+			regex = "\"\"";
+			String VALID =  "\""; 
+			reportIn = Pattern.compile(regex).matcher(reportIn).replaceAll(VALID);
+			//System.out.println("\n\n"+reportIn);
+
+			// AND Of Course reverting the changes 
+			regex = "__SINGLE__";
+			VALID =  "\"\""; 
+			reportIn = Pattern.compile(regex).matcher(reportIn).replaceAll(VALID);
+			//System.out.println("\n\n"+reportIn);
+
+			// Removing the existing file 
+			Util.forceDelete(filePath);
+
+			// Creating the file again with processed data
+			Files.write(Paths.get(filePath),reportIn.getBytes(),StandardOpenOption.CREATE);
+			CustomReporter.report(STATUS.INFO, "File Recreated after removing the extra \" : " + filePath);
+		}
+		catch(IOException ex) {
+			new CustomExceptionHandler(ex, "File path: "+filePath);
+		}
+	}
+
+
+	/**
+	 * This method will read the data and remove the extra double quote line by line, which is way slower
 	 * This method will process the passed csv file, and remove the extra "(double quotes) 
 	 * from the cells, because the CsvManager class was throwing below exeception. 
 	 * invalid char between encapsulated token and delimiter
@@ -119,9 +211,6 @@ public class DataMap {
 	 * @author shailendra.rajawat 17-May-2019
 	 * */
 	private void processCsvToRemoveDoubleQuotes(String filePath) {
-		// The name of the file to open.
-		//String filePath = "C:\\Users\\shailendra.rajawat\\git\\iotronApex5\\src\\test\\java\\common\\csvUtil\\data.txt";
-		//String fileName = "C:\\Users\\shailendra.rajawat\\Downloads\\Overview_report_download_csv(3).csv";
 
 		try {
 
@@ -134,19 +223,19 @@ public class DataMap {
 
 				//System.out.println("*********************************************************************************************************************");
 				//System.out.println(lines[num]);
-				
+
 				//ADDING THE START MIDDLE AND END, in place of starting("), Middle(",") and Last("\n)
 
 				String newLine = "";
 
 				// Replacing the starting " with __SINGLE__ and Replacing the ending " with __SINGLE__\n
-					
+
 				newLine = "__SINGLE__" + lines[num].substring(1,lines[num].lastIndexOf("\""));
 				newLine = newLine + "__SINGLE__" + lines[num].substring(lines[num].lastIndexOf("\"")+1, lines[num].length()) +"\n";
-				
+
 				//System.out.println(newLine);
-				
-				
+
+
 				// Replacing all the middle "," with __MIDDLE__ 
 				newLine = newLine.replaceAll("\",\"", "__MIDDLE__");
 
@@ -163,7 +252,7 @@ public class DataMap {
 
 			// Removing the existing file 
 			Util.forceDelete(filePath);
-			
+
 			// Creating the file again with processed data
 			Files.write(Paths.get(filePath),reportOut.getBytes(),StandardOpenOption.CREATE);
 			CustomReporter.report(STATUS.INFO, "File Recreated after removing the extra \" : " + filePath);
@@ -179,7 +268,7 @@ public class DataMap {
 	 * @return 
 	 * */
 	private String getValue(String colName, ArrayList<String> singleRow) {
-		colName = Util.removeSpeacialCharacters(Util.normalizeSpace(colName));
+		colName = Util.normalizeSpace(colName);
 		if(colNamesMap.containsKey(colName)){
 			int colIndex = colNamesMap.get(colName);
 			return singleRow.get(colIndex).trim();
@@ -245,7 +334,7 @@ public class DataMap {
 		for (ArrayList<String> singleRow : rowsList) {
 			String cellTxt = getValue(colName, singleRow);
 			if(cellTxt != null){
-				sum = Util.BD(cellTxt).add(Util.BD(sum)).toString();
+				sum = Util.BD(cellTxt, locale).add(Util.BD(sum, locale)).toString();
 			}else{
 				CustomReporter.report(STATUS.ERROR, "Passed Column ["+colName+"] is incorrect");
 				break;

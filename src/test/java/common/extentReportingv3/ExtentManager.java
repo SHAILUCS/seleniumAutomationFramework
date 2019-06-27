@@ -35,8 +35,8 @@ public class ExtentManager {
 		extentReport.setAnalysisStrategy(AnalysisStrategy.TEST);
 		return extentReport;
 	}
-	
-	
+
+
 	//called by onStart
 	public static synchronized ExtentReports GetExtentReports(String suiteName,String inParallel){
 		if (extentReport != null)
@@ -55,20 +55,20 @@ public class ExtentManager {
 	public static synchronized ExtentTest createTest(HashMap<TestNGKeys, String> testDataMap) {
 		String startTag="<b style='font-size: small;font-family: monospace;'>";
 		String endTag="</b>";
-		
+
 		ExtentTest extentTest = extentReport.createTest(
 				testDataMap.get(TestNGKeys.description) 
-					+ " | os: "+startTag + testDataMap.get(TestNGKeys.platform)+ endTag+""
-					+ " | browser: "+startTag + testDataMap.get(TestNGKeys.browser) + endTag+" |"
-					,
-				 	 " | class: "+startTag + testDataMap.get(TestNGKeys.className)+ endTag+""
-					+ " | Method: "+startTag + testDataMap.get(TestNGKeys.methodName)+ endTag+""
-					+ " | Priority: "+startTag + testDataMap.get(TestNGKeys.priority)+ endTag+" |"
+				+ " | os: "+startTag + testDataMap.get(TestNGKeys.platform)+ endTag+""
+				+ " | browser: "+startTag + testDataMap.get(TestNGKeys.browser) + endTag+" |"
+				,
+				" | class: "+startTag + testDataMap.get(TestNGKeys.className)+ endTag+""
+						+ " | Method: "+startTag + testDataMap.get(TestNGKeys.methodName)+ endTag+""
+						+ " | Priority: "+startTag + testDataMap.get(TestNGKeys.priority)+ endTag+" |"
 				);
 		extentTestMap.put((int) (long) (Thread.currentThread().getId()), extentTest);
 		return extentTest;
 	}
-	
+
 	//called by onTestStart
 	public static synchronized ExtentTest createTest(String name, String description, String testNG_testName, String testNG_suiteName){
 		ExtentTest extentTest = extentReport.createTest(name, description+" | TestNG-test : "+testNG_testName+" | TestNG-suite : "+testNG_suiteName);
@@ -94,11 +94,15 @@ public class ExtentManager {
 	}
 
 	public static synchronized ExtentTest createNode(String description) {
-		ExtentTest extentNode = GetExtentTest().createNode(description);
-		extentTestMap.put((int) (long) (Thread.currentThread().getId()), extentNode);
+		ExtentTest extentNode = null ;
+		try{
+			extentNode= GetExtentTest().createNode(description);
+			extentTestMap.put((int) (long) (Thread.currentThread().getId()), extentNode);
+		}catch (Exception e) {
+		}
 		return extentNode;
 	}
-	
+
 	public static Status getStatus(String status) {
 		Status val=null;
 		if(status.equalsIgnoreCase(STATUS.PASS.value)){

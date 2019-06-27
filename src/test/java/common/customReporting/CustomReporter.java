@@ -232,7 +232,7 @@ public class CustomReporter {
 				test.log(ExtentManager.getStatus(Constan), description);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 

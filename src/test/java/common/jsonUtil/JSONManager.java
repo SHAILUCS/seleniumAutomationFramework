@@ -299,11 +299,23 @@ public class JSONManager {
 	 * @return int json array objects count 
 	 * */
 	public int getJsonArrLength(String jsonArr) {
-		JSONObject[] obj = getJsonObjectArray(jsonArr);
-		if (obj != null) {
-			return obj.length;
+		if (jsonObject != null) {
+			if (jsonObject.containsKey(jsonArr)) {
+				if (jsonObject.get(jsonArr) instanceof JSONArray) {
+					jsonArray = (JSONArray) jsonObject.get(jsonArr);
+					return jsonArray.size();
+				} else {
+					CustomReporter.report(STATUS.ERROR, "Passed key '" + jsonArr + "' : does not have jsonObject array");
+				}
+			} else {
+				CustomReporter.report(STATUS.ERROR,
+						"Passed key '" + jsonArr + "' : does not exist, in JSON  Object hierarchy "
+								+ Arrays.toString(jsonObjHierarchy) + " located {" + jsonFilePath + "}");
+			}
 		} else {
-			CustomReporter.report(STATUS.ERROR, "jsonObj Array is null");
+			CustomReporter.report(STATUS.ERROR,
+					"Value for '" + jsonArr + "' : can not be found because, Passed JSON  Object hierarchy "
+							+ Arrays.toString(jsonObjHierarchy) + " does not exist in file {" + jsonFilePath + "}");
 		}
 		return -1;
 	}

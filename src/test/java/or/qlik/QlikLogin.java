@@ -23,7 +23,7 @@ public class QlikLogin {
 
 	private SeleniumMethods com;
 	private QlikCommon qcom;
-	public static String title = "Login";
+	public static String title = "Qlik Sense login page";
 
 	public QlikLogin() {
 		PageFactory.initElements(DriverFactory.getDriver(), this);
@@ -39,7 +39,17 @@ public class QlikLogin {
 
 	@FindBy(id = "loginbtn")
 	private WebElement button_Login;
-
+	
+	@FindBy(xpath = "//span[starts-with(@class,'user-name')]")
+	private WebElement data_UserName;
+	
+	@FindBy(xpath = "//span[contains(@class,'log-out')]")
+	private WebElement icon_Logout;
+	
+	@FindBy(id = "loginbtn")
+	private WebElement button_Login_OnLogoutPage;
+	
+	
 	/**
 	 * It will navigate to Qlik login page and 
 	 * Based on the passed type this method will first 
@@ -82,7 +92,7 @@ public class QlikLogin {
 
 		if(com.getTitle().equals((QlikHub.title))){
 			//if(!com.waitForElementsTobe_NotVisible(By.xpath("//*[normalize-text()='Opening the hub']"),5)){
-			if(com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain,30)){	
+			if(com.waitForElementsTobe_NotVisible(qcom.icon_PageLoadingIndicator_Rain,30)){
 				CustomReporter.report(STATUS.PASS, "LOGIN SUCCEED for User | type " + type + " | username "+ userName);
 				return new QlikHub();
 			}else{
@@ -90,14 +100,52 @@ public class QlikLogin {
 				Assert.fail("HOME PAGE is not displayed for User | type " + type + " | username "+ userName);
 			}
 		}else{
-			CustomReporter.report(STATUS.FAIL, "LOGIN FAILED for User | type " + type + " | username "+ userName);
+			CustomReporter.report(STATUS.FAIL, "LOGIN FAILED for User | type " + type + " | username "+ userName + " Expected Title "+ QlikHub.title + " But found "+ com.getTitle());
 			Assert.fail("LOGIN FAILED for User | type " + type + " | username "+ userName);
 		}
 		return null;
 	}
 
 	public void logout() {
-			CustomReporter.report_ExitCurrentNode(STATUS.INFO, "Logout CODE TODO");
+		// In case login failed, then user will still be present on Login page, then we will just stop this method execution
+		String title = com.getTitle();
+		if(title.toLowerCase().contains("login") || !title.toLowerCase().contains("app")){
+			return;
+		}
+		
+		/* 
+		 * Switching back to hub so that other app can be opened in new tab 
+		 * and logging out process can be started
+		 * */
+		QlikHub hub = new QlikHub();
+		hub.switchBackToHub();
+		
+		int retry = 5;
+		while(true){
+			// Repeat this stuff, till the passed Stream is not visible, Or the retry attempts are exceeded
+			com.click_UsingAction(data_UserName, "data_UserName");
+			com.wait(1);
+			
+			if(retry-- == 0){
+				CustomReporter.report(STATUS.FAIL, "Failed to make logout icon visible after multiple Retry attempts");
+				break;
+			}
+				
+			if( ! com.waitForElementsTobe_NotVisible(icon_Logout,1)){
+				CustomReporter.report(STATUS.INFO, "Logout icon displayed");
+				break;
+			}
+
+		}
+		
+		com.click_UsingAction(icon_Logout);
+		if(com.waitForElementTobe_Visible(button_Login_OnLogoutPage)){
+			CustomReporter.report(STATUS.PASS, "You have been logged out. Page is displayed");
+			com.click_UsingAction(button_Login_OnLogoutPage);
+			com.waitForElementTobe_Visible(text_UserName,"Login Page");
+		}else{
+			CustomReporter.report(STATUS.FAIL, "Oh snap, what happened now??");
+		}
 	}
 
 }

@@ -19,7 +19,7 @@
 				<include name="Testing_sessionTimeoutIotron_TMO"></include> 
 				<include name="Testing_sessionTimeoutIotron_DealTracker"></include>  
 				<include name="Testing_sessionTimeoutFCHHomePage"></include> 
-				<include name="Testing_sessionTimeout_FCHSLAReport"></include>  
+				<include name="Testing_sessionTimeout_FCHSLAReport"></include> 
 				</methods>
 			</class>
     </classes>

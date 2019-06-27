@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import common.configData_Util.STATUS;
 import common.configData_Util.Util;
 
 public class QlikGRID {
@@ -23,7 +24,9 @@ public class QlikGRID {
 	private String difference;
 	private String passFail;
 	
+	private static Map<Long,List<QlikGRID>> listMap;
 	
+
 	public static void addRow(String appName, String sheet, String year, String month, String obIb, String fileName, String fieldName, String qlikValue, String iotronValue){
 		QlikGRID gridRow = new QlikGRID();
 		gridRow.setApp(appName);
@@ -35,19 +38,8 @@ public class QlikGRID {
 		gridRow.setFieldName(fieldName);
 		gridRow.setQlikValue(qlikValue);
 		gridRow.setIotronValue(iotronValue);
-		QlikGRID.addObject(gridRow);
+		addObject(gridRow);
 	}
-	
-	public String toString() {
-		return "Stream: "+stream + " | " + "App: "+app + " | " + "Sheet: "+sheet + " | " + "Curr: "+curr + " | " +
-				"TraffYear: "+traffYear + " | " + "TraffMonth: "+traffMonth + " | " + "ObIb: "+obIb + " | " + 
-				"SheetNameDownloaded: "+sheetNameDownloaded + " | " +"FieldName: "+fieldName + " | " + "QlikValue: "+qlikValue + " | " + "IotronValue: "+iotronValue + " | " +
-				"Difference: "+difference + " | " + "PassFail: "+passFail + " | " + "ListSize: "+list.size();
-	}
-	
-	private static List<QlikGRID> list;
-	
-	private static Map<Long,List<QlikGRID>> listMap;
 	
 	private static void addObject(QlikGRID obj){
 		
@@ -55,7 +47,7 @@ public class QlikGRID {
 			listMap = new HashMap<Long, List<QlikGRID>>();
 		}
 
-		list = listMap.get(Thread.currentThread().getId());
+		List<QlikGRID> list = listMap.get(Thread.currentThread().getId());
 		
 		if (list == null) {
 			list = new ArrayList<QlikGRID>();
@@ -142,12 +134,14 @@ public class QlikGRID {
 	}
 
 	public String getPassFail() {
-		if(difference!=null){
-			if(Util.compareNumeric(qlikValue, iotronValue)){
-				passFail = "Pass";
-			}else{
-				passFail = "Fail";
-			}
+		if(difference==null){
+			getDifference();
+		}
+		
+		if(Util.compareNumeric(qlikValue, iotronValue)){
+			passFail = STATUS.PASS.value;
+		}else{
+			passFail = STATUS.FAIL.value;
 		}
 		return passFail;
 	}
@@ -206,6 +200,13 @@ public class QlikGRID {
 		}		
 		
 		return htmlTable;
+	}
+
+	public String toString() {
+		return "Stream: "+stream + " | " + "App: "+app + " | " + "Sheet: "+sheet + " | " + "Curr: "+curr + " | " +
+				"TraffYear: "+traffYear + " | " + "TraffMonth: "+traffMonth + " | " + "ObIb: "+obIb + " | " + 
+				"SheetNameDownloaded: "+sheetNameDownloaded + " | " +"FieldName: "+fieldName + " | " + "QlikValue: "+qlikValue + " | " + "IotronValue: "+iotronValue + " | " +
+				"Difference: "+difference + " | " + "PassFail: "+passFail + " | " + "ListSize: "+listMap.get(Thread.currentThread().getId()).size();
 	}
 	
 }

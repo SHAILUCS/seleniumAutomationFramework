@@ -3,7 +3,14 @@
 <suite name="Suite" parallel="methods">
   <test name="Test">
     <classes>
-      <class name="common.jsonUtil.TestngJsonRunner"/>
+      <class name="common.jsonUtil.TestngJsonRunner">
+      	<methods>
+      		<include name ="thread1" />
+      		<include name ="thread2" />
+      		<include name ="thread3" />
+      		<include name ="thread4" />
+      	</methods>
+      </class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

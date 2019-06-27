@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.io.FileUtils;
 
@@ -39,13 +41,14 @@ public class Util {
 			new CustomExceptionHandler(e);
 		}
 	}
-
+	
 	/**
 	 * @return the os name, in which the scripts are currently running
 	 */
 	public static String getOSName() {
 		return System.getProperty("os.name");
 	}
+
 
 	/** Converts the provided String value to passed format(DD/MM/YYYY) date */
 	public static Date convertToDate(String format, String stringDate) {
@@ -77,12 +80,12 @@ public class Util {
 		SimpleDateFormat form = new SimpleDateFormat(format);
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.MONTH, Integer.parseInt(mmYY.substring(0, 2)) - 1);
-		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String currentYear = cal.get(Calendar.YEAR) + "";
 		cal.set(Calendar.YEAR, Integer.parseInt(currentYear.substring(0, 2) + mmYY.substring(2, 4)));
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		return form.format(cal.getTime());
 	}
-
+	
 	/** Gives you the time stamp in dd_MMM_yyyy_HH_mm_ss_S format */
 	public static String getTimeStamp_InMilliSec() {
 		// return (new SimpleDateFormat("dd_MMM_yyyy_HH_mm_ss_S")).format(new
@@ -132,7 +135,7 @@ public class Util {
 		return prefixZeroToDigit(hours) + ":" + prefixZeroToDigit(minutes) + ":" + prefixZeroToDigit((int) seconds)
 		+ sssInString;
 	}
-
+	
 	/** private method to be used by {@link timeConversion} method */
 	private static String prefixZeroToDigit(int num) {
 		int number = num;
@@ -165,31 +168,56 @@ public class Util {
 	 * to perform calculation on big digit numbers
 	 */
 	public static BigDecimal BD(String ip) {
+		return BD(ip, null);
+	}
+	
+	
+	/**
+	 * Gives you object of BigDecimal for the passed string number, it is used
+	 * to perform calculation on big digit numbers
+	 */
+	public static BigDecimal BD(String ip, Locale locale) {
 		BigDecimal bd = null;
 		try {
-			bd = new BigDecimal(removeCommas(ip));
+			if(locale == null){
+				bd = new BigDecimal(removeCommas(ip));
+			}else{
+				NumberFormat nf = NumberFormat.getInstance(locale);
+	            bd = new BigDecimal(nf.parse(ip).toString());
+			}
 		} catch (Exception e) {
 			new CustomExceptionHandler(e, "Passed Data " + ip);
 		}
 		return bd;
 	}
 
+	
+	public static String Round(String ip, int precision) {
+		return Round(ip, precision, null);
+	}
+		
+	
 	/**
 	 * This method will round your big string number to the passed precision
 	 * Round(12.1122,2) will return 12.11
 	 */
-	public static String Round(String ip, int precision) {
+	public static String Round(String ip, int precision, Locale locale) {
 		BigDecimal bd = null;
 		String val = "0";
 		try {
-			bd = new BigDecimal(removeCommas(ip));
+			if(locale == null){
+				bd = new BigDecimal(removeCommas(ip));
+			}else {
+				NumberFormat nf = NumberFormat.getInstance(locale);
+	            bd = new BigDecimal(nf.parse(ip).toString());
+			}
 			val = bd.setScale(precision, RoundingMode.HALF_EVEN).toPlainString();
 		} catch (Exception e) {
 			new CustomExceptionHandler(e, "Passed Data " + ip);
 		}
 		return val;
 	}
-
+	
 	/**
 	 * This method will return you the absolute file path of the downloaded file
 	 * whose name contains the passed value
@@ -254,7 +282,7 @@ public class Util {
 		}
 		return filePath;
 	}
-
+	
 	/**
 	 * This method moves the downloaded file to the destination folder
 	 * 
@@ -325,6 +353,7 @@ public class Util {
 	}
 
 	/**
+	 * Dont use it, sometimes it does not even works
 	 * This method will forcefully delete the passed folder and all its content 
 	 * @param absoluteFilePath absolute path of the folder/file
 	 */
@@ -332,13 +361,19 @@ public class Util {
 		boolean bool = false;
 		try {
 			File file = new File(absoluteFilePath);
-			FileUtils.forceDelete(file);
-			CustomReporter.report(STATUS.PASS, "Directory/File Deleted: " + absoluteFilePath);
+			if(file.exists()){
+				FileUtils.forceDelete(file);
+				CustomReporter.report(STATUS.PASS, "Directory/File Deleted: " + absoluteFilePath);
+			}else{
+				CustomReporter.report(STATUS.INFO, "Directory/File Not Exist: " + absoluteFilePath);
+			}
+			
 		} catch (Exception e) {
 			new CustomExceptionHandler(e,"Passed Data, absoluteFilePath: '" + absoluteFilePath + "'");
 		}
 		return bool;
 	}
+	
 
 	/**
 	 * "Displayed Value of [<b>"+objectAndpageDesc+"</b>] : '" + onPage + "' has
@@ -355,25 +390,31 @@ public class Util {
 					+ "</b>' has failed to match with expected value: '<b>" + expected + "</b>'");
 		}
 	}
-
+	
+	public static void comparator_PageValues(String comparingObject, String page1Name, String page1Val,
+			String page2Name, String page2Val) {
+		comparator_PageValues(comparingObject, page1Name, page1Val, page2Name, page2Val, null);
+	}
+	
+	
 	/**
 	 * "Displayed Value of [<b>"+comparingObject+"</b>] on
 	 * [<b>"+page1Name+"</b>] : '" + page1Val + "' has matched with value of:
 	 * [<b>"+page2Name+"</b>] : '" + page2Val +"'"
 	 */
 	public static void comparator_PageValues(String comparingObject, String page1Name, String page1Val,
-			String page2Name, String page2Val) {
-		page1Val = Util.removeCommas(page1Val);
+			String page2Name, String page2Val, Locale locale) {
+		/*page1Val = Util.removeCommas(page1Val);
 		if (page1Val.equals("-")) {
 			page1Val = "0";
-		}
+		)}
 
 		page2Val = Util.removeCommas(page2Val);
 		if (page2Val.equals("-")) {
 			page2Val = "0";
-		}
+		}*/
 
-		if (compareNumeric(page1Val, page2Val)) {
+		if (compareNumeric(page1Val, page2Val, locale)) {
 			CustomReporter.report(STATUS.PASS,
 					"Displayed Value of [<b>" + comparingObject + "</b>] on [<b>" + page1Name + "</b>] : '<b>"
 							+ page1Val + "</b>' has matched with value of: [<b>" + page2Name + "</b>] : '<b>" + page2Val
@@ -406,14 +447,31 @@ public class Util {
 							+ page2Val + "</b>'");
 		}
 	}
-
+	
 	/** Private method for performing the comparison logic - on numbers only */
 	public static boolean compareNumeric(String d1, String d2) {
+		return compareNumeric(d1, d2, null);
+	}
+		
+	/** Private method for performing the comparison logic - on numbers only */
+	public static boolean compareNumeric(String d1, String d2, Locale locale) {
 		try {
-			d1 = (d1.trim().equals("-")) ? "0" : d1.replaceAll("[^0-9.-]", "");
-			d2 = (d2.trim().equals("-")) ? "0" : d2.replaceAll("[^0-9.-]", "");
-			double n1 = Double.parseDouble(d1);
-			double n2 = Double.parseDouble(d2);
+			d1 = (d1.trim().equals("-")) ? "0" : d1.replaceAll("[^0-9,.-]", "");
+			d2 = (d2.trim().equals("-")) ? "0" : d2.replaceAll("[^0-9,.-]", "");
+
+			BigDecimal bd1 = null;
+			BigDecimal bd2 = null; 
+			if(locale == null){
+				bd1 = new BigDecimal(removeCommas(d1));
+				bd2 = new BigDecimal(removeCommas(d2));
+			}else {
+				NumberFormat nf = NumberFormat.getInstance(locale);
+	            bd1 = new BigDecimal(nf.parse(d1).toString());
+	            bd2 = new BigDecimal(nf.parse(d2).toString());
+			}
+			
+			double n1 = Double.parseDouble(bd1.toString());
+			double n2 = Double.parseDouble(bd2.toString());
 			/*
 			 * if((100d>=n1 && n1>=0d) && (100d>=n2 && n2>=0d)){
 			 * if(d1.toString().contains(d2.toString()) ||
@@ -432,8 +490,6 @@ public class Util {
 			 * 0.119965 0.12 0.12 Pass
 			 */
 			if ((1d >= n1 && n1 >= -1d) && (1d >= n2 && n2 >= -1d)) {
-				BigDecimal bd1 = new BigDecimal(d1);
-				BigDecimal bd2 = new BigDecimal(d2);
 				d1 = bd1.setScale(2, RoundingMode.HALF_UP).toPlainString();
 				d2 = bd2.setScale(2, RoundingMode.HALF_UP).toPlainString();
 				if (d1.equals(d2)) {
@@ -459,6 +515,7 @@ public class Util {
 		return false;
 	}
 
+	
 	/**
 	 * "Expected value of [<b>"+desc+"</b>] : '<b>" + expected + "</b>' and on
 	 * Page value displayed is '<b>"+onPage +"</b>'"
@@ -475,6 +532,7 @@ public class Util {
 			return false;
 		}
 	}
+	
 
 	/**
 	 * "Calulated value of [<b>"+desc+"</b>] : '" + calculated + "' and on Page
@@ -559,6 +617,7 @@ public class Util {
 		}
 	}
 
+	
 	/** below methos will return array object of the passed object sequence */
 	public static String[] getArray(String... strVal) {
 		return strVal;
@@ -602,8 +661,8 @@ public class Util {
 	 *         spaces, dot and underscores)
 	 * @author shailendra.rajawat 27-Mar-2019
 	 */
-	public static String removeSpeacialCharacters(String inputStr) {
-		return inputStr.replaceAll("[^A-Za-z0-9._ ]", "");
+	public static String removeSpecialCharacters(String inputStr) {
+		return inputStr.replaceAll("[^A-Za-z0-9._ ,]", "");
 	}
 	
 	/**
@@ -617,7 +676,7 @@ public class Util {
 	public static String normalizeSpace(String str){
 		return str.replaceAll("^ +| +$|( )+", "$1");
 	}
-
+	
 	/**
 	 * This method first look the download folder for the file which contains
 	 * the passed name, once the file is found, it will rename the file to the
@@ -643,7 +702,7 @@ public class Util {
 			// better access
 			File fOld = new File(filePathWithOldName);
 
-			String newFileNameNoSpecialChar = removeSpeacialCharacters(newFileNameWithExtension);
+			String newFileNameNoSpecialChar = removeSpecialCharacters(newFileNameWithExtension);
 			filePathWithNewName = fOld.getParent() + "/" + newFileNameNoSpecialChar;
 			File fNew = new File(filePathWithNewName);
 			if (fOld.renameTo(fNew)) {
