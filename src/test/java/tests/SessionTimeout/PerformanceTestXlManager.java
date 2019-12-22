@@ -2,8 +2,8 @@ package tests.SessionTimeout;
 
 import java.io.File;
 
-import common.configData_Util.Constant;
-import common.xlUtil.DataTable;
+import com.configData_Util.Constant;
+import com.xlUtil.DataTable;
 
 public class PerformanceTestXlManager {
 	

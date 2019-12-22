@@ -3,10 +3,11 @@ package objectRepository.AgreementCapture;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.STATUS;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
+import com.configData_Util.STATUS;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+
 import objectRepository.common.ApexCommon;
 
 

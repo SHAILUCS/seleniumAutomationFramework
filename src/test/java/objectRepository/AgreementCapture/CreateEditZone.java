@@ -5,8 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+
 import objectRepository.common.ApexCommon;
 
 public class CreateEditZone {

@@ -3,7 +3,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import common.seleniumExceptionHandling.SeleniumMethods;
+import com.seleniumExceptionHandling.SeleniumMethods;
 
 public class Sequential {
 

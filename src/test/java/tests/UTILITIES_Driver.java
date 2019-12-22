@@ -3,12 +3,13 @@ package tests;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.configData_Util.STATUS;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.xlUtil.DataTable;
+import com.configData_Util.Constant;
+import com.configData_Util.STATUS;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.xlUtil.DataTable;
+
 import objectRepository.AgreementCapture.MaintainIOTDiscountAgreementsPage_P301;
 import objectRepository.AgreementCapture.MaintainIOTRONPersonalFavourites;
 import objectRepository.FCHAdministration.SystemUsers;

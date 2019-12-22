@@ -13,12 +13,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.jsonUtil.JSONManager;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.jsonUtil.JSONManager;
+import com.seleniumExceptionHandling.WebTable;
+
 import objectRepository.AgreementCapture.UpdateSignatureTracker_P180;
 import objectRepository.common.NGCHomePage;
 import objectRepository.common.PagesTitle;

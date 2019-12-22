@@ -12,11 +12,12 @@ import java.util.Locale;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.jsonUtil.JSONManager;
+import com.configData_Util.Constant;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.jsonUtil.JSONManager;
+
 import objectRepository.Reporting.OverviewReport_P507;
 import objectRepository.common.Currency;
 import objectRepository.common.IOTRONHomePage;

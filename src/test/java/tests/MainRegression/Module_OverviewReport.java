@@ -2,9 +2,10 @@ package tests.MainRegression;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
+import com.configData_Util.Constant;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+
 import objectRepository.AgreementCapture.ZoneDefinition;
 import objectRepository.Reporting.OverviewReport_P507;
 import objectRepository.common.IOTRONHomePage;

@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.customReporting.CustomReporter;
+import com.configData_Util.Constant;
+import com.customReporting.CustomReporter;
+
 import objectRepository.CustomisedReportsTMO.IotronUsInstance;
 import objectRepository.CustomisedReportsTMO.TapAccrualActualAndTrueUp;
 import objectRepository.Forecasting.FinancialReport_ForecastedTAPDiscountedCharges;

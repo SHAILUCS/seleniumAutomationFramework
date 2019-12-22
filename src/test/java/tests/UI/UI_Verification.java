@@ -2,7 +2,8 @@ package tests.UI;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Util;
+import com.configData_Util.Util;
+
 import objectRepository.AgreementCapture.ZoneDefinition;
 import objectRepository.Reporting.OverviewReport_P507;
 import objectRepository.common.IOTRONHomePage;

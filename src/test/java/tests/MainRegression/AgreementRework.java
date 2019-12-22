@@ -2,8 +2,9 @@ package tests.MainRegression;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.jsonUtil.JSONManager;
+import com.configData_Util.Constant;
+import com.jsonUtil.JSONManager;
+
 import objectRepository.AgreementCapture.Rework.AgreementDetails_P16;
 import objectRepository.AgreementCapture.Rework.MaintainIOTDiscountAgreements_p20;
 import objectRepository.AgreementCapture.Rework.AgreementDetails.Administration_Tab_p15_AgreementChecklist_Sec;

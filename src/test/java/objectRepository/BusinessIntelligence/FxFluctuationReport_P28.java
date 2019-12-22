@@ -10,15 +10,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.Constant;
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.jsonUtil.JSONManager;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import database.DBManager;
-import database.ContentReader;
+import com.configData_Util.Constant;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.db.ContentReader;
+import com.db.DBManager;
+import com.driverManager.DriverFactory;
+import com.jsonUtil.JSONManager;
+import com.seleniumExceptionHandling.SeleniumMethods;
+
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAgreement_P303;
 import objectRepository.AgreementCapture.MaintainIOTDiscountAgreementsPage_P301;
 import objectRepository.common.ApexCommon;

@@ -2,7 +2,8 @@ package tests.UI;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Util;
+import com.configData_Util.Util;
+
 import objectRepository.AgreementCapture.AgreementChecklistReview;
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAddressPage;
 import objectRepository.AgreementCapture.CreateEditIOTDiscountBankAccountPage;

@@ -12,12 +12,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.csvUtil.CSVManager;
-import common.customReporting.CustomReporter;
-import common.seleniumExceptionHandling.CustomExceptionHandler;
-import common.xlUtil.DataTable;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.csvUtil.CSVManager;
+import com.customReporting.CustomReporter;
+import com.seleniumExceptionHandling.CustomExceptionHandler;
+import com.xlUtil.DataTable;
 
 public class DataMap {
 

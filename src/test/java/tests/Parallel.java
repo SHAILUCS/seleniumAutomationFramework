@@ -3,10 +3,10 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import common.configData_Util.STATUS;
-import common.customReporting.CustomReporter;
-import common.customReporting.snapshot.SnapshotManager;
-import common.seleniumExceptionHandling.SeleniumMethods;
+import com.configData_Util.STATUS;
+import com.customReporting.CustomReporter;
+import com.customReporting.snapshot.SnapshotManager;
+import com.seleniumExceptionHandling.SeleniumMethods;
 
 public class Parallel {
 	@Test(description = "1 + Test - P",priority=1)

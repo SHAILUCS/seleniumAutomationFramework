@@ -6,9 +6,10 @@ import java.util.List;
 
 import org.openqa.selenium.support.PageFactory;
 
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.seleniumExceptionHandling.WebTable;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.seleniumExceptionHandling.WebTable;
+
 import objectRepository.common.ApexCommon;
 import objectRepository.common.PagesTitle;
 

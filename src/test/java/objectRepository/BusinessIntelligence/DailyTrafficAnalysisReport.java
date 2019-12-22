@@ -10,14 +10,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.jsonUtil.JSONManager;
-import common.seleniumExceptionHandling.CustomExceptionHandler;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.jsonUtil.JSONManager;
+import com.seleniumExceptionHandling.CustomExceptionHandler;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.seleniumExceptionHandling.WebTable;
 import objectRepository.Forecasting.FinancialReport_ForecastedTAPDiscountedCharges;
 import objectRepository.IOTRONSystemAdministration.ViewIOTTrafficData;
 import objectRepository.common.ApexCommon;
@@ -28,7 +28,7 @@ import tests.MainRegression.Module_KPN_Op4;
 
 public class DailyTrafficAnalysisReport {
 
-	private SeleniumMethods com;
+	private com.seleniumExceptionHandling.SeleniumMethods com;
 	public static String title = "Daily Traffic Analysis Report";
 	private ApexCommon comm;
 	private WebTable tabHead;

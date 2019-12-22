@@ -1,6 +1,6 @@
 package tests;
 
-import common.coverageMatrixGenerator.AutomationCoverageMatrixManager;
+import com.coverageMatrixGenerator.AutomationCoverageMatrixManager;
 
 public class AutomationCoverageMatrix_Tester {
 	public void Test1() {

@@ -2,7 +2,8 @@ package tests.MainRegression;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
+import com.configData_Util.Constant;
+
 import objectRepository.AgreementCapture.MaintainTrafficSegmentationRules_P35;
 import objectRepository.common.IOTRONHomePage;
 import objectRepository.common.Navigator;

@@ -9,10 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.STATUS;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.STATUS;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.WebTable;
+
 import objectRepository.AgreementCapture.CreateEditIOTManualForecast_P159;
 import objectRepository.common.PagesTitle;
 

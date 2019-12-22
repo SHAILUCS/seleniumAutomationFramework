@@ -9,12 +9,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.Constant;
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.Constant;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.WebTable;
+
 import objectRepository.AgreementCapture.AddIOTAgreementDocument_P414;
 import objectRepository.AgreementCapture.IOTAgreementDocuments_P419;
 import objectRepository.common.PagesTitle;

@@ -4,10 +4,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.xlUtil.DataTable;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.xlUtil.DataTable;
+
 import objectRepository.IOTRONUserConfiguration.ContactRoleAndTeamAssignment;
 import objectRepository.common.IOTRONHomePage;
 import objectRepository.common.NGCHomePage;

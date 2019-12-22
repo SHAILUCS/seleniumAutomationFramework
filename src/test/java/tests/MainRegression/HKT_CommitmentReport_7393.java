@@ -2,10 +2,11 @@ package tests.MainRegression;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.jsonUtil.JSONManager;
+import com.configData_Util.Constant;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.jsonUtil.JSONManager;
+
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAgreement_P303;
 import objectRepository.AgreementCapture.MaintainIOTDiscountAgreementsPage_P301;
 import objectRepository.IOTRONSystemAdministration.CommitmentReportSizeOfRiskBounds_P602;

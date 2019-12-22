@@ -8,10 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.jsonUtil.JSONManager;
-import common.seleniumExceptionHandling.SeleniumMethods;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.jsonUtil.JSONManager;
+import com.seleniumExceptionHandling.SeleniumMethods;
+
 import objectRepository.common.ApexCommon;
 import objectRepository.common.IOTRONHomePage;
 import objectRepository.common.Navigator;

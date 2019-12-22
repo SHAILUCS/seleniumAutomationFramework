@@ -10,13 +10,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.csvUtil.CSVManager;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.csvUtil.CSVManager;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.seleniumExceptionHandling.WebTable;
+
 import objectRepository.common.ApexCommon;
 
 public class MaintainClientDefinedCountriesMapping {

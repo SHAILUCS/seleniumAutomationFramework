@@ -2,7 +2,8 @@ package tests.UI;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Util;
+import com.configData_Util.Util;
+
 import objectRepository.DealTracker.BudgetModule.BudgetAdministration;
 import objectRepository.DealTracker.BudgetModule.BudgetForecastCreation;
 import objectRepository.DealTracker.BudgetModule.BudgetTrueup;

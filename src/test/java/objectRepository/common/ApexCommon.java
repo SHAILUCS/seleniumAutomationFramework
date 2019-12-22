@@ -11,13 +11,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Quotes;
 
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.CustomExceptionHandler;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.CustomExceptionHandler;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.seleniumExceptionHandling.WebTable;
 
 public class ApexCommon extends SeleniumMethods {
 

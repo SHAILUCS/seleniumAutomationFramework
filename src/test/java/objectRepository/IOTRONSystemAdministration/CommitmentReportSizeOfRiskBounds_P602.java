@@ -5,11 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import common.configData_Util.Util;
-import common.driverManager.DriverFactory;
-import common.jsonUtil.JSONManager;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.seleniumExceptionHandling.WebTable;
+import com.configData_Util.Util;
+import com.driverManager.DriverFactory;
+import com.jsonUtil.JSONManager;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.seleniumExceptionHandling.WebTable;
+
 import objectRepository.common.ApexCommon;
 
 

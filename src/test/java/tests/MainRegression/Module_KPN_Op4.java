@@ -2,8 +2,9 @@ package tests.MainRegression;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.customReporting.CustomReporter;
+import com.configData_Util.Constant;
+import com.customReporting.CustomReporter;
+
 import objectRepository.BusinessIntelligence.DailyTrafficAnalysisReport;
 import objectRepository.BusinessIntelligence.DailyTrafficVolumesByCountryAndPartner;
 import objectRepository.BusinessIntelligence.DailyTrafficVolumesByPartner;

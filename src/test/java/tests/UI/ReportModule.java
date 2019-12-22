@@ -2,7 +2,8 @@ package tests.UI;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Util;
+import com.configData_Util.Util;
+
 import objectRepository.Reporting.AgreementCatalogueReport;
 import objectRepository.Reporting.AgreementPerformanceReportCreditNote;
 import objectRepository.Reporting.AgreementPerformanceReportCreditNote_SingleMonth;

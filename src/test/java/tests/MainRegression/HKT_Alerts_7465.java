@@ -4,10 +4,11 @@ import java.util.Map;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.configData_Util.Util;
-import common.customReporting.CustomReporter;
-import common.jsonUtil.JSONManager;
+import com.configData_Util.Constant;
+import com.configData_Util.Util;
+import com.customReporting.CustomReporter;
+import com.jsonUtil.JSONManager;
+
 import objectRepository.BusinessIntelligence.FxFluctuationReport_P28;
 import objectRepository.BusinessIntelligence.TrafficTrend_P37;
 import objectRepository.FCHDataLoading.SDRConversionRates_P392;

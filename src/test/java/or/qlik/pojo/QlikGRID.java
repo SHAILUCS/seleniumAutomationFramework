@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import common.configData_Util.STATUS;
-import common.configData_Util.Util;
+import com.configData_Util.STATUS;
+import com.configData_Util.Util;
 
 public class QlikGRID {
 	

@@ -5,11 +5,12 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
-import common.configData_Util.Util;
-import common.jsonUtil.JSONManager;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.xlUtil.DataTable;
+import com.configData_Util.Constant;
+import com.configData_Util.Util;
+import com.jsonUtil.JSONManager;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.xlUtil.DataTable;
+
 import objectRepository.AgreementCapture.CreateEditIOTDiscountAgreement_P303;
 import objectRepository.AgreementCapture.DiscountAgreementManagementPage;
 import objectRepository.AgreementCapture.MaintainIOTDiscountAgreementsPage_P301;

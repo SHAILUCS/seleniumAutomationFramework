@@ -2,7 +2,8 @@ package tests.MainRegression;
 
 import org.testng.annotations.Test;
 
-import common.configData_Util.Constant;
+import com.configData_Util.Constant;
+
 import objectRepository.DealTracker.DTModule.NavigatorDT;
 import objectRepository.DealTracker.DTModule.DTSummary.DTSummary_EditOperatorGrowthP8;
 import objectRepository.DealTracker.DTModule.DTSummary.DTSummary_EditOutboundGrowthP6;

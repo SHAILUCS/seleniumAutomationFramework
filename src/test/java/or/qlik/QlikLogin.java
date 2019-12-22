@@ -12,12 +12,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import common.configData_Util.Constant;
-import common.configData_Util.STATUS;
-import common.customReporting.CustomReporter;
-import common.driverManager.DriverFactory;
-import common.seleniumExceptionHandling.SeleniumMethods;
-import common.xlUtil.DataTable;
+import com.configData_Util.Constant;
+import com.configData_Util.STATUS;
+import com.customReporting.CustomReporter;
+import com.driverManager.DriverFactory;
+import com.seleniumExceptionHandling.SeleniumMethods;
+import com.xlUtil.DataTable;
 
 public class QlikLogin {
 
